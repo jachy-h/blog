@@ -19,6 +19,9 @@ draft: false
 `opencode` 的 `zen`, 自带 `minimax 2.5 free` , 速度挺快， 效果符合预期
 https://opencode.ai/zen
 
+## iflow cli
+
+尝试中
 
 ## openrouter
 
