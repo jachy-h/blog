@@ -1,0 +1,156 @@
+"use strict";(()=>{var ue=[{key:"A",name:"青春损失追偿",desc:"帮朋友向前任追讨青春损失费",code:"YOUTH RECOVERY"},{key:"B",name:"暧昧纠纷代理",desc:"代理暧昧纠纷、已读不回案件",code:"AMBIGUITY DISPUTES"},{key:"C",name:"非法心动案件",desc:"处理万圣节非法心动事件",code:"ILLEGAL HEARTBEAT"},{key:"D",name:"酒后紧急辩护",desc:"为喝醉后胡言乱语的嫌疑人提供辩护",code:"AFTER-PARTY DEFENSE"}];var G={A:["分手后，你找过最蹩脚的联系借口是什么？","和前任一起追过的剧里，哪一部你现在还不敢点开？","有没有哪首歌，到现在你都不敢随便点开？","你最舍不得的，是那个人，还是那时候的自己？","如果前任今晚给你发消息，你会秒回、晚点回，还是不回？","有没有一句话，你一直想对前任说，却最后没有说出口？","回头看，那段感情教会你最重要的一件事是什么？","有没有一个地方，因为那个人，你很久都没有再去过？"],B:["你有没有明明很在意一个人，却故意装作无所谓？","你收到过最让你心动的一条消息是什么？","暧昧的时候，你通常是先试探的人，还是等对方开口的人？","为了回一条消息打了又删，你最多删过几遍？","被已读不回的时候，你心里最常上演的剧本是什么？","什么样的瞬间，会让你从“有点好感”变成“完了，我陷进去了”？","如果暧昧对象今晚问你“我们算什么”，你会怎么回答？","你点开次数最多的一个主页，是谁的？（可以只说关系）"],C:["今晚第一个让你多看两眼的人，穿的是什么装扮？","请如实陈述：你对本律师的第一印象是什么？","你更容易被一个人的长相吸引，还是被说话的方式吸引？","声音、手、笑容、香味，哪一个最容易让你心动？","你今晚的装扮，有没有一点点是想让某个人看到？","你相信一见钟情吗？你自己经历过吗？","你觉得自己身上最犯规的地方是什么？","如果今晚有人向你要糖，你最希望是谁？（可以只描述装扮）"],D:["有没有一句话，你只敢在放松的时候才说出口？","你经历过最尴尬的一次聚会，是什么场面？","你最想撤回的一条消息，是发给谁的？（可以只说关系）","你状态最放松的时候，最想给谁打一个电话？","你说过的豪言壮语里，哪一句最让你后悔？","深夜写好却没发出去的消息，你写给了谁？（可以只说关系）","如果明天醒来会忘记今晚，你现在最想做的一件事是什么？","你最想对今晚在场的某个人说什么？（不必说出是谁）"]};var f=(e,t)=>t.map(n=>G[e][n]),i=(e,t,n)=>({text:e,verdict:"guilty",charge:t,reason:n}),c=(e,t)=>({text:e,verdict:"innocent",reason:t}),ae=[{id:"A001",category:"A",title:"视频会员借用案",desc:"分手三个月后，你突然联系前任，声称只是想借用一下对方的视频会员。",evidence:["聊天记录显示，你的开场白是“在吗”，四分钟后才补了一句“你那个会员还能用吗”。","同一时段，该平台某热播剧恰好更新大结局。"],defenses:[i("我真的只是想看大结局，跟前任没有任何关系。","旧情非法续费罪","只为追剧的话，开一个月会员就够了。先发“在吗”再提会员，本庭认定你另有所图。"),c("会员是我们一起开的，我是在提醒对方及时取消自动续费。","本庭认定你出于对共同财产的责任心，虽然多此一举，但动机善良，准予释放。"),c("我承认，我只是想找个理由，和对方说一句话。","鉴于你当庭坦白、态度诚恳，本庭认定想念不构成犯罪。下次可以直接说“好久不见”。")],truths:f("A",[0,1,4])},{id:"A002",category:"A",title:"二手平台转卖案",desc:"你把前任送的礼物挂上了二手平台，商品描述写着“全新未使用，送人没送出去”。前任刷到后，控告你侮辱共同回忆。",evidence:["标价为原价三折，并注明“支持小刀”。","商品详情图的背景里，还能看到你们一起买的那盏台灯。"],defenses:[c("东西放着也是放着，物尽其用是一种美德。","本庭认定，让旧物找到新主人属于环保行为，回忆不会因为转卖而贬值，准予释放。"),i("我写“没送出去”，是因为那段感情本来就没送到对的人手里。","回忆擅自转让罪","你在商品描述里夹带个人情绪，本庭认定构成对共同回忆的公开转让。"),i("我故意挂出来，就是想让对方刷到。","情侣物品违规处置罪","你当庭承认把二手平台当作情绪广播站，蓄意明显，罪名成立。")],truths:f("A",[3,6,7])},{id:"A003",category:"A",title:"共享歌单续更案",desc:"分手半年，你仍在往两人共建的歌单“我们的周末”里加歌，最近新增的 12 首全是苦情歌。前任每次打开音乐软件都会收到更新提醒。",evidence:["歌单最新一首歌添加于凌晨 1:14。","歌单名称至今未改，仍然叫“我们的周末”。"],defenses:[c("歌单是我建的，我在自己的地盘听歌，合理合法。","本庭认定，在自己参与创建的歌单里听歌属于个人自由，不构成骚扰，准予释放。"),i("我只是懒得新建一个歌单。","前任余温残留罪","懒得改名可以理解，懒得停止添加苦情歌则不能。本庭认定你仍在借歌传情。"),c("我以为歌单早就设为私密了，忘了对方还是协作者。","本庭认定疏忽不构成故意。请于今晚移除协作者，当庭释放。")],truths:f("A",[2,5,3])},{id:"A004",category:"A",title:"生日提醒滞留案",desc:"分手一年，前任的生日提醒仍在你的手机日历里准时响起。今年提醒响起时，你下意识打开了蛋糕店页面。",evidence:["提醒备注写着“提前一周订蛋糕”。","你在蛋糕店页面停留了 40 秒，并把一款蛋糕加入了购物车。"],defenses:[i("我只是自己想吃蛋糕，刚好被提醒了。","纪念日违规保留罪","想吃蛋糕不需要提前一周提醒。本庭认定这条提醒仍在为旧人服务。"),c("我当场删掉了提醒，购物车也清空了。","鉴于你在 40 秒内完成了心动、犹豫、删除的全过程，本庭认定你已具备放下的能力，准予释放。"),i("我想给对方寄一块，就当是最后的礼物。","情感债务拖欠罪","分手一年仍在履行生日义务，本庭认定这笔情感账尚未结清。")],truths:f("A",[4,5,3])},{id:"A005",category:"A",title:"红烧肉秘方案",desc:"你曾为前任学会做红烧肉。分手后，前任的新恋人在朋友圈晒出同款，配文“家传秘方”。你在评论区留言“这个秘方我很熟”，随即被前任起诉。",evidence:["评论发布于晚上 11:47，三分钟内获得 6 个赞。","经查，该“秘方”是你在视频网站学的第三个版本。"],defenses:[c("我只是陈述事实，这道菜确实是我教的。","本庭认定你对这道菜享有合理的署名权，陈述事实不构成挑衅，准予释放。"),i("我是好心提醒，冰糖要少放一点，不然会腻。","厨艺余情未了罪","深夜给前任的新恋人提供烹饪指导，本庭认定你仍在关心这锅肉旁边的人。"),i("评论发完我就删了，只存在了三分钟。","回忆公开展示罪","三分钟就收获 6 个赞，说明你挑了最热闹的时间发布。删除不影响定罪。")],truths:f("A",[6,7,0])},{id:"B001",category:"B",title:"凌晨点赞案",desc:"你凌晨两点给前任点了一个赞，事后坚称只是手滑。",evidence:["点赞时间为 02:13，被点赞的是对方三年前的一张旧照。","经测量，找到这张照片需要向下滑动约 40 屏。"],defenses:[i("真的是手滑，我的手机屏幕太灵敏了。","手滑伪证罪","屏幕再灵敏，也滑不出连续 40 屏的精准定位。本庭不采信“手滑”说法。"),c("那天是对方生日，我在犹豫要不要发一句生日快乐。","本庭认定，出于礼貌的犹豫不构成暧昧。你只是太会替别人着想，准予释放。"),i("我承认是故意的，我想让对方知道我还在。","恶意制造暧昧罪","你当庭承认蓄意留下痕迹。本庭欣赏你的诚实，但这正是暧昧的构成要件。")],truths:f("B",[7,0,2])},{id:"B002",category:"B",title:"一碗面已读案",desc:"你已读了对方发来的一段长消息，一分钟后却发了一条朋友圈。对方认为你在冷处理，向本庭提起诉讼。",evidence:["消息显示已读时间为 21:02。","你的朋友圈发布于 21:03，内容是一碗面。"],defenses:[i("面坨了就不好吃了，我得先拍照。","已读不回罪","本庭认定，一碗面的保质期不应该高于一段关系。"),c("那条消息太重要了，我想认真组织好语言再回。","本庭认定慎重回复属于对感情的尊重，准予释放，但限你今晚 12 点前提交回复。"),c("那碗面就是我的回复，我们约好了下次一起去吃这家。","本庭查明这是一条加密回复，构成浪漫，不构成冷落，当庭释放。")],truths:f("B",[4,3,1])},{id:"B003",category:"B",title:"“改天”无期案",desc:"你连续三个月对一个人说“改天请你吃饭”，改天始终没有到来。万圣节当晚，对方决定当面起诉你。",evidence:["聊天记录中，“改天”一共出现了 11 次。","经日历鉴定，“改天”这一天并不存在。"],defenses:[c("我一直在等一个特别的日子，比如今天。","本庭认定万圣节符合“特别的日子”，判令你今晚兑现承诺，当庭释放。"),i("最近真的太忙了。","“改天”无限期拖延罪","你说了 11 次“改天”，花掉的时间足够吃 11 顿饭。忙碌理由不成立。"),i("我怕吃完这顿饭，就找不到下一次见面的理由了。","心意隐瞒不报罪","你把喜欢藏在“改天”里，本庭认定属于故意拖延告白。")],truths:f("B",[6,2,5])},{id:"B004",category:"B",title:"备注降级案",desc:"你发现自己在对方手机里的备注是“饭搭子3号”，于是把对方的备注改成了“饭搭子1号（候补）”。对方认为你在蓄意报复。",evidence:["你改备注的时间，是看到对方手机后的第 5 分钟。","对方通讯录里共有 3 个饭搭子，只有你的备注后面带了一个小太阳。"],defenses:[i("我只是礼尚往来，按规矩排了个号。","情感排位报复罪","礼尚往来应当对等，你却把对方降成了候补，本庭认定报复意图明显。"),c("我没注意到那个小太阳，早知道我会改成“唯一的饭搭子”。","本庭认定你的过激反应源于信息不对称。误会已经解除，准予释放。"),i("我就是想看看，对方发现后会不会着急。","试探性心动罪","你当庭承认用备注测试对方的反应，属于典型的暧昧行为，罪名成立。")],truths:f("B",[0,7,6])},{id:"B005",category:"B",title:"顺路送伞案",desc:"下雨天，你特意给对方送了一把伞，第二天却说“只是顺路”。对方查了地图之后，把你告上法庭。",evidence:["你们的住址相距 11 公里，方向相反。","导航记录显示，所谓的“顺路”需要掉头两次。"],defenses:[i("我那天真的要去那边办事，伞是顺手送的。","虚构顺路罪","真要去那边办事，不需要掉头两次才“顺路”。本庭不采信。"),c("我那段时间在练车，掉头是练习科目。","本庭认定掉头两次符合练车标准，送伞属于附带的好人好事，准予释放。"),c("我承认不顺路，我只是不想让对方淋雨。","本庭认定坦白的心意不构成欺诈。顺路是假的，关心是真的，当庭释放。")],truths:f("B",[5,1,2])},{id:"C001",category:"C",title:"一夜三心案",desc:"万圣节当晚，你涉嫌同时偷走了三个人的心。",evidence:["现场目击者三名，均表示“心跳不受控制”。","经勘查，作案工具疑似为你的一个微笑。"],defenses:[c("我只是正常微笑，是他们太容易心动了。","本庭认定，微笑属于合法持有物品，心动属于受害人的自愿行为，准予释放。"),i("我是故意的，今晚本来就是我的主场。","非法偷心罪","你当庭承认蓄意作案，且毫无悔意。本庭依法从重判决。"),i("我今晚戴着面具，他们心动的不是真正的我。","持微笑作案罪","本庭查明，面具挡住了你的脸，却没有挡住你的笑容。辩护理由不成立。")],truths:f("C",[6,0,1])},{id:"C002",category:"C",title:"面具之声案",desc:"你全程戴着面具，只对身边的人说了一句“借过”。对方当场决定，今晚一定要知道面具下是谁，并以“声音过于犯规”起诉你。",evidence:["你一共说了两个字，用时不到一秒。","对方在原地愣了七秒，错过了下一首歌的开头。"],defenses:[c("我只是正常说话，声音是爸妈给的。","本庭认定先天音色不属于作案工具，准予释放。"),i("那句“借过”，我是故意压低了声音说的。","声音蓄意吸引罪","你当庭承认刻意调整声线，本庭认定构成故意。"),c("我愿意当场摘下面具，配合调查。","摘下面具后，原告表示调查结果令人满意，当庭撤诉。")],truths:f("C",[3,2,5])},{id:"C003",category:"C",title:"糖果加倍案",desc:"有人以“不给糖就捣蛋”为由向你要糖，你回赠了一颗更大的。对方表示糖还没吃，心已经乱了。",evidence:["本次糖果交换比例为 1 : 3。","对方至今把那颗糖放在口袋最里层，舍不得吃。"],defenses:[i("我手上只剩大颗的了。","糖果诱导心动罪","糖可以只剩大颗，但对方至今舍不得吃，说明这颗糖已经起了作用。本庭认定你需对后果负责。"),c("万圣节的规矩就是这样，给糖要大方。","本庭认定节日慷慨属于民俗传统，不构成蓄意心动，准予释放。"),i("我想看看对方会不会回来，再要第二颗。","非法占用他人注意力罪","你用一颗糖为下一次见面埋下伏笔，本庭认定预谋成立。")],truths:f("C",[7,4,1])},{id:"C004",category:"C",title:"鬼屋保护案",desc:"在鬼屋里，你一路抓着对方的袖子，出来后却说“我是在保护你”。对方认为你另有所图。",evidence:["工作人员证明，你在最不吓人的那一段也没有松手。","出口的抓拍照片里，你在笑。"],defenses:[c("我是真的害怕，笑是吓完之后的应激反应。","本庭认定恐惧和笑容可以同时存在，准予释放。"),c("我确实在保护对方，您看，对方全程都没尖叫。","本庭认定保护效果显著，且原告无法反驳，当庭释放。"),i("我承认，我早就想找个理由离对方近一点。","鬼屋借势心动罪","你把鬼屋当成了拉近距离的合法场所，动机明确，罪名成立。")],truths:f("C",[5,0,6])},{id:"C005",category:"C",title:"月色真好案",desc:"你和对方站在窗边，你突然说了一句“今晚月色真好”。对方回家查了天气，认为你说的根本不是月亮。",evidence:["经气象核实，当晚月亮被云挡住了大半。","你说这句话时，眼睛并没有看月亮。"],defenses:[i("我近视，没看清那片云。","借景抒情罪","近视可以看不清云，却看得清自己在看谁。本庭不采信。"),c("那是我最近在读的一本小说里的句子，我在背书。","本庭认定引用名句属于文学素养，不构成告白，准予释放。"),i("我说的就是别的事，对方听懂了就好。","公然暗号告白罪","你当庭确认这是一句暗号，本庭认定构成蓄意心动。")],truths:f("C",[5,3,4])},{id:"D001",category:"D",title:"十七条语音案",desc:"聚会结束后，你给前任发了 17 条语音，第二天声称自己完全失忆。",evidence:["语音总时长约 11 分钟，其中 3 分钟为清唱。","你第二天发了一条朋友圈：“昨晚睡得很早。”"],defenses:[i("我真的什么都不记得了，那不是清醒的我。","选择性失忆罪","你不记得发了什么，却记得第二天发朋友圈说自己睡得早。本庭不采信失忆说法。"),c("我是在练歌，只是不小心发错了对象。","本庭查明，清唱部分确实长达 3 分钟，认定你在认真练歌，其余部分按排练花絮处理，准予释放。"),c("第二天我已经主动道歉，并且撤回了能撤回的部分。","鉴于你事后主动道歉、积极补救，本庭认定态度良好，当庭释放。")],truths:f("D",[2,5,3])},{id:"D002",category:"D",title:"公司大群告白案",desc:"聚会散场后，你在公司大群里发了一句“我爱你们每一个人”。老板先回了一个“？”，又补了一句“早点休息”。",evidence:["消息发送时间为凌晨 00:47。","群成员共 86 人，已读 79 人。"],defenses:[c("我说的是真心话，团队就是我的家。","本庭认定深夜的集体之爱属于企业文化建设，准予释放。"),i("是我家猫踩到了手机。","嫁祸于猫罪","本庭查明，猫不会使用“每一个”这样的量词。"),c("第二天撤回不了，我就在群里发了个大红包。","本庭认定红包具有强大的舆论修复功能，当庭释放。")],truths:f("D",[1,2,0])},{id:"D003",category:"D",title:"十分钟结拜案",desc:"你和一个刚认识十分钟的人当场结拜，承诺“你结婚我一定来致辞”。对方说自己已婚，你立刻改口：“那我当你孩子的干爸干妈。”",evidence:["结拜仪式持续约 40 秒。","“干爸干妈”的承诺被三名证人录了下来。"],defenses:[i("我只是被气氛感染，说的都是客套话。","草率结拜罪","客套话不需要三名证人见证。本庭认定这份承诺具有约束力。"),c("我是认真的，今天已经开始攒满月礼的钱了。","本庭认定你兑现承诺的速度令人感动，准予释放。"),i("我以为对方是我失散多年的老同学。","盲目认亲罪","认识十分钟就结拜，事后才想起是“老同学”。本庭认定你结拜前并未核实身份。")],truths:f("D",[4,1,7])},{id:"D004",category:"D",title:"“我请客”未遂案",desc:"你豪迈地宣布“今天我请客”，结账时却发现手机没电了。最后由刚才提议 AA 的朋友代为付款。",evidence:["手机最后的电量截图显示为 1%。","你宣布请客时，屏幕上就已经亮起了低电量提醒。"],defenses:[i("我真的不知道手机快没电了。","豪言买单未遂罪","低电量提醒在你宣布请客时就已经亮起，本庭认定你应当知道。"),c("第二天我就把钱转了回去，还多转了一杯奶茶钱。","本庭认定你及时履约，并主动支付了利息，准予释放。"),i("我说的请客，是请大家吃桌上的瓜子。","请客虚假宣传罪","你当庭重新定义了“请客”，本庭不予采纳。")],truths:f("D",[4,1,6])},{id:"D005",category:"D",title:"民宿梦想案",desc:"聚会上，你宣布明天就辞职去开民宿，连名字都想好了，叫“随便住住”。第二天早上 8:59，你准时打卡上班。",evidence:["当晚你在餐巾纸上画了一张民宿平面图。","你还当场邀请了六位朋友成为“首批股东”。"],defenses:[i("我打卡是为了去办离职手续。","公开立 flag 罪","办离职不需要卡在 8:59 准时到岗。本庭不采信。"),c("梦想要先说出来，我只是在练习。","本庭认定说出梦想不构成违约，“随便住住”的名字予以保留，准予释放。"),c("那张餐巾纸我已经裱起来了，攒够钱就开。","本庭认定计划仍在推进中，不属于空头承诺，当庭释放，并预订开业第一晚。")],truths:f("D",[4,6,0])}],j={A:ae.filter(e=>e.category==="A"),B:ae.filter(e=>e.category==="B"),C:ae.filter(e=>e.category==="C"),D:ae.filter(e=>e.category==="D")};var se=new Map,w={get(e){try{let t=window.localStorage.getItem(e);if(t!==null)return t}catch(t){}return se.has(e)?se.get(e):null},set(e,t){try{window.localStorage.setItem(e,t),se.delete(e);return}catch(n){}se.set(e,t)}};function Te(e,t){let n=e.slice();for(let s=n.length-1;s>0;s--){let a=Math.floor(t()*(s+1));[n[s],n[a]]=[n[a],n[s]]}return n}function Se(e,t){try{let n=JSON.parse(e.get(t)||"[]");return Array.isArray(n)?n.filter(s=>typeof s=="string"):[]}catch(n){return[]}}function ke(e,t,n,s=Math.random){let a=new Set(e),r=Se(n,`${t}.bag`).filter(b=>a.has(b)),o=Se(n,`${t}.recent`).filter(b=>a.has(b));if(r.length===0){let b=new Set(o.slice(-Math.min(5,Math.floor(e.length/3)))),U=Te(e.filter(T=>!b.has(T)),s),V=Te(e.filter(T=>b.has(T)),s);r=U.concat(V)}let u=r.shift();return n.set(`${t}.bag`,JSON.stringify(r)),n.set(`${t}.recent`,JSON.stringify(o.concat(u).slice(-10))),u}function $e(e,t,n=Math.random){let s=j[e],a=ke(s.map(r=>r.id),`hla.case.${e}`,t,n);return s.find(r=>r.id===a)}function De(e,t,n,s){let a=ke(e.map((r,o)=>String(o)),t,n,s);return e[Number(a)]}function et(e,t,n=Math.random){return De(G[e],`hla.truth.${e}`,t,n)}function Ee(e,t,n=Math.random){return!e.truths||e.truths.length===0?et(e.category,t,n):De(e.truths,`hla.truth.case.${e.id}`,t,n)}var tt={scales:'<path d="M12 4v16M8 20h8M5 7h14M12 4.5a1 1 0 1 0 0-.01"/><path d="M5 7l-3 6.5a3.2 3.2 0 0 0 6 0zM19 7l-3 6.5a3.2 3.2 0 0 0 6 0z"/>',gavel:'<path d="M14.5 3.5l6 6M12 6l6 6M13 5l-4.5 4.5 6 6L19 11zM10.5 13.5L4 20"/><path d="M3 21h8"/>',shield:'<path d="M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',hearthands:'<path d="M12 20.5S3.5 15.4 3.5 9.3A4.3 4.3 0 0 1 12 7.4a4.3 4.3 0 0 1 8.5 1.9c0 6.1-8.5 11.2-8.5 11.2z"/><path d="M12 7.4l-2.6 2.8a1.6 1.6 0 0 0 2.3 2.2l1.6-1.4 2.6 2.6M11 15l1.3 1.3M13.2 13.2l1.4 1.4"/>',hourglass:'<path d="M6.5 3h11M6.5 21h11M8 3v3.5L12 12l4-5.5V3M8 21v-3.5L12 12l4 5.5V21"/>',chat:'<path d="M4 5h16v11H9l-5 4z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2.4"/>',heart:'<path d="M12 20s-8-4.8-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.4C20 15.2 12 20 12 20z"/><path d="M18.5 2.5v3M17 4h3"/>',moon:'<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/><path d="M16 3.5v2M15 4.5h2"/>',brokenheart:'<path d="M12 20s-8-4.8-8-10.6A4.4 4.4 0 0 1 12 7a4.4 4.4 0 0 1 8 2.4C20 15.2 12 20 12 20z"/><path d="M12 7l-1.5 3.5 2.5 2-2 3"/>',wine:'<path d="M8 3h8l-.5 5a3.5 3.5 0 0 1-7 0z"/><path d="M12 11.5V20M8.5 20.5h7"/>',check:'<circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.4 2.4 4.6-4.8"/>',download:'<path d="M12 4v11M7 10.5l5 5 5-5M5 19.5h14"/>',file:'<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h4"/>',chevron:'<path d="M9 5l7 7-7 7"/>',arrow:'<path d="M5 12h14M13 6l6 6-6 6"/>',refresh:'<path d="M20 11a8 8 0 0 0-14.5-4.5L4 8M4 4v4h4M4 13a8 8 0 0 0 14.5 4.5L20 16M20 20v-4h-4"/>',quote:'<path d="M10 7H6.5A1.5 1.5 0 0 0 5 8.5V12h4v5H5M19 7h-3.5A1.5 1.5 0 0 0 14 8.5V12h4v5h-4"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>',ticket:'<path d="M3 7h18v3a2 2 0 0 0 0 4v3H3v-3a2 2 0 0 0 0-4z"/><path d="M14 7v10" stroke-dasharray="2 2"/>'};function m(e,t=""){return`<svg class="ico ${t}" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${tt[e]||""}</svg>`}var pe={A:"hourglass",B:"chat",C:"heart",D:"moon"};var Le="hla.muted",J=null;function Q(){return w.get(Le)==="1"}function Ie(e){w.set(Le,e?"1":"0")}function X(){if(!Q())try{let e=window.AudioContext||window.webkitAudioContext;if(!e)return;J||(J=new e),J.state==="suspended"&&J.resume()}catch(e){}}function nt(e,t){let n=e.createBuffer(1,Math.floor(e.sampleRate*t),e.sampleRate),s=n.getChannelData(0);for(let a=0;a<s.length;a++)s[a]=Math.random()*2-1;return n}function Re(e,t,n,s,a){let r=e.createOscillator(),o=e.createGain();r.type="sine",r.frequency.setValueAtTime(n,t),r.frequency.exponentialRampToValueAtTime(n*.45,t+a),o.gain.setValueAtTime(s,t),o.gain.exponentialRampToValueAtTime(1e-4,t+a),r.connect(o).connect(e.destination),r.start(t),r.stop(t+a+.05)}function re(e,t,n,s=1800,a=.06){let r=e.createBufferSource();r.buffer=nt(e,a);let o=e.createBiquadFilter();o.type="bandpass",o.frequency.value=s,o.Q.value=1.2;let u=e.createGain();u.gain.setValueAtTime(n,t),u.gain.exponentialRampToValueAtTime(1e-4,t+a),r.connect(o).connect(u).connect(e.destination),r.start(t)}function $(e){if(Q())return;X();let t=J;if(!t)return;let n=t.currentTime+.01;try{switch(e){case"gavel":re(t,n,.9,1400,.08),Re(t,n,140,.8,.35);break;case"stamp":Re(t,n,90,.7,.22),re(t,n,.35,600,.09);break;case"page":re(t,n,.18,3200,.18);break;case"tap":re(t,n,.12,2400,.03);break;case"release":{[660,880].forEach((s,a)=>{let r=t.createOscillator(),o=t.createGain();r.type="triangle",r.frequency.value=s;let u=n+a*.14;o.gain.setValueAtTime(1e-4,u),o.gain.exponentialRampToValueAtTime(.18,u+.02),o.gain.exponentialRampToValueAtTime(1e-4,u+.7),r.connect(o).connect(t.destination),r.start(u),r.stop(u+.75)});break}}}catch(s){}}var fe="嘴reality5li",Z=`${fe} · HALLOWEEN LEGAL AID · 2026.10.31`,at=1080,st=1440,rt='-apple-system,"PingFang SC","Noto Sans SC","Noto Sans CJK SC","Hiragino Sans GB","Microsoft YaHei",sans-serif',l={bg:"#f4f3f0",card:"#1c1b20",cardInner:"#2a2830",onDark:"#f6f4ef",onDarkSub:"#a6a2a9",onDarkFaint:"#77737b",white:"#ffffff",ink:"#1c1b20",sub:"#6e6c72",faint:"#a9a6a0",line:"#e6e2da",gold:"#c8ad80",goldDeep:"#a88b5c",goldSoft:"#f3ece0",wine:"#9b2335",wineLight:"#e1677b"},ot="，。、；：？！）》」』”’…—,.;:?!)%";function Be(e,t,n){let s=t.match(/[A-Za-z0-9@#&_.\-+%/:]+|\s+|./gu)||[],a=[],r="";for(let o of s){let u=r+o;if(e.measureText(u).width<=n||r===""){r=u;continue}if(/^\s+$/.test(o)){a.push(r),r="";continue}if(ot.includes(o[0])&&r.length>1){if(e.measureText(u).width<=n*1.015){r=u;continue}let b=Array.from(r).pop();a.push(r.slice(0,r.length-b.length)),r=b+o;continue}a.push(r),r=o}return r&&a.push(r),a.map(o=>o.replace(/\s+$/,""))}var L=(e,t)=>`${e} ${Math.round(t)}px ${rt}`;function Y(e,t,n,s,a,r){e.beginPath(),e.moveTo(t+r,n),e.arcTo(t+s,n,t+s,n+a,r),e.arcTo(t+s,n+a,t,n+a,r),e.arcTo(t,n+a,t,n,r),e.arcTo(t,n,t+s,n,r),e.closePath()}var it={scales:"M12 4v16M8 20h8M5 7h14|M5 7l-3 6.5a3.2 3.2 0 0 0 6 0zM19 7l-3 6.5a3.2 3.2 0 0 0 6 0z",gavel:"M14.5 3.5l6 6M12 6l6 6M13 5l-4.5 4.5 6 6L19 11zM10.5 13.5L4 20|M3 21h8",shield:"M12 3l7.5 3v5.5c0 4.5-3.2 8.2-7.5 9.5-4.3-1.3-7.5-5-7.5-9.5V6z|M8.5 12l2.5 2.5 4.5-5"};function Ke(e,t,n,s,a,r){e.save(),e.translate(n,s),e.scale(a/24,a/24),e.strokeStyle=r,e.lineWidth=1.8,e.lineCap="round",e.lineJoin="round";for(let o of it[t].split("|"))e.stroke(new Path2D(o));e.restore()}async function oe(e){var xe;try{await((xe=document.fonts)==null?void 0:xe.ready)}catch(p){}let t=at,n=st,s=document.createElement("canvas");s.width=t,s.height=n;let a=s.getContext("2d"),r=e.kind==="guilty",o=r?l.onDark:l.ink,u=r?l.onDarkSub:l.sub,b=r?l.onDarkFaint:l.faint,U=r?"rgba(255,255,255,.1)":l.line;a.fillStyle=l.bg,a.fillRect(0,0,t,n);let V=44,T=V,W=V,ee=t-V*2,te=n-V*2,ce=56;a.save(),a.shadowColor=r?"rgba(20,18,24,.25)":"rgba(60,50,30,.10)",a.shadowBlur=40,a.shadowOffsetY=14,Y(a,T,W,ee,te,ce),a.fillStyle=r?l.card:l.white,a.fill(),a.restore(),r||(Y(a,T+1,W+1,ee-2,te-2,ce-1),a.strokeStyle=l.line,a.lineWidth=2,a.stroke());let be=68,v=T+be,ne=T+ee-be,O=ne-v,y=W+64;Ke(a,"scales",v,y-4,40,r?l.gold:l.goldDeep),a.textBaseline="middle",a.fillStyle=o,a.font=L(800,34),a.fillText("万圣节特别法律援助处",v+56,y+16),a.fillStyle=b,a.font=L(500,22),a.textAlign="right",a.fillText(r?"电子判决书 · 虚构案件":"无罪释放证明 · 虚构案件",ne,y+16),a.textAlign="left",y+=72,a.fillStyle=U,a.fillRect(v,y,O,2),y+=44;let ve=r?"有罪":"无罪 · 当庭释放";a.font=L(800,28);let N=60,Fe=a.measureText(ve).width+98;Y(a,v,y,Fe,N,N/2),a.fillStyle=r?l.wine:l.goldSoft,a.fill(),Ke(a,r?"gavel":"shield",v+22,y+15,30,r?"#fff":l.goldDeep),a.fillStyle=r?"#fff":l.goldDeep,a.fillText(ve,v+62,y+N/2+1),a.textAlign="right",a.font=L(800,30),a.fillStyle=r?l.gold:l.goldDeep;let je=a.measureText(e.caseId).width;a.fillText(e.caseId,ne,y+N/2+1),a.font=L(500,26),a.fillStyle=u,a.fillText("案件编号",ne-je-12,y+N/2+1),a.textAlign="left",y+=N+36;let le=W+te-64,Ce=y,Me=le-70,A=(p,C,D,_,F,x,h=0)=>({h:E=>(a.font=L(D,C*E),Be(a,p,O-h*2).length*C*E*F+x*E),draw:(E,R)=>{a.font=L(D,C*R),a.fillStyle=_,a.textBaseline="middle";let we=C*R*F;Be(a,p,O-h*2).forEach((Xe,Ze)=>a.fillText(Xe,v+h,E+Ze*we+we/2))}}),Je={h:p=>52*p,draw:(p,C)=>{a.fillStyle=U,a.fillRect(v,p+24*C,O,2)}},Ae=[A(e.caseTitle,36,800,o,1.45,6),A(e.summary,30,400,u,1.6,0),Je],S=[];if(r){S.push(A("最终罪名",26,600,l.onDarkSub,1.4,6)),S.push(A(e.charge||"",64,900,l.wineLight,1.3,e.explain?12:40)),e.explain&&S.push(A(e.explain,27,400,l.onDarkSub,1.55,34));let p=46,C=A("判处真心话一句",26,700,l.gold,1.4,12,p),D=A(`“${e.truth||""}”`,44,800,l.onDark,1.5,16,p),_=A("本庭允许保持沉默",24,500,l.onDarkSub,1.4,0,p),F=x=>p*x*2+C.h(x)+D.h(x)+_.h(x);S.push({h:F,draw:(x,h)=>{let E=F(h);Y(a,v,x,O,E,32*h),a.fillStyle=l.cardInner,a.fill(),Y(a,v,x+38*h,6,E-76*h,3),a.fillStyle=l.gold,a.fill();let R=x+p*h;C.draw(R,h),R+=C.h(h),D.draw(R,h),R+=D.h(h),_.draw(R,h)}})}else S.push(A("释放理由",26,700,l.goldDeep,1.4,14)),S.push(A(e.reason||"",52,800,l.ink,1.5,0));let Qe=Me-Ce,de=(p,C)=>p.reduce((D,_)=>D+_.h(C),0),k=1;for(;k>.5&&de(Ae,k)+de(S,k)>Qe;)k-=.02;a.save(),Y(a,T,W,ee,te,ce),a.clip();let P=Ce;for(let p of Ae)p.draw(P,k),P+=p.h(k);P+=Math.max(0,(Me-P-de(S,k))/2);for(let p of S)p.draw(P,k),P+=p.h(k);return a.restore(),a.fillStyle=U,a.fillRect(v,le-40,O,2),a.textAlign="center",a.textBaseline="middle",a.fillStyle=b,a.font=L(500,24),a.fillText(Z,t/2,le),a.textAlign="left",s}var He="hla.daily",Ve="hla.daily.png";function Oe(e=Date.now()){return new Date(e+8*3600*1e3).toISOString().slice(0,10)}function ie(e=w,t=Date.now()){let n=e.get(He);if(!n)return null;try{let s=JSON.parse(n);if(s&&s.v===1&&s.date===Oe(t)&&s.data&&s.data.caseId)return s}catch(s){}return null}function Ne(e,t,n,s=w,a=Date.now()){let r={v:1,date:Oe(a),at:a,data:e,filename:t};return s.set(He,JSON.stringify(r)),n&&s.set(Ve,`${r.at}|${n}`),r}function Pe(e,t=w){let n=t.get(Ve),s=`${e.at}|`;return!n||!n.startsWith(s+"data:image/png")?null:n.slice(s.length)}var d={},K=document.getElementById("app"),ct=()=>{var e,t;return(t=(e=window.matchMedia)==null?void 0:e.call(window,"(prefers-reduced-motion: reduce)").matches)!=null?t:!1},ge=[];function g(e){return e.replace(/[&<>"']/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[t])}function q(e,t){ge.push(window.setTimeout(e,ct()?Math.min(t,80):t))}function lt(){ge.forEach(e=>clearTimeout(e)),ge=[]}function I(){return ie()!==null}function H(){return`<footer class="sig">${Z}</footer>`}function Ye(){let e=Q();return`<button class="mute" type="button" aria-pressed="${e}" aria-label="${e?"打开音效":"关闭音效"}" data-act="mute">
+    <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 6v12l-4.5-3.5H4z"/>${e?'<path d="M16 9.5l5 5M21 9.5l-5 5"/>':'<path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/>'}</svg>
+  </button>`}function dt(){return`<header class="appbar">
+    <span class="brand">${m("scales")}<span>特别法律援助处</span></span>
+    ${Ye()}
+  </header>`}var _e=0;function he(e,t="info"){let n=document.getElementById("toast");n||(n=document.createElement("div"),n.id="toast",n.setAttribute("role","status"),n.setAttribute("aria-live","polite"),document.body.appendChild(n)),n.className=`toast show ${t}`,n.textContent=e,clearTimeout(_e),_e=window.setTimeout(()=>n.classList.remove("show"),4200)}function z(e,t,n=!0){if(lt(),K.className=`page page-${e}`,K.innerHTML=dt()+t,window.scrollTo(0,0),n)try{history.pushState({page:e},"",location.pathname+location.search)}catch(a){}let s=K.querySelector("h1, h2");s&&(s.setAttribute("tabindex","-1"),s.focus({preventScroll:!0}))}function me(e=!1){z("home",`
+  <main class="wrap home">
+    <section class="hero rise">
+      <div class="hero-icon">${m("scales")}</div>
+      <h1 class="hero-title">万圣节特别法律援助处</h1>
+      <div class="hero-sub">HALLOWEEN LEGAL AID · 2026</div>
+      <p class="hero-quote">“你有权保持沉默，<br>但你说的每句话都会成为<em>搭讪证据</em>。”</p>
+      <button class="btn btn-hero" type="button" data-act="apply" id="apply">
+        <span class="btn-label">申请法律援助</span>${m("arrow")}
+      </button>
+    </section>
+
+    <section class="row-card rise d2" aria-label="执业律师">
+      <span class="avatar">嘴</span>
+      <span class="row-body"><b>执业律师 · ${fe}</b><small>虚构执业证 No.HLA-1031 · 限 10 月 31 日今晚</small></span>
+    </section>
+
+    <p class="disclaimer">万圣节限定虚构法庭 · 娱乐互动<br>所有案件与文书均为虚构，不构成任何真实法律意见。</p>
+  </main>
+  ${H()}`,e)}function ut(){if(X(),$("tap"),I())return B();d.entered=!0,ye(!0)}function ye(e=!0){z("scope",`
+  <main class="wrap scope">
+    <h2 class="h2 rise">欢迎来到我的专属法庭。</h2>
+    <p class="lead rise">请问，你需要哪方面的法律援助？</p>
+    <div class="cards">
+      ${ue.map((t,n)=>`
+        <button class="case-card" type="button" data-act="cat" data-key="${t.key}" style="animation-delay:${80+n*70}ms">
+          <span class="cc-icon">${m(pe[t.key])}</span>
+          <span class="cc-body">
+            <span class="cc-name">【${g(t.name)}】</span>
+            <span class="cc-desc">${g(t.desc)}</span>
+          </span>
+          <span class="cc-arrow">${m("chevron")}</span>
+        </button>`).join("")}
+    </div>
+  </main>
+  ${H()}`,e)}function Ge(e,t=!0){let n=ue.find(a=>a.key===e),s=$e(e,w);Object.assign(d,{category:n,caseItem:s,defense:void 0,charge:void 0,truth:void 0,reason:void 0}),$("page"),z("evidence",`
+  <main class="wrap evidence">
+    <h2 class="h2 rise">本庭已调取相关证据。</h2>
+    <article class="case-hero rise d1">
+      <div class="ch-top">
+        <span class="chip">${m(pe[e])}${g(n.name)}</span>
+        <span class="case-no">案件编号 <b class="mono">${s.id}</b></span>
+      </div>
+      <h3 class="ch-title">${g(s.title)}</h3>
+      <p class="ch-desc">${g(s.desc)}</p>
+      <span class="sr-only">案件类型：${g(n.name)}</span>
+      <span class="case-role">本案当事人：你</span>
+    </article>
+
+    <h3 class="sec-label rise d2">证据材料</h3>
+    <ol class="exhibits">
+      ${s.evidence.map((a,r)=>`
+        <li class="exhibit" style="animation-delay:${260+r*90}ms">
+          <span class="ex-tag">证物 ${r+1}</span>
+          <span class="ex-text">${g(a)}</span>
+        </li>`).join("")}
+    </ol>
+
+    <section class="ask rise d3">
+      <h3 class="sec-label">当庭辩护</h3>
+      <p class="court-q">面对以上指控，你决定如何为自己辩护？</p>
+    </section>
+
+    <!-- 三选一：裁决结果由所选辩护预先决定，不随机 -->
+    <div class="defenses rise d3" role="group" aria-label="选择一个辩护理由">
+      ${s.defenses.map((a,r)=>`
+        <button class="defense-opt" type="button" data-act="defend" data-i="${r}">
+          <span class="def-no">${r+1}</span><span class="def-text">${g(a.text)}</span>
+        </button>`).join("")}
+    </div>
+    <button class="link-btn" type="button" data-act="reroll">${m("refresh")}调取另一份卷宗</button>
+  </main>
+  ${H()}`,t)}function pt(e=!0){let t=d.category.key,n=d.caseItem;d.charge=d.defense.charge||"",d.reason=d.defense.reason,d.truth=Ee(n,w),z("guilty",`
+  <div class="intro" aria-hidden="true">
+    <span class="intro-icon guilty">${m("gavel")}</span>
+    <p class="intro-l1">肃静。</p>
+    <p class="intro-l2">本庭现在宣判。</p>
+  </div>
+  <main class="wrap verdict">
+    <p class="sr-only">肃静。本庭现在宣判。</p>
+    <div class="page-kicker">电子判决书 · 万圣节虚构案件</div>
+    <article class="vcard vcard-guilty" id="doc">
+      <div class="vc-top">
+        <span class="badge badge-wine">${m("gavel")}有罪</span>
+        <span class="vc-no">案件编号 <b class="mono">${n.id}</b></span>
+      </div>
+      <p class="vc-case"><b>${g(n.title)}</b>${g(n.desc)}</p>
+      <div class="vc-label">最终罪名</div>
+      <div class="vc-charge" id="charge">${g(d.charge)}</div>
+      <p class="vc-explain" id="explain">${g(d.reason)}</p>
+      <div class="vc-truth">
+        <div class="vc-label gold">判处真心话一句</div>
+        <p class="truth" id="truth">${g(d.truth)}</p>
+        <p class="vc-note">本庭允许保持沉默</p>
+      </div>
+      <div class="vc-foot">${Z}</div>
+    </article>
+    <div class="actions">
+      <button class="btn btn-dark" type="button" data-act="save" data-plea="answered">我已回答 · 领取判决书</button>
+      <button class="btn btn-light" type="button" data-act="save" data-plea="silent">保持沉默 · 领取判决书</button>
+    </div>
+    <p class="hint">真心话请当面口头回答，本页面不提供输入、不记录任何回答。</p>
+    <button class="link-btn" type="button" data-act="retrial">重新开庭</button>
+  </main>
+  ${H()}`,e),q(()=>$("gavel"),260),q(()=>{var s;return(s=K.querySelector(".intro"))==null?void 0:s.classList.add("done")},1300),q(()=>$("stamp"),1500)}function ft(e=!0){let t=d.caseItem;d.reason=d.defense.reason,z("innocent",`
+  <div class="intro" aria-hidden="true">
+    <span class="intro-icon">${m("shield")}</span>
+    <p class="intro-l1">经本庭审理，你的辩护理由成立。</p>
+    <p class="intro-l2">本庭决定，当庭释放。</p>
+  </div>
+  <main class="wrap verdict">
+    <p class="sr-only">经本庭审理，你的辩护理由成立。本庭决定，当庭释放。</p>
+    <div class="page-kicker">无罪释放证明 · 万圣节虚构案件</div>
+    <article class="vcard vcard-innocent" id="doc">
+      <div class="vc-top">
+        <span class="badge badge-gold">${m("shield")}无罪 · 当庭释放</span>
+        <span class="vc-no">案件编号 <b class="mono">${t.id}</b></span>
+      </div>
+      <p class="vc-case"><b>${g(t.title)}</b>${g(t.desc)}</p>
+      <div class="vc-label gold">释放理由</div>
+      <p class="vc-reason">${g(d.reason)}</p>
+      <div class="vc-foot">${Z}</div>
+    </article>
+    <div class="actions">
+      <button class="btn btn-dark" type="button" data-act="save">保存释放证明</button>
+      <button class="btn btn-light" type="button" data-act="retrial">重新开庭</button>
+    </div>
+  </main>
+  ${H()}`,e),q(()=>$("release"),260),q(()=>{var n;return(n=K.querySelector(".intro"))==null?void 0:n.classList.add("done")},1300)}function qe(){return/MicroMessenger/i.test(navigator.userAgent)}var M=null;async function gt(e){if(ie())return void Ue(e);let t=K.classList.contains("page-guilty"),n=d.caseItem,s={kind:t?"guilty":"innocent",caseId:n.id,caseTitle:n.title,summary:n.desc,charge:d.charge,explain:t?d.reason:void 0,truth:d.truth,reason:d.reason};e.disabled=!0;let a=e.textContent;e.textContent="正在生成图片…";try{let o=(await oe(s)).toDataURL("image/png"),u=`${t?"判决书":"释放证明"}-${n.id}.png`;M={blob:ze(o),url:o,filename:u},Ne(s,u,o),We(t?"判决书":"释放证明")}catch(r){console.error(r),he("图片生成失败，请重试；也可以直接截屏保存。","error")}finally{e.disabled=!1,e.textContent=a}}function ze(e){let t=atob(e.slice(e.indexOf(",")+1)),n=new Uint8Array(t.length);for(let s=0;s<t.length;s++)n[s]=t.charCodeAt(s);return new Blob([n],{type:"image/png"})}async function Ue(e){let t=ie();if(!t)return me();let n=e==null?void 0:e.textContent;e&&(e.disabled=!0,e.textContent="正在调取卷宗…");try{let s=Pe(t)||(await oe(t.data)).toDataURL("image/png");M={blob:ze(s),url:s,filename:t.filename},We(t.data.kind==="guilty"?"判决书":"释放证明")}catch(s){console.error(s),he("图片生成失败，请重试。","error")}finally{e&&(e.disabled=!1,e.textContent=n!=null?n:"")}}function ht(){var e;if(!M||qe())return!1;try{let t=new File([M.blob],M.filename,{type:"image/png"});return!!((e=navigator.canShare)!=null&&e.call(navigator,{files:[t]}))}catch(t){return!1}}async function mt(){if(!M)return;if(ht())try{let t=new File([M.blob],M.filename,{type:"image/png"});await navigator.share({files:[t]});return}catch(t){if((t==null?void 0:t.name)==="AbortError")return}let e=document.createElement("a");e.href=M.url,e.download=M.filename,document.body.appendChild(e),e.click(),e.remove(),he("已开始下载。如未出现在相册中，请长按上方图片选择“保存图片”。")}function We(e){let t=qe(),n=document.createElement("div");n.className="export",n.setAttribute("role","dialog"),n.setAttribute("aria-modal","true"),n.setAttribute("aria-label",`${e}图片`),n.innerHTML=`
+    <div class="export-inner">
+      <h2 class="export-title">${e}已生成</h2>
+      <p class="export-hint">${t?"<b>长按下方图片</b>，选择“保存图片”即可存入手机相册":"点击“保存到相册”，或长按图片保存"}</p>
+      <img class="export-img" src="${M.url}" alt="${e}图片，长按保存到相册" />
+      ${e==="判决书"?'<p class="export-tip">长按图片即可保存</p>':""}
+      <div class="actions">
+        ${t?"":`<button class="btn btn-dark" type="button" data-act="save-album">${m("download")}保存到相册</button>`}
+        <button class="btn btn-light" type="button" data-act="close-export">返回</button>
+      </div>
+      ${H()}
+    </div>`,document.body.appendChild(n),document.body.classList.add("no-scroll"),n.addEventListener("click",s=>{let a=s.target;if(a.closest('[data-act="save-album"]')){mt();return}(a.closest('[data-act="close-export"]')||a===n)&&(n.remove(),document.body.classList.remove("no-scroll"))})}function B(e=!0){var t;(t=document.querySelector(".export"))==null||t.remove(),document.body.classList.remove("no-scroll"),z("done",`
+  <main class="wrap full">
+    <section class="notice">
+      <span class="notice-icon">${m("file")}</span>
+      <h2 class="notice-title">今日援助已完成</h2>
+      <p>本律师查阅了你的卷宗，发现你今天已经领取过法律援助。</p>
+      <p>遇到困难时，除了寻求专业帮助，也别忘了向身边值得信任的人伸出手。</p>
+      <p class="closing">援助有次数，善意没有。</p>
+      <button class="btn btn-hero" type="button" data-act="view-today">查看今日判决书</button>
+    </section>
+  </main>
+  ${H()}`,e)}K.addEventListener("click",e=>{let t=e.target.closest("[data-act]");if(t)switch(t.dataset.act){case"mute":{let n=!Q();Ie(n),n||(X(),$("tap")),t.outerHTML=Ye();break}case"apply":ut();break;case"view-today":Ue(t);break;case"cat":{if(I()){B();break}$("tap"),t.classList.add("opening");let n=t.dataset.key;q(()=>I()?B():Ge(n),260);break}case"reroll":if(I()){B();break}d.category&&Ge(d.category.key,!1);break;case"defend":{let n=d.caseItem,s=n==null?void 0:n.defenses[Number(t.dataset.i)];if(!s)break;if(I()){B();break}X(),d.defense=s,s.verdict==="guilty"?pt():ft();break}case"save":gt(t);break;case"retrial":if($("page"),I()){B();break}ye();break}});window.addEventListener("popstate",()=>{var e;if((e=document.querySelector(".export"))==null||e.remove(),document.body.classList.remove("no-scroll"),I())return B(!1);d.entered?ye(!1):me(!1)});try{history.replaceState({page:"home"},"",location.pathname+location.search)}catch(e){}I()?B(!1):me(!1);window.__HLA__={state:d,renderPoster:oe,pool:e=>j[e].length,ids:e=>j[e].map(t=>t.id),truths:e=>G[e]};})();
