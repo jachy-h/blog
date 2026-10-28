@@ -18,7 +18,7 @@ hugo server
 # Build for production (minified)
 hugo --minify
 
-# Specific Hugo version used in CI: 0.128.1
+# Specific Hugo version used in CI: 0.168.0
 ```
 
 
@@ -67,10 +67,10 @@ categories: ["category1"]
 GitHub Actions workflow is in `.github/workflows/pages.yml`:
 - Builds Hugo site on push to main
 - Deploys to GitHub Pages
-- Uses Hugo 0.128.1
+- Uses Hugo 0.168.0
 
 ## Dependencies
 
 ### Hugo (root)
-- Version: 0.128.1 (see CI workflow)
+- Version: 0.168.0 (see CI workflow)
 - Theme: PaperMod

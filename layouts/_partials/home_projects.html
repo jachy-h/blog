@@ -1,0 +1,39 @@
+{{- /*
+  首页项目卡片
+  数据来源：data/projects.yaml
+  可在 config.toml 的 [params] 中通过 projectsTitle 修改标题
+*/ -}}
+{{- $projects := hugo.Data.projects -}}
+{{- if $projects }}
+<section class="projects">
+    <h2 class="projects-title">{{ site.Params.projectsTitle | default "Projects" }}</h2>
+    <div class="projects-grid">
+        {{- range $projects }}
+        {{- $url := .url | default "" }}
+        {{- $external := findRE "://" $url }}
+        <a class="project-card" href="{{ $url | default "#" }}"
+            {{- if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>
+            <div class="project-head">
+                {{- with .icon }}
+                {{- if hasPrefix . "/" }}
+                <img class="project-icon" src="{{ . }}" alt="" loading="lazy" />
+                {{- else }}
+                <span class="project-icon" aria-hidden="true">{{ . }}</span>
+                {{- end }}
+                {{- end }}
+                <span class="project-name">{{ .name }}</span>
+                {{- if $external }}<span class="project-arrow" aria-hidden="true">↗</span>{{ end }}
+            </div>
+            {{- with .description }}
+            <p class="project-desc">{{ . }}</p>
+            {{- end }}
+            {{- with .tags }}
+            <ul class="project-tags">
+                {{- range . }}<li>{{ . }}</li>{{ end }}
+            </ul>
+            {{- end }}
+        </a>
+        {{- end }}
+    </div>
+</section>
+{{- end }}

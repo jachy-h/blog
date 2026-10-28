@@ -1,10 +1,9 @@
 baseURL = 'https://jinyu.cool/'
 title = "Hoi !"
-paginate = 5
 theme = 'PaperMod'
 author = "Jachy"
 enableEmoji = true
-languageCode = "en-us"
+locale = "en-US"
 
 enableRobotsTXT = true
 buildDrafts = false
@@ -12,14 +11,26 @@ buildFuture = false
 buildExpired = false
 pygmentsUseClasses = true
 
+# Obsidian 模板文件含 `{{date:...}}` 占位符，Hugo 0.158+ 会因 front matter 日期无法解析而报错
+ignoreFiles = ["content/tempates/"]
+
+[pagination]
+pagerSize = 5
+
 [minify]
 disableXML = true
 minifyOutput = true
+
+# PaperMod 搜索页依赖 /index.json（fastsearch.js 请求 ../index.json）
+[outputs]
+home = ["HTML", "RSS", "JSON"]
 
 [params]
 env = "production"
 title = "Jachy's Blog"
 description = "人类必须相爱，否则就会灭亡"
+projectsTitle = "Projects"
+mainSections = ["posts"]
 keywords = ["Blog", "Portfolio", "PaperMod"]
 author = "Jachy"
 images = ["<link or path of image for opengraph, twitter-cards>"]
@@ -151,6 +162,3 @@ weight = 30
 
 [markup.highlight]
 noClasses = false
-
-[language]
-  languageCode = "en-us"

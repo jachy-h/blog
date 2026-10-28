@@ -1,0 +1,29 @@
+# 首页项目卡片数据（layouts/_partials/home_projects.html 读取）
+#
+# 字段说明：
+#   name        项目名（必填）
+#   description 一句话说明，纯文本
+#   url         链接，可填站内路径（如 /posts/xxx/）或外部地址（自动新窗口打开）
+#   icon        emoji，或 / 开头的图片路径（static 目录下）
+#   tags        标签数组，可省略
+#
+# 标题可在 config.toml 的 [params] 中通过 projectsTitle 修改；
+# 删除本文件或清空列表，首页就不会渲染项目区块。
+
+- name: "Jachy's Blog"
+  description: "基于 Hugo + PaperMod 的个人博客，记录 AI、后端与折腾笔记。"
+  url: "https://jinyu.cool"
+  icon: "📝"
+  tags: ["Hugo", "PaperMod"]
+
+- name: "My Agent Team"
+  description: "多 Agent 协作方案的设计与实践记录。"
+  url: "/posts/solutions/my-agent-team/"
+  icon: "🧩"
+  tags: ["Agent", "LLM"]
+
+- name: "OpenCode 使用指南"
+  description: "AI 编程助手的上手、配置与进阶用法。"
+  url: "/posts/ai/opencode-ai-助手使用指南/"
+  icon: "🤖"
+  tags: ["AI", "Tooling"]
