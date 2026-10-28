@@ -1,0 +1,129 @@
+{{- define "main" }}
+
+{{- $hue := partial "cat_hue.html" (lower .Data.Term) }}
+{{- $pages := .Pages.ByDate.Reverse }}
+{{- $paginator := .Paginate $pages }}
+{{- $plural := .Data.Plural }}
+{{- $backLabel := cond (eq $plural "tags") "全部标签" "全部分类" }}
+
+<section class="term-page" style="--cat-hue: {{ $hue }}">
+  <header class="term-hero">
+    <a class="term-back" href="{{ printf "/%s/" $plural | relLangURL }}">
+      <span aria-hidden="true">←</span> {{ $backLabel }}
+    </a>
+    <p class="cat-eyebrow">{{ .Data.Singular | upper }}</p>
+    <div class="term-title-row">
+      <h1>{{ .Title }}</h1>
+      <span class="term-count">{{ len $pages }} 篇</span>
+      {{- with .OutputFormats.Get "rss" }}
+      <a class="term-rss" href="{{ .RelPermalink }}" title="RSS" aria-label="RSS">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+          <path d="M4 11a9 9 0 0 1 9 9" />
+          <path d="M4 4a16 16 0 0 1 16 16" />
+          <circle cx="5" cy="19" r="1" />
+        </svg>
+      </a>
+      {{- end }}
+    </div>
+    {{- with .Description }}
+    <p class="term-desc">{{ . | markdownify }}</p>
+    {{- else }}
+    <p class="term-desc">按发布时间倒序排列</p>
+    {{- end }}
+  </header>
+
+  {{- with .Content }}
+  <div class="term-content post-content">
+    {{ . }}
+  </div>
+  {{- end }}
+
+  {{- if gt (len $pages) 0 }}
+  <div class="term-list">
+    {{- range $i, $page := $paginator.Pages }}
+    {{- $summary := $page.Summary | plainify | htmlUnescape }}
+    {{- $summary = replaceRE `!\[[^\]]*\]\([^)]*\)` "" $summary }}
+    {{- $summary = replaceRE `\[([^\]]*)\]\([^)]*\)` "$1" $summary }}
+    {{- $summary = replaceRE `\s+` " " $summary | strings.TrimSpace }}
+    <article class="term-item" style="--i: {{ $i }}">
+      <a class="term-item-link" href="{{ $page.RelPermalink }}">
+        <time class="term-item-date" datetime="{{ $page.Date.Format `2006-01-02` }}">
+          {{ $page.Date | time.Format "2006.01.02" }}
+        </time>
+        <span class="term-item-main">
+          <h2>{{ $page.Title }}</h2>
+          {{- if and (ne ($page.Param "hideSummary") true) $summary }}
+          <span class="term-item-summary">{{ $summary | truncate 120 }}</span>
+          {{- end }}
+          {{- $cats := slice }}
+          {{- range $page.Params.categories }}
+            {{- if ne . $.Data.Term }}{{ $cats = $cats | append . }}{{ end }}
+          {{- end }}
+          {{- with $cats }}
+          <span class="term-item-meta">
+            <span class="term-item-cats">{{ delimit . " · " }}</span>
+          </span>
+          {{- end }}
+        </span>
+        <span class="term-item-arrow" aria-hidden="true">→</span>
+      </a>
+    </article>
+    {{- end }}
+  </div>
+  {{- else }}
+  <p class="cat-empty">这个分类下还没有文章。</p>
+  {{- end }}
+
+  {{- if gt $paginator.TotalPages 1 }}
+  <nav class="pager" aria-label="分页">
+    {{- with $paginator.Prev }}
+    <a class="pager-prev" href="{{ .URL }}">← 上一页</a>
+    {{- else }}
+    <span></span>
+    {{- end }}
+    <span class="pager-count">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+    {{- with $paginator.Next }}
+    <a class="pager-next" href="{{ .URL }}">下一页 →</a>
+    {{- else }}
+    <span></span>
+    {{- end }}
+  </nav>
+  {{- end }}
+
+  {{- $siblings := slice }}
+  {{- with site.GetPage (printf "/%s" $plural) }}
+    {{- range .Data.Terms.Alphabetical }}
+      {{- if ne .Name $.Data.Term }}
+        {{- $name := .Name }}
+        {{- $count := .Count }}
+        {{- with site.GetPage (printf "/%s/%s" $plural $name) }}
+          {{- $siblings = $siblings | append (dict
+              "name" .LinkTitle
+              "count" $count
+              "url" .RelPermalink
+              "hue" (partial "cat_hue.html" (lower $name))
+            ) }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{- $siblings = first 8 (sort $siblings "count" "desc") }}
+
+  {{- if gt (len $siblings) 0 }}
+  <section class="term-more" aria-labelledby="term-more-title">
+    <h2 class="cat-tail-title" id="term-more-title">换个主题看看</h2>
+    <div class="cat-chips">
+      {{- range $i, $item := $siblings }}
+      <a class="cat-chip" href="{{ $item.url }}" style="--cat-hue: {{ $item.hue }}; --i: {{ $i }}"
+        aria-label="{{ $item.name }}，{{ $item.count }} 篇文章">
+        <span>{{ $item.name }}</span>
+        <span class="cat-chip-count">{{ $item.count }}</span>
+      </a>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</section>
+
+{{- end }}{{/* end main */}}

@@ -1,0 +1,3 @@
+{{- /* 由分类名生成稳定的主题色相，限定在编辑式配色板内，避免土黄/荧光色 */ -}}
+{{- $palette := slice 212 250 282 318 342 8 28 158 186 198 -}}
+{{- return (index $palette (mod (hash.FNV32a .) (len $palette))) -}}

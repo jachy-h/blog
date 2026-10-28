@@ -120,12 +120,18 @@ appendFilePath = true
 [params.fuseOpts]
 isCaseSensitive = false
 shouldSort = true
+includeMatches = true
 location = 0
 distance = 1_000
-threshold = 0.4
-minMatchCharLength = 0
-limit = 10
-keys = ["title", "permalink", "summary", "content"]
+threshold = 0.3
+minMatchCharLength = 1
+limit = 30
+ignoreLocation = true
+keys = [
+  { name = "title", weight = 0.6 },
+  { name = "summary", weight = 0.25 },
+  { name = "content", weight = 0.15 },
+]
 
 [[menu.main]]
 name = "Home"

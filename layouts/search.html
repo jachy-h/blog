@@ -1,0 +1,72 @@
+{{- define "main" }}
+
+{{- $placeholder := .Params.placeholder | default "输入关键词…" }}
+{{- $lede := .Description | default "支持标题、摘要与正文检索，⌘K 或 / 快速聚焦" }}
+
+<section class="search-page">
+  <header class="search-hero">
+    <p class="cat-eyebrow">{{ i18n "search" | default "Search" }}</p>
+    <h1>{{ .Title }}</h1>
+    <p class="search-lede">{{ $lede | markdownify }}</p>
+  </header>
+
+  <div class="search-shell">
+    <form class="search-form" id="searchForm" role="search" autocomplete="off">
+      <svg class="search-form-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"
+        aria-hidden="true">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+      <input id="searchInput" type="search" placeholder="{{ $placeholder }}" aria-label="搜索文章"
+        autocomplete="off" spellcheck="false" maxlength="64" disabled>
+      <kbd class="search-kbd" id="searchKbd" aria-hidden="true">/</kbd>
+      <button class="search-clear" id="searchClear" type="button" aria-label="清空搜索" hidden>✕</button>
+    </form>
+
+    <div class="search-filters" id="searchFilters" role="group" aria-label="按分类筛选" hidden></div>
+
+    <p class="search-status" id="searchStatus" role="status" aria-live="polite"></p>
+
+    <ul class="search-results" id="searchResults" aria-label="搜索结果"></ul>
+
+    <div class="search-idle" id="searchIdle">
+      <section class="search-recent-section" id="searchRecentSection" hidden>
+        <h2 class="search-suggest-title">最近搜索</h2>
+        <div class="search-recent" id="searchRecent"></div>
+      </section>
+
+      {{- $cats := slice }}
+      {{- with site.GetPage "/categories" }}
+        {{- range .Data.Terms.Alphabetical }}
+          {{- $name := .Name }}
+          {{- $count := .Count }}
+          {{- with site.GetPage (printf "/categories/%s" $name) }}
+            {{- $cats = $cats | append (dict "name" .LinkTitle "count" $count "url" .RelPermalink) }}
+          {{- end }}
+        {{- end }}
+      {{- end }}
+      {{- $cats = first 8 (sort $cats "count" "desc") }}
+
+      {{- if gt (len $cats) 0 }}
+      <section class="search-cat-section">
+        <h2 class="search-suggest-title">按分类浏览</h2>
+        <div class="search-suggest-list">
+          {{- range $cats }}
+          <a class="search-suggest" href="{{ .url }}">
+            <span>{{ .name }}</span>
+            <span class="search-suggest-count">{{ .count }}</span>
+          </a>
+          {{- end }}
+        </div>
+      </section>
+      {{- end }}
+    </div>
+
+    <noscript>
+      <p class="search-noscript">搜索需要启用 JavaScript。你也可以直接浏览 <a href="{{ "/categories/" | relLangURL }}">分类</a>。</p>
+    </noscript>
+  </div>
+</section>
+
+{{- end }}{{/* end main */}}
