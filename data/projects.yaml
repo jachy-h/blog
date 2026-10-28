@@ -10,20 +10,20 @@
 # 标题可在 config.toml 的 [params] 中通过 projectsTitle 修改；
 # 删除本文件或清空列表，首页就不会渲染项目区块。
 
-- name: "Jachy's Blog"
-  description: "基于 Hugo + PaperMod 的个人博客，记录 AI、后端与折腾笔记。"
-  url: "https://jinyu.cool"
-  icon: "📝"
-  tags: ["Hugo", "PaperMod"]
+- name: "哈哈简谱"
+  description: "动态简谱网页应用，简谱随播放进度滚动高亮。"
+  url: "https://hh-jianpu.jinyu.cool/"
+  icon: "🎼"
+  tags: ["Vue", "Music", "Web"]
 
-- name: "My Agent Team"
-  description: "多 Agent 协作方案的设计与实践记录。"
-  url: "/posts/solutions/my-agent-team/"
-  icon: "🧩"
-  tags: ["Agent", "LLM"]
+- name: "opencode-notify-ios"
+  description: "OpenCode 插件，通过 Bark 将任务通知推送到 iOS。"
+  url: "https://www.npmjs.com/package/@jachy/opencode-notify-ios"
+  icon: "🔔"
+  tags: ["OpenCode", "Bark", "npm"]
 
-- name: "OpenCode 使用指南"
-  description: "AI 编程助手的上手、配置与进阶用法。"
-  url: "/posts/ai/opencode-ai-助手使用指南/"
-  icon: "🤖"
-  tags: ["AI", "Tooling"]
+- name: "lan-copy"
+  description: "极小、零依赖的局域网文件与文本快传工具。"
+  url: "https://github.com/jachy-h/lan-copy"
+  icon: "📡"
+  tags: ["Go", "LAN", "CLI"]
