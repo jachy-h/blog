@@ -13,17 +13,20 @@
 - name: "哈哈简谱"
   description: "动态简谱网页应用，简谱随播放进度滚动高亮。"
   url: "https://hh-jianpu.jinyu.cool/"
+  caseStudy: "/posts/custom/haha-jianpu/"
   icon: "🎼"
   tags: ["Vue", "Music", "Web"]
 
 - name: "opencode-notify-ios"
   description: "OpenCode 插件，通过 Bark 将任务通知推送到 iOS。"
   url: "https://www.npmjs.com/package/@jachy/opencode-notify-ios"
+  caseStudy: "/projects/opencode-notify-ios/"
   icon: "🔔"
   tags: ["OpenCode", "Bark", "npm"]
 
 - name: "lan-copy"
   description: "极小、零依赖的局域网文件与文本快传工具。"
   url: "https://github.com/jachy-h/lan-copy"
+  caseStudy: "/projects/lan-copy/"
   icon: "📡"
   tags: ["Go", "LAN", "CLI"]

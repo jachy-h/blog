@@ -1,5 +1,5 @@
 ---
-title: "Search"
-placeholder: 也许这里曾经存在过什么
+title: "搜索"
+placeholder: 搜索文章、工具与技术笔记
 layout: "search"
 ---

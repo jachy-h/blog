@@ -2,7 +2,7 @@
 title: "绿联 NAS 使用心得"
 date: 2023-11-20
 categories: ["硬件", "存储", "踩虫记"]
-draft: false
+draft: true
 ---
 
 > 待研究

@@ -1,9 +1,11 @@
 baseURL = 'https://jinyu.cool/'
-title = "Hoi !"
+title = "Jachy · 开发实践与个人工具"
 theme = 'PaperMod'
 author = "Jachy"
 enableEmoji = true
-locale = "en-US"
+locale = "zh-CN"
+defaultContentLanguage = "zh"
+hasCJKLanguage = true
 
 enableRobotsTXT = true
 buildDrafts = false
@@ -28,13 +30,12 @@ home = ["HTML", "RSS", "JSON"]
 [params]
 env = "production"
 title = "Jachy's Blog"
-description = "人类必须相爱，否则就会灭亡"
-projectsTitle = "Projects"
+description = "理解真实的问题，创造有意义的改变。Jachy 的观察、判断与实践：关注技术如何回应商业与生活中的真实需求。"
+projectsTitle = "把想法做成工具"
 mainSections = ["posts"]
-keywords = ["Blog", "Portfolio", "PaperMod"]
+keywords = ["Jachy", "AI 辅助开发", "开发工作流", "个人工具"]
 author = "Jachy"
-images = ["<link or path of image for opengraph, twitter-cards>"]
-DateFormat = "January 2, 2006"
+DateFormat = "2006-01-02"
 defaultTheme = "auto"
 disableThemeToggle = false
 ShowReadingTime = true
@@ -61,18 +62,18 @@ tocopen = false
 # safari_pinned_tab = "<link / abs url>"
 
 [params.label]
-text = "Jachy's Blog"
+text = "Jachy / 开发与实践"
 icon = "/apple-touch-icon.png"
 iconHeight = 35
 
 [params.profileMode]
 enabled = true
-title = "Hoi !"
-subtitle = "人类必须相爱，否则就会灭亡"
+title = "Jachy"
+subtitle = "理解真实的问题，创造有意义的改变。"
 imageUrl = "https://avatars.githubusercontent.com/u/25866839?s=400&u=aec3e16d03bcd68e7f9c558b9c65c065aed95494&v=4"
 imageWidth = 120
 imageHeight = 120
-imageTitle = "my image"
+imageTitle = "Jachy"
 
 [[params.profileMode.buttons]]
 name = "Posts"
@@ -99,13 +100,13 @@ name = "github"
 url = "https://github.com/Mammoth777"
 
 [params.analytics.google]
-SiteVerificationTag = "XYZabc"
+SiteVerificationTag = ""
 
 [params.analytics.bing]
-SiteVerificationTag = "XYZabc"
+SiteVerificationTag = ""
 
 [params.analytics.yandex]
-SiteVerificationTag = "XYZabc"
+SiteVerificationTag = ""
 
 [params.cover]
 hidden = true
@@ -134,37 +135,29 @@ keys = [
 ]
 
 [[menu.main]]
-name = "Home"
-url = "/"
-weight = 1
-
-[[menu.main]]
-identifier = "categories"
-name = "Categories"
-url = "/categories/"
+name = "文章"
+url = "/posts/"
 weight = 10
 
 [[menu.main]]
-name = "Archives"
-url = "/archives"
+name = "项目"
+url = "/projects/"
 weight = 20
 
 [[menu.main]]
-name = "Search"
-url = "/search"
+name = "主题"
+url = "/categories/"
 weight = 30
 
-# [[menu.main]]
-# identifier = "tags"
-# name = "tags"
-# url = "/tags/"
-# weight = 20
+[[menu.main]]
+name = "关于"
+url = "/about/"
+weight = 40
 
-# [[menu.main]]
-# identifier = "example"
-# name = "example.org"
-# url = "https://example.org"
-# weight = 30
+[[menu.main]]
+name = "搜索"
+url = "/search/"
+weight = 50
 
 [markup.highlight]
 noClasses = false

@@ -1,10 +1,7 @@
 {{- define "main" }}
 
 {{- if site.Params.profileMode.enabled }}
-<div class="home-hero">
-  {{- partial "index_profile.html" . }}
-  {{- partial "home_projects.html" . }}
-</div>
+{{- partial "home.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
 {{- if .Title }}

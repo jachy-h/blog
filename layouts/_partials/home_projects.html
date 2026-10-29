@@ -5,15 +5,15 @@
 */ -}}
 {{- $projects := hugo.Data.projects -}}
 {{- if $projects }}
-<section class="projects">
-    <h2 class="projects-title">{{ site.Params.projectsTitle | default "Projects" }}</h2>
+<section class="projects home-section" aria-labelledby="projects-heading">
+    <div class="section-heading"><div><p class="home-kicker">SELECTED PROJECTS</p><h2 id="projects-heading">{{ site.Params.projectsTitle | default "Projects" }}</h2></div><a href="{{ "projects/" | relURL }}">项目介绍 →</a></div>
     <div class="projects-grid">
         {{- range $projects }}
-        {{- $url := .url | default "" }}
+        {{- $url := .caseStudy | default .url | default "" }}
         {{- $external := findRE "://" $url }}
         <a class="project-card" href="{{ $url | default "#" }}"
             {{- if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>
-            <div class="project-head">
+            <h3 class="project-head">
                 {{- with .icon }}
                 {{- if hasPrefix . "/" }}
                 <img class="project-icon" src="{{ . }}" alt="" loading="lazy" />
@@ -23,7 +23,7 @@
                 {{- end }}
                 <span class="project-name">{{ .name }}</span>
                 {{- if $external }}<span class="project-arrow" aria-hidden="true">↗</span>{{ end }}
-            </div>
+            </h3>
             {{- with .description }}
             <p class="project-desc">{{ . }}</p>
             {{- end }}

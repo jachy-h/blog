@@ -1,7 +1,7 @@
 ---
 title: "General"
 date: 2022-08-03T22:55:03+08:00
-draft: false
+draft: true
 categories: ["General"]
 ---
 

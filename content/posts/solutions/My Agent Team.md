@@ -1,10 +1,13 @@
 ---
-title: Agent 战队
+title: Agent 工具笔记
 subtitle: ""
 date: 2026-02-27T13:01:27+08:00
 categories: []
 draft: false
+editorialLabel: "笔记"
 ---
+> 以下为 2026 年 2 月的工具试用笔记，套餐与免费额度未重新验证，请以服务方当前说明为准。
+
 ## github copilot
 
 已购买年套餐， 主要编程战斗力
@@ -37,8 +40,9 @@ https://opencode.ai/zen
 cd /path/to/your_project
 
 # 2. 使用 git worktree add 创建新的工作区和分支
-git worktree add ../path/to/claw_agent/workspace/your_project new-feature
+git worktree add -b codex/new-feature ../your_project-feature HEAD
 
-# 3. 开发完成后合并回主分支
-git merge new-feature
+# 3. 回到原工作区，检查并提交改动后，再合并任务分支
+cd /path/to/your_project
+git merge codex/new-feature
 ```
