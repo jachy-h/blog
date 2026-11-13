@@ -10,6 +10,13 @@
 # 标题可在 config.toml 的 [params] 中通过 projectsTitle 修改；
 # 删除本文件或清空列表，首页就不会渲染项目区块。
 
+- name: "apple-connector"
+  description: "让本机 Agent 通过 CLI 读写 Apple 日历与提醒事项，权限与操作可审计。"
+  url: "https://www.npmjs.com/package/@jachy/apple-connector"
+  caseStudy: "/projects/apple-connector/"
+  icon: "📅"
+  tags: ["Apple", "Agent", "CLI"]
+
 - name: "哈哈简谱"
   description: "动态简谱网页应用，简谱随播放进度滚动高亮。"
   url: "https://hh-jianpu.jinyu.cool/"
