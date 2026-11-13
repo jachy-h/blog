@@ -99,6 +99,11 @@ url = "https://t.me/hoi12138"
 name = "github"
 url = "https://github.com/Mammoth777"
 
+# GoatCounter 统计：count.js 自托管于 assets/js/，页面浏览数在此展示
+# 需要在 GoatCounter 后台开启 Settings → "Allow using the visitor counter"
+[params.goatcounter]
+code = "jachyh"
+
 [params.analytics.google]
 SiteVerificationTag = ""
 

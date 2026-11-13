@@ -1,0 +1,23 @@
+/* GoatCounter view counters: homepage totals + per-post "阅读 N 次". */
+.home-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 14px;
+  margin: 26px 0 0;
+  font-size: 13px;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+}
+.home-stats > [data-gc-item] + [data-gc-item]::before {
+  content: "·";
+  margin-right: 14px;
+  color: var(--secondary);
+}
+.home-stats b {
+  font-weight: 600;
+  color: var(--primary);
+}
+.post-meta .gc-views {
+  font-variant-numeric: tabular-nums;
+}

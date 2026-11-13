@@ -1,6 +1,22 @@
 {{- /* Head custom content area start */ -}}
 {{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc290be69327495eab8d7febf9b55bdb"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics（GoatCounter 试运行期间保留，观察一周后可删除） --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc290be69327495eab8d7febf9b55bdb"}'></script><!-- End Cloudflare Web Analytics -->
+
+{{- /* GoatCounter 统计 + 页面浏览数展示 */ -}}
+{{- with site.Params.goatcounter }}
+{{- if .code }}
+{{- $endpoint := printf "https://%s.goatcounter.com/count" .code }}
+{{- /* 自托管 count.js：gc.zgo.at 在国内 DNS 被污染（解析到 31.13.91.33），官方 CDN 不可用 */ -}}
+{{- with resources.Get "js/goatcounter-count.js" }}
+{{- $count := . | fingerprint }}
+<script async data-goatcounter="{{ $endpoint }}" src="{{ $count.RelPermalink }}" integrity="{{ $count.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end }}
+{{- with resources.Get "js/goatcounter-views.js" }}
+{{- $views := . | minify | fingerprint }}
+<script defer src="{{ $views.RelPermalink }}" integrity="{{ $views.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end }}
+{{- end }}
+{{- end }}
 {{- /* Head custom content area end */ -}}
 
