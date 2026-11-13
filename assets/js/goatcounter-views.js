@@ -3,6 +3,8 @@
 //   - single post pages get "阅读 N 次" appended to .post-meta
 // Everything fails silently: markup stays hidden when the counter API says no
 // (e.g. "allow using the visitor counter" is off, offline, blocked).
+// The /counter API only reports pageviews; its count_unique field is the same
+// number, so don't present it as a visitor count.
 ;(function () {
   'use strict'
 
@@ -67,7 +69,7 @@
     load(path, function (data) {
       if (!data) return
       groups[path].forEach(function (el) {
-        var n = toNumber(el.hasAttribute('data-gc-unique') ? data.count_unique : data.count)
+        var n = toNumber(data.count)
         if (n === null) return
         el.textContent = format(n)
         reveal(el)
