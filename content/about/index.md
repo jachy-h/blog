@@ -31,7 +31,7 @@ showtoc: false
 
 欢迎交流工具使用中的问题、实现方案和改进建议。
 
-- [GitHub](https://github.com/Mammoth777)
+- [GitHub](https://github.com/jachy-h)
 - [Telegram](https://t.me/hoi12138)
 - [RSS 订阅](/index.xml)
 

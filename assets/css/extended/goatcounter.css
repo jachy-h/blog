@@ -18,6 +18,19 @@
   font-weight: 600;
   color: var(--primary);
 }
+.home-stats a.gc-source {
+  margin-left: 2px;
+  font-size: 11px;
+  color: var(--secondary);
+  text-decoration: none;
+  opacity: 0.75;
+}
+.home-stats a.gc-source:hover,
+.home-stats a.gc-source:focus-visible {
+  color: var(--primary);
+  text-decoration: underline;
+  opacity: 1;
+}
 .post-meta .gc-views {
   font-variant-numeric: tabular-nums;
 }

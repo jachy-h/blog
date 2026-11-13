@@ -1,19 +1,21 @@
 <div class="home-page">
   <header class="intro">
     <p class="home-kicker">JACHY / THOUGHT &amp; PRACTICE</p>
-    <h1>理解真实的问题，<br>创造有意义的改变。</h1>
-    <p class="intro-lede">我是 Jachy，一名开发者。关注技术，也关注它为商业与生活带来的改变。</p>
-    <p class="intro-detail">从需求与情境出发，思考什么值得做、为什么做，以及如何让想法产生实际价值。这里记录我的观察、判断与实践。</p>
+    <h1>想到了<br>就去试试</h1>
+    <!--<p class="intro-lede">我是 Jachy，一名开发者。</p>-->
+    <p class="intro-detail">我是 Jachy，一名开发者。</p>
+    <p class="intro-detail">关注技术，也关注它为商业与生活带来的改变。</p>
+    <p class="intro-detail">不一定每次都有答案，但总想试着做点什么。</p>
     <nav class="intro-links" aria-label="了解与关注">
       <a class="home-primary" href="{{ "about/" | relURL }}">了解我 <span aria-hidden="true">↗</span></a>
       <a href="{{ "index.xml" | relURL }}">RSS 订阅</a>
-      <a href="https://github.com/Mammoth777" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+      <a href="https://github.com/jachy-h" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </nav>
     {{- with site.Params.goatcounter }}
     {{- if .code }}
     {{- /* 数字由 assets/js/goatcounter-views.js 填入；接口不可用则整块保持隐藏 */}}
     <p class="home-stats" aria-label="站点浏览数据">
-      <span data-gc-item hidden><b data-gc-count="TOTAL">0</b> 次浏览</span>
+      <span data-gc-item hidden><b data-gc-count="TOTAL">0</b> 次浏览 <a class="gc-source" href="https://jachyh.goatcounter.com/" target="_blank" rel="noopener noreferrer">(Source:goatcounter)</a></span>
     </p>
     {{- end }}
     {{- end }}
