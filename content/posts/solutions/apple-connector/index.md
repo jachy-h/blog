@@ -5,6 +5,7 @@ categories: ["个人工具", "AI"]
 tags: ["Apple", "EventKit", "Agent", "CLI", "macOS"]
 description: "从 MCP 退回 CLI、两层权限、幂等写入，以及一个跑了 63 天的原生进程暴露出的内存问题。"
 editorialLabel: "项目 · Agent 工具"
+images: ["cover.jpg"]
 draft: false
 ---
 
@@ -13,6 +14,10 @@ Agent 已经能理解「下周三下午三点提醒我交材料」，但它碰�
 `apple-connector` 是我为这件事写的本地工具：一个运行在 Mac 上的 CLI，让同机的 Agent 在明确授权范围内读写 Apple 日历与提醒事项。它只支持 Apple Silicon、macOS 14 及以上，管理页面只监听本机 loopback，并且默认一小时后过期；没有局域网、云端或 MCP 入口。
 
 这篇文章记录几个关键取舍：为什么从 MCP 退回 CLI，授权为什么不是一次弹窗，写入为什么要幂等和审批，以及一个长期运行的原生进程暴露出的问题。
+
+![日历与提醒事项通过本地 CLI 交给 Agent](cover.jpg)
+
+*日历和提醒事项留在本机，Agent 只通过一层受控的本地接口访问它们。*
 
 ## 从 MCP 退回 CLI
 
