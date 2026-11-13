@@ -43,11 +43,25 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Resolve base URL
+        id: baseurl
+        env:
+          PAGES_BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: |
+          # Pages 未开启 Enforce HTTPS 时 configure-pages 会返回 http://，这里统一升级为 https，
+          # 否则 canonical、站内链接和 favicon 都会是 http，浏览器按混合内容拦截。
+          url="${PAGES_BASE_URL/http:/https:}"
+          case "$url" in
+            https://*) ;;
+            *) echo "::error::unexpected Pages base URL: '$PAGES_BASE_URL'"; exit 1 ;;
+          esac
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "baseURL: $url" >> "$GITHUB_STEP_SUMMARY"
       - name: Build with Hugo
         run: |
           hugo \
             --minify \
-            --baseURL ${{ steps.pages.outputs.base_url }}
+            --baseURL "${{ steps.baseurl.outputs.url }}"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
