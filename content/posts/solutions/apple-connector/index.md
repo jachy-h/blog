@@ -11,7 +11,7 @@ draft: false
 
 Agent 已经能理解「下周三下午三点提醒我交材料」，但它碰不到你的日历和提醒事项。要让这句话变成一条真实的提醒，中间缺的不是模型能力，而是一个可靠、可授权、出错后能恢复的系统接口。
 
-`apple-connector` 是我为这件事写的本地工具：一个运行在 Mac 上的 CLI，让同机的 Agent 在明确授权范围内读写 Apple 日历与提醒事项。它只支持 Apple Silicon、macOS 14 及以上，管理页面只监听本机 loopback，并且默认一小时后过期；没有局域网、云端或 MCP 入口。
+`apple-connector` 是我为这件事写的本地工具：一个运行在 Mac 上的 CLI，让同机的 Agent 在明确授权范围内读写 Apple 日历与提醒事项。它只支持 Apple Silicon、macOS 14 及以上，管理页面只监听本机 loopback，默认一小时后过期；没有局域网、云端或 MCP 入口。
 
 这篇文章记录几个关键取舍：为什么从 MCP 退回 CLI，授权为什么不是一次弹窗，写入为什么要幂等和审批，以及一个长期运行的原生进程暴露出的问题。
 
@@ -29,7 +29,7 @@ v0.9.0 把 stdio MCP 完全删除，改成 Skill + CLI：
 - **CLI** 是唯一公开的业务入口，所有机器调用使用 `--json`，输出固定信封。
 - **Application Core** 统一执行 schema 校验、身份验证、范围授权、幂等、审批、操作状态和审计。
 
-这不是说 MCP 不适合这类场景。MCP 的价值在于把能力暴露给任意宿主；但在这里，宿主和数据本来就在同一台机器上，Agent 只需要能执行命令。少一层常驻协议进程，也少一组需要长期维护的工具契约和绕过授权的可能。
+这不是说 MCP 不适合这类场景。MCP 的价值在于把能力暴露给任意宿主；但在这里，宿主和数据本来就在同一台机器上，Agent 只需要能执行命令。少一层常驻协议进程，也少一组需要长期维护的工具契约，以及一条绕过授权的路径。
 
 当前的结构大致是这样：
 
@@ -84,7 +84,7 @@ Agent: apple-connector agent init-status --id <id> --json
 
 **敏感内容走文件，不进命令行。** 标题、备注、地点放在权限为 `0600` 的临时 JSON 文件里，通过 `--input` 传入，操作结束后删除。命令行参数会进入进程列表和 shell 历史，不适合放私人内容。
 
-**写入可能是两阶段的。** 如果 profile 要求审批，操作会先进入 `prepared` 状态：Agent 保留 operation ID、输入和 key，打开审批页等待；用户确认后再查询 `operation get`，然后提交完全相同的写入。只有 `succeeded` 才算成功。
+**写入可能是两阶段的。** 如果 profile 要求审批，操作会先进入 `prepared` 状态：Agent 保留 operation ID、输入和 key，打开审批页等待；用户确认后，Agent 查询 `operation get`，再提交完全相同的写入。只有 `succeeded` 才算成功。
 
 还有一个容易被忽略的状态：`outcome_unknown`。请求可能已经到达系统，也可能没有。这时唯一安全的做法是不改 key、不改 payload，先取回持久化记录，再看是否需要重试。把「不确定」当成失败并重新发起，正是很多自动化工具有时会重复写数据的原因。
 
@@ -92,7 +92,7 @@ Agent: apple-connector agent init-status --id <id> --json
 
 ## 为什么最后还是写了 Swift
 
-最开始的计划是 TypeScript + JXA，尽量不引入原生代码。日历和提醒事项先验证 Apple Events 脚本接口，JXA 通过 Objective-C bridge 调 EventKit 只是候选方案。
+最开始的计划是 TypeScript + JXA，尽量不引入原生代码：先验证 Apple Events 脚本接口能否满足日历和提醒事项的需要，把 JXA 通过 Objective-C bridge 调 EventKit 当作候选方案。
 
 实际做下来，Calendar 和 Reminders 的产品路径最终落在了一个 Swift helper 上：它作为长期存活的单进程，通过 JSONL 与 Node 侧通信，内部用 EventKit 枚举容器、读取对象、执行写入并回读核验。JXA 仍然保留在仓库里，用于诊断和历史脚本，但不再是 Calendar / Reminders 的生产数据路径。
 
