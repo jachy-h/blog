@@ -1,6 +1,11 @@
 {{- /* Head custom content area start */ -}}
 {{- /*     Insert any custom code (web-analytics, resources, etc.) - it will appear in the <head></head> section of every page. */ -}}
 {{- /*     Can be overwritten by partial with the same name in the global layouts. */ -}}
+{{- /* Google Search Console 站点验证（仅首页） */}}
+{{- if .IsHome }}
+<meta name="google-site-verification" content="6fDGMw6mjA4wJkYxHgCdf_j_5tQD6JlERnVpkzxGftQ" />
+{{- end }}
+
 <!-- Cloudflare Web Analytics（GoatCounter 试运行期间保留，观察一周后可删除） --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cc290be69327495eab8d7febf9b55bdb"}'></script><!-- End Cloudflare Web Analytics -->
 
 {{- /* GoatCounter 统计 + 页面浏览数展示 */ -}}
