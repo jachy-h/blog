@@ -1,43 +1,128 @@
-<div class="home-page">
-  <header class="intro">
-    <p class="home-kicker">JACHY / THOUGHT &amp; PRACTICE</p>
-    <h1>想到了<br>就去试试</h1>
-    <!--<p class="intro-lede">我是 Jachy，一名开发者。</p>-->
-    <p class="intro-detail">我是 Jachy，一名开发者。</p>
-    <p class="intro-detail">关注技术，也关注它为商业与生活带来的改变。</p>
-    <p class="intro-detail">不一定每次都有答案，但总想试着做点什么。</p>
-    <nav class="intro-links" aria-label="了解与关注">
-      <a class="home-primary" href="{{ "about/" | relURL }}">了解我 <span aria-hidden="true">↗</span></a>
-      <a href="{{ "index.xml" | relURL }}">RSS 订阅</a>
-      <a href="https://github.com/jachy-h" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-    </nav>
-    {{- with site.Params.goatcounter }}
-    {{- if .code }}
-    {{- /* 数字由 assets/js/goatcounter-views.js 填入；接口不可用则整块保持隐藏 */}}
-    <p class="home-stats" aria-label="站点浏览数据">
-      <span data-gc-item hidden><b data-gc-count="TOTAL">0</b> 次浏览 <a class="gc-source" href="https://jachyh.goatcounter.com/" target="_blank" rel="noopener noreferrer">(Source:goatcounter)</a></span>
-    </p>
-    {{- end }}
-    {{- end }}
-  </header>
-  {{ partial "home_projects.html" . }}
-  <section class="home-section" aria-labelledby="featured-heading">
-    <div class="section-heading"><div><p class="home-kicker">START HERE</p><h2 id="featured-heading">从这几篇开始</h2></div><a href="{{ "posts/" | relURL }}">全部文章 →</a></div>
-    <div class="featured-list">
-    {{ range sort (where (where site.RegularPages "Section" "posts") "Params.featured" true) "Params.featuredWeight" }}
-      <article class="featured-item">
-        <p class="home-kicker">{{ .Params.editorialLabel | default "实践" }}</p>
-        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-        <p>{{ .Description | default (.Summary | plainify) }}</p>
-      </article>
-    {{ end }}
+{{- $posts := where site.RegularPages "Section" "posts" -}}
+{{- $posts = where $posts "Params.hiddenInHomeList" "!=" "true" -}}
+{{- $postCount := len $posts -}}
+{{- $projects := hugo.Data.projects -}}
+{{- $projectCount := 0 -}}
+{{- with $projects }}{{ $projectCount = len . }}{{ end -}}
+{{- $latest := false -}}
+{{- with $posts.ByDate.Reverse }}{{ $latest = index . 0 }}{{ end -}}
+{{- $featured := sort (where $posts "Params.featured" true) "Params.featuredWeight" -}}
+{{- $recent := first 5 (where $posts.ByDate.Reverse "Params.featured" "ne" true) -}}
+
+<section class="hero" data-enter aria-labelledby="hero-title">
+    <div class="shell hero-inner">
+        <div class="hero-copy">
+            <p class="kicker enter" style="--d: .04s"><span class="kicker-dot" aria-hidden="true"></span>JACHY / 开发实践与个人工具</p>
+            <h1 id="hero-title" class="enter" style="--d: .12s">
+                <span>想到了</span>
+                <span>就去试试</span>
+            </h1>
+            <div class="hero-lede enter" style="--d: .24s">
+                <p>我是 Jachy，一名开发者。关注技术，也关注它为商业与生活带来的改变。</p>
+                <p>不一定每次都有答案，但总想试着做点什么。</p>
+            </div>
+            <div class="hero-actions enter" style="--d: .34s">
+                <a class="btn" href="{{ "posts/" | relLangURL }}">读文章 <span aria-hidden="true">→</span></a>
+                <a class="btn btn-ghost" href="{{ "about/" | relLangURL }}">了解我</a>
+            </div>
+        </div>
+
+        <aside class="hero-index enter" style="--d: .42s" aria-label="站点索引">
+            <p class="index-title">INDEX <span aria-hidden="true">/ {{ now.Year }}</span></p>
+            <a class="index-row" href="{{ "posts/" | relLangURL }}">
+                <span>文章</span>
+                <span>{{ $postCount }} 篇</span>
+            </a>
+            <a class="index-row" href="{{ "projects/" | relLangURL }}">
+                <span>项目</span>
+                <span>{{ $projectCount }} 个</span>
+            </a>
+            {{- with $latest }}
+            <a class="index-row" href="{{ .RelPermalink }}">
+                <span>最近更新</span>
+                <span>{{ .Date | time.Format "2006.01.02" }}</span>
+            </a>
+            {{- end }}
+            <a class="index-row" href="{{ "index.xml" | relURL }}">
+                <span>订阅</span>
+                <span>RSS ↗</span>
+            </a>
+            {{- with site.Params.goatcounter }}
+            {{- if .code }}
+            <span class="index-row index-row--muted" data-gc-item hidden>
+                <span>浏览</span>
+                <span><b data-gc-count="TOTAL">0</b> 次</span>
+            </span>
+            {{- end }}
+            {{- end }}
+        </aside>
     </div>
-  </section>
-  <section class="home-section" aria-labelledby="recent-heading">
-    <div class="section-heading"><div><p class="home-kicker">FIELD NOTES</p><h2 id="recent-heading">最近记录</h2></div><a href="{{ "archives/" | relURL }}">时间归档 →</a></div>
-    {{ range first 4 (where (where site.RegularPages "Section" "posts") "Params.featured" "ne" true).ByDate.Reverse }}
-    <article class="recent-item"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time><div><h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3><span>{{ .Params.editorialLabel | default "文章" }}</span></div></article>
-    {{ end }}
-  </section>
-  <aside class="home-follow"><h2>保持联系</h2><p>通过 RSS 订阅新文章，也欢迎交流工具使用中的问题与想法。</p><a href="{{ "index.xml" | relURL }}">订阅更新 →</a><a href="https://t.me/hoi12138" target="_blank" rel="noopener noreferrer">Telegram ↗</a></aside>
-</div>
+</section>
+
+{{ partial "home_projects.html" . }}
+
+{{- if $featured }}
+<section class="section" aria-labelledby="featured-heading">
+    <div class="shell">
+        <div class="section-head">
+            <div>
+                <p class="kicker">02 / START HERE</p>
+                <h2 id="featured-heading">从这几篇开始</h2>
+            </div>
+            <a class="section-link" href="{{ "posts/" | relLangURL }}">全部文章 →</a>
+        </div>
+        <div class="feature-list">
+            {{- range $i, $page := $featured }}
+            <a class="feature-row" href="{{ $page.RelPermalink }}">
+                <span class="row-index" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+                <span class="feature-body">
+                    <span class="feature-label">{{ $page.Params.editorialLabel | default "文章" }} · {{ $page.ReadingTime }} 分钟</span>
+                    <span class="feature-title">{{ $page.Title }}</span>
+                    <span class="feature-summary">{{ $page.Description | default ($page.Summary | plainify) }}</span>
+                </span>
+                <span class="feature-arrow" aria-hidden="true">→</span>
+            </a>
+            {{- end }}
+        </div>
+    </div>
+</section>
+{{- end }}
+
+{{- if $recent }}
+<section class="section" aria-labelledby="recent-heading">
+    <div class="shell">
+        <div class="section-head">
+            <div>
+                <p class="kicker">03 / FIELD NOTES</p>
+                <h2 id="recent-heading">最近记录</h2>
+            </div>
+            <a class="section-link" href="{{ "archives/" | relLangURL }}">时间归档 →</a>
+        </div>
+        <div class="note-list">
+            {{- range $recent }}
+            <a class="note-row" href="{{ .RelPermalink }}">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "2006.01.02" }}</time>
+                <span class="note-title">{{ .Title }}</span>
+                <span class="note-label">{{ .Params.editorialLabel | default "文章" }}</span>
+                <span class="note-arrow" aria-hidden="true">→</span>
+            </a>
+            {{- end }}
+        </div>
+    </div>
+</section>
+{{- end }}
+
+<section class="close-section" data-moment aria-labelledby="close-heading">
+    <div class="shell close-inner">
+        <p class="kicker">04 / KEEP IN TOUCH</p>
+        <h2 id="close-heading" class="moment-words">
+            <span style="--i: 0">保持</span><span style="--i: 1">联系</span>
+        </h2>
+        <p class="close-copy">通过 RSS 订阅新文章，也欢迎交流工具使用中的问题与想法。</p>
+        <div class="close-links">
+            <a href="{{ "index.xml" | relURL }}">RSS 订阅</a>
+            <a href="https://t.me/hoi12138" target="_blank" rel="noopener noreferrer">Telegram</a>
+            <a href="https://github.com/jachy-h" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+    </div>
+</section>

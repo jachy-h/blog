@@ -1,7 +1,6 @@
 {{- define "main" }}
-
-{{- $catPage := . }}
-{{- $plural := .Data.Plural }}
+{{- $plural := .Data.Plural -}}
+{{- $label := cond (eq $plural "tags") "标签" "主题" -}}
 {{- $entries := slice }}
 
 {{- range .Data.Terms.Alphabetical }}
@@ -17,7 +16,6 @@
         "count" $count
         "url" .RelPermalink
         "latest" $latest
-        "hue" (partial "cat_hue.html" (lower $name))
       ) }}
   {{- end }}
 {{- end }}
@@ -30,62 +28,54 @@
   {{- $tail = after 6 $sorted }}
 {{- end }}
 
-{{- $posts := where site.RegularPages "Type" "in" (site.Params.mainSections | default (slice "posts")) }}
-{{- $totalPosts := len $posts }}
-{{- $totalTerms := len $entries }}
-
-<section class="cat-page">
-  <header class="cat-hero">
-    <p class="cat-eyebrow">{{ i18n "browse" | default "Browse" }}</p>
-    <h1>{{ .Title }}</h1>
-    <p class="cat-lede">
-      {{- if .Description }}
-        {{ .Description | markdownify }}
-      {{- else }}
-        {{ $totalTerms }} 个主题 · {{ $totalPosts }} 篇文章，按内容主题浏览
-      {{- end }}
-    </p>
-  </header>
-
-  {{- if gt (len $core) 0 }}
-  <div class="cat-grid">
-    {{- range $i, $item := $core }}
-    <a class="cat-card" href="{{ $item.url }}" style="--cat-hue: {{ $item.hue }}; --i: {{ $i }}"
-      aria-label="{{ $item.name }}，{{ $item.count }} 篇文章">
-      <span class="cat-card-index">{{ printf "%02d" (add $i 1) }}</span>
-      <span class="cat-card-arrow" aria-hidden="true">↗</span>
-      <span class="cat-card-name">{{ $item.name }}</span>
-      <span class="cat-card-count">{{ $item.count }} 篇</span>
-      {{- with $item.latest }}
-      <span class="cat-card-latest">
-        <span class="cat-card-latest-label">最新</span>
-        <span class="cat-card-latest-title">{{ .Title }}</span>
-        <time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date | time.Format "2006.01.02" }}</time>
-      </span>
-      {{- end }}
-    </a>
-    {{- end }}
-  </div>
-  {{- end }}
-
-  {{- if gt (len $tail) 0 }}
-  <section class="cat-tail" aria-labelledby="cat-tail-title">
-    <h2 class="cat-tail-title" id="cat-tail-title">{{ i18n "more_topics" | default "更多主题" }}</h2>
-    <div class="cat-chips">
-      {{- range $i, $item := $tail }}
-      <a class="cat-chip" href="{{ $item.url }}" style="--cat-hue: {{ $item.hue }}; --i: {{ add $i 8 }}"
-        aria-label="{{ $item.name }}，{{ $item.count }} 篇文章">
-        <span>{{ $item.name }}</span>
-        <span class="cat-chip-count">{{ $item.count }}</span>
-      </a>
-      {{- end }}
+<section class="page-head">
+    <div class="shell">
+        <p class="kicker">INDEX / {{ $plural | upper }}</p>
+        <h1>{{ $label }}</h1>
+        {{- with .Description }}
+        <p class="page-lede">{{ . | markdownify }}</p>
+        {{- else }}
+        <p class="page-lede">{{ len $entries }} 个{{ $label }}，按收录篇数排列。</p>
+        {{- end }}
     </div>
-  </section>
-  {{- end }}
-
-  {{- if eq (len $entries) 0 }}
-  <p class="cat-empty">还没有分类。给文章加上 <code>categories</code> 就会出现在这里。</p>
-  {{- end }}
 </section>
 
-{{- end }}{{/* end main */}}
+<section class="index-section" aria-label="{{ $label }}索引">
+    <div class="shell">
+        {{- if gt (len $core) 0 }}
+        <div class="tax-grid">
+            {{- range $i, $item := $core }}
+            <a class="tax-row" href="{{ $item.url }}" aria-label="{{ $item.name }}，{{ $item.count }} 篇文章">
+                <span class="row-index" aria-hidden="true">{{ printf "%02d" (add $i 1) }}</span>
+                <span class="tax-body">
+                    <span class="tax-name">{{ $item.name }}</span>
+                    {{- with $item.latest }}
+                    <span class="tax-latest">最新 · {{ .Title }}</span>
+                    {{- end }}
+                </span>
+                <span class="tax-count">{{ $item.count }} 篇</span>
+            </a>
+            {{- end }}
+        </div>
+        {{- end }}
+
+        {{- if gt (len $tail) 0 }}
+        <section class="tax-tail" aria-labelledby="tax-tail-title">
+            <h2 class="tail-title" id="tax-tail-title">更多{{ $label }}</h2>
+            <div class="chips">
+                {{- range $item := $tail }}
+                <a class="chip" href="{{ $item.url }}" aria-label="{{ $item.name }}，{{ $item.count }} 篇文章">
+                    <span>{{ $item.name }}</span>
+                    <span class="chip-count">{{ $item.count }}</span>
+                </a>
+                {{- end }}
+            </div>
+        </section>
+        {{- end }}
+
+        {{- if eq (len $entries) 0 }}
+        <p class="empty-note">还没有{{ $label }}。给文章加上 <code>categories</code> 就会出现在这里。</p>
+        {{- end }}
+    </div>
+</section>
+{{- end }}

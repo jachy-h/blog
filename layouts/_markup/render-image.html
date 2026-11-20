@@ -1,0 +1,31 @@
+{{- $u := urls.Parse .Destination -}}
+{{- $src := $u.String -}}
+{{- $resource := false -}}
+{{- if not $u.IsAbs -}}
+  {{- $path := strings.TrimPrefix "./" $u.Path -}}
+  {{- with or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
+    {{- $resource = . -}}
+    {{- $src = .RelPermalink -}}
+    {{- with $u.RawQuery }}{{ $src = printf "%s?%s" $src . }}{{ end -}}
+    {{- with $u.Fragment }}{{ $src = printf "%s#%s" $src . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $srcset := "" -}}
+{{- $sizes := "" -}}
+{{- if and $resource (in (slice "jpg" "jpeg" "png" "webp" "tif" "bmp" "gif") $resource.MediaType.SubType) -}}
+  {{- $widths := slice 480 720 1080 1440 -}}
+  {{- $set := slice -}}
+  {{- range $widths -}}
+    {{- if ge $resource.Width . -}}
+      {{- $set = $set | append (printf "%s %dw" ($resource.Resize (printf "%dx" .)).RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if gt (len $set) 0 -}}
+    {{- $srcset = delimit $set ", " -}}
+    {{- $sizes = "(min-width: 1100px) 714px, (min-width: 768px) 720px, calc(100vw - 40px)" -}}
+  {{- end -}}
+{{- end -}}
+<img src="{{ $src }}" alt="{{ .Text }}" loading="lazy" decoding="async"
+  {{- with $srcset }} srcset="{{ . }}" sizes="{{ $sizes }}"{{ end }}
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  {{- with $resource }}{{ if and .Width .Height }} width="{{ .Width }}" height="{{ .Height }}"{{ end }}{{ end }}>

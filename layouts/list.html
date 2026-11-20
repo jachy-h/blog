@@ -1,0 +1,60 @@
+{{- define "main" }}
+{{- $pages := .RegularPages -}}
+{{- $paginator := .Paginate $pages -}}
+<section class="page-head">
+    <div class="shell">
+        <p class="kicker">ARCHIVE / 文章与笔记</p>
+        <h1>{{ .Title }}</h1>
+        {{- with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}
+        <div class="page-meta">
+            <span>{{ len $pages }} 篇</span>
+            <span aria-hidden="true">/</span>
+            <span>按发布时间倒序</span>
+            {{- with .OutputFormats.Get "rss" }}
+            <span aria-hidden="true">/</span>
+            <a href="{{ .RelPermalink }}">RSS ↗</a>
+            {{- end }}
+        </div>
+    </div>
+</section>
+
+{{- with .Content }}
+<div class="shell section-prose prose">{{ . }}</div>
+{{- end }}
+
+<section class="index-section" aria-label="文章列表">
+    <div class="shell">
+        {{- range $paginator.Pages.GroupByDate "2006" }}
+        <div class="year-block">
+            <p class="year-label">{{ .Key }}</p>
+            <div class="year-rows">
+                {{- range .Pages }}
+                {{- $cats := .GetTerms "categories" }}
+                <a class="post-row" href="{{ .RelPermalink }}">
+                    <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "01.02" }}</time>
+                    <span class="post-main">
+                        <span class="post-title">{{ .Title }}</span>
+                        {{- with $cats }}{{ with index . 0 }}<span class="post-cat">{{ .LinkTitle }}</span>{{ end }}{{ end }}
+                    </span>
+                    <span class="post-time">{{ .ReadingTime }} 分钟</span>
+                    <span class="post-arrow" aria-hidden="true">→</span>
+                </a>
+                {{- end }}
+            </div>
+        </div>
+        {{- end }}
+
+        {{- if gt $paginator.TotalPages 1 }}
+        <nav class="pager" aria-label="分页">
+            {{- with $paginator.Prev }}
+            <a class="pager-link" href="{{ .URL }}">← 上一页</a>
+            {{- else }}<span></span>{{ end }}
+            <span class="pager-count">{{ $paginator.PageNumber }} / {{ $paginator.TotalPages }}</span>
+            {{- with $paginator.Next }}
+            <a class="pager-link" href="{{ .URL }}">下一页 →</a>
+            {{- else }}<span></span>{{ end }}
+        </nav>
+        {{- end }}
+    </div>
+</section>
+{{- end }}

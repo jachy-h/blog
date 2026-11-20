@@ -1,0 +1,33 @@
+{{- $author := site.Params.author | default "Jachy" -}}
+<footer class="site-footer">
+    <div class="shell footer-grid">
+        <div class="footer-brand">
+            <p class="footer-mark">{{ $author | upper }}</p>
+            <p class="footer-copy">看见问题，作出改变。记录 AI 辅助开发、工程工作流与个人工具。</p>
+            <p class="footer-note">© {{ now.Year }} {{ $author }} · 内容按写作时间保留背景</p>
+        </div>
+
+        <nav class="footer-col" aria-label="站点索引">
+            <h2 class="footer-title">索引</h2>
+            <a href="{{ "posts/" | relLangURL }}">文章与笔记</a>
+            <a href="{{ "projects/" | relLangURL }}">项目</a>
+            <a href="{{ "categories/" | relLangURL }}">主题分类</a>
+            <a href="{{ "archives/" | relLangURL }}">时间归档</a>
+            <a href="{{ "about/" | relLangURL }}">关于</a>
+            <a href="{{ "search/" | relLangURL }}">搜索</a>
+        </nav>
+
+        <div class="footer-col">
+            <h2 class="footer-title">订阅与联系</h2>
+            <a href="{{ "index.xml" | relURL }}">RSS 订阅</a>
+            <a href="https://github.com/jachy-h" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://t.me/hoi12138" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+            <a href="#top" class="footer-top">回到顶部 ↑</a>
+        </div>
+    </div>
+
+    <div class="shell footer-bottom">
+        <span>Built with <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a href="https://github.com/adityatelange/hugo-PaperMod/" target="_blank" rel="noopener noreferrer">PaperMod</a></span>
+        <span class="footer-mono">JINYU.COOL</span>
+    </div>
+</footer>

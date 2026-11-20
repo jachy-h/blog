@@ -1,0 +1,64 @@
+@media print {
+    :root,
+    html[data-theme="dark"] {
+        --paper: #fff;
+        --ink: #000;
+        --muted: #444;
+        --faint: #555;
+        --line: #ccc;
+        --line-strong: #999;
+        --accent: #000;
+        --accent-ink: #fff;
+    }
+
+    html,
+    body {
+        background: #fff !important;
+        color: #000 !important;
+    }
+
+    body {
+        font-size: 11pt;
+        line-height: 1.6;
+    }
+
+    .site-header,
+    .site-footer,
+    .site-panel,
+    .article-toc,
+    .article-toc-mobile,
+    .share-row,
+    .post-nav,
+    .article-edit,
+    .skip-link,
+    .code-toolbar,
+    .pager {
+        display: none !important;
+    }
+
+    .article,
+    .article-grid,
+    .article-body {
+        display: block;
+        width: auto;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .article-head {
+        padding-bottom: 16pt;
+        border-bottom: 1pt solid #ccc;
+    }
+
+    .prose a {
+        text-decoration: underline;
+    }
+
+    .prose .highlight,
+    .prose pre,
+    .prose img {
+        break-inside: avoid;
+        border: 1pt solid #ddd;
+    }
+}

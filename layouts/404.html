@@ -1,0 +1,15 @@
+{{- define "main" }}
+<section class="notfound">
+    <div class="shell">
+        <p class="kicker">404 / NOT FOUND</p>
+        <p class="notfound-num" aria-hidden="true">404</p>
+        <h1>这页不在地图上。</h1>
+        <p class="notfound-copy">链接可能已经移动，或者从来没有存在过。可以从下面重新开始。</p>
+        <nav class="notfound-links" aria-label="重新开始">
+            <a class="btn" href="{{ "" | relLangURL }}">回到首页 <span aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="{{ "posts/" | relLangURL }}">浏览文章</a>
+            <a class="btn btn-ghost" href="{{ "search/" | relLangURL }}">搜索</a>
+        </nav>
+    </div>
+</section>
+{{- end }}

@@ -1,0 +1,18 @@
+{{- $project := .project -}}
+{{- $index := .index -}}
+{{- $url := $project.caseStudy | default $project.url | default "" -}}
+{{- $external := findRE "://" $url -}}
+<a class="project-row" href="{{ $url | default "#" }}"
+    {{- if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>
+    <span class="row-index" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+    <span class="project-body">
+        <span class="project-name">{{ $project.name }}</span>
+        {{- with $project.description }}<span class="project-desc">{{ . }}</span>{{ end }}
+    </span>
+    {{- with $project.tags }}
+    <span class="project-tags">
+        {{- range . }}<span>{{ . }}</span>{{ end }}
+    </span>
+    {{- end }}
+    <span class="project-arrow{{ if $external }} is-external{{ end }}" aria-hidden="true">{{ if $external }}↗{{ else }}→{{ end }}</span>
+</a>

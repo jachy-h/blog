@@ -77,18 +77,16 @@
     })
   })
 
-  // Per-post view count, only on single pages (the theme only marks those with
-  // .post-single), so list/archive pages don't fan out into dozens of requests.
-  var meta = document.querySelector('.post-single .post-meta')
-  if (!meta) return
+  // Per-post view count, only when the article meta carries a views slot,
+  // so list/archive pages don't fan out into dozens of requests.
+  var meta = document.querySelector('[data-gc-meta]')
+  var slot = meta && meta.querySelector('[data-gc-views]')
+  if (!slot) return
   load(currentPath(), function (data) {
     var n = data ? toNumber(data.count) : null
     if (n === null || n < 1) return
-    var span = document.createElement('span')
-    span.className = 'gc-views'
-    span.title = '本文浏览量（GoatCounter）'
-    span.textContent = '阅读 ' + format(n) + ' 次'
-    meta.appendChild(document.createTextNode('\u00a0·\u00a0'))
-    meta.appendChild(span)
+    slot.title = '本文浏览量（GoatCounter）'
+    slot.textContent = '阅读 ' + format(n) + ' 次'
+    slot.hidden = false
   })
 })()

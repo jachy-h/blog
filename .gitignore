@@ -14,3 +14,9 @@ Thumbs.db
 *.swp
 *.swo
 *~
+
+# Hugo generated image cache
+resources/_gen/
+
+# local screenshots and browser profiles
+.taste-skill/

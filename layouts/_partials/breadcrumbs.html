@@ -1,0 +1,16 @@
+<nav class="breadcrumb" aria-label="面包屑">
+    <a href="{{ "" | relLangURL }}">首页</a>
+    {{- with .CurrentSection }}
+    <span aria-hidden="true">/</span>
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{- end }}
+    {{- $cats := .GetTerms "categories" }}
+    {{- with $cats }}
+    {{- with index . 0 }}
+    <span aria-hidden="true">/</span>
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{- end }}
+    {{- end }}
+    <span aria-hidden="true">/</span>
+    <span class="breadcrumb-current" aria-current="page">{{ .Title | truncate 26 }}</span>
+</nav>

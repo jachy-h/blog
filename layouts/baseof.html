@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "zh" }}" dir="{{ .Language.Direction | default "auto" }}" data-theme="auto" data-page="{{ if .IsHome }}home{{ else if eq .Layout "search" }}search{{ else if eq .Kind "404" }}404{{ else if .IsPage }}page{{ else }}list{{ end }}" data-code-copy="{{ if site.Params.ShowCodeCopyButtons }}true{{ else }}false{{ end }}">
+<head>
+    {{- partial "head.html" . }}
+</head>
+<body id="top">
+    <a class="skip-link" href="#main">跳到正文</a>
+    {{- partial "header.html" . }}
+    <main id="main" class="site-main" tabindex="-1">
+        {{- block "main" . }}{{ end }}
+    </main>
+    {{- partial "footer.html" . }}
+    {{- with resources.Get "js/site.js" }}
+    {{- $site := . | minify | fingerprint }}
+    <script defer src="{{ $site.RelPermalink }}" integrity="{{ $site.Data.Integrity }}" crossorigin="anonymous"></script>
+    {{- end }}
+</body>
+</html>

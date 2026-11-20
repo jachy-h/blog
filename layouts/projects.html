@@ -1,5 +1,26 @@
 {{ define "main" }}
-<header class="page-header"><h1>{{ .Title }}</h1><p class="post-description">{{ .Description }}</p></header>
-{{ partial "home_projects.html" . }}
-<p class="post-description">每个项目介绍页都提供使用入口。欢迎通过项目仓库或 Telegram 交流问题与建议。</p>
+{{- $projects := hugo.Data.projects -}}
+<section class="page-head">
+    <div class="shell">
+        <p class="kicker">INDEX / PROJECTS</p>
+        <h1>{{ .Title }}</h1>
+        {{- with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}
+        {{- with $projects }}
+        <div class="page-meta"><span>{{ len . }} 个项目</span><span aria-hidden="true">/</span><span>从具体问题出发</span></div>
+        {{- end }}
+    </div>
+</section>
+
+<section class="index-section" aria-label="项目列表">
+    <div class="shell">
+        {{- with $projects }}
+        <div class="project-list">
+            {{- range $i, $project := . }}
+            {{- partial "project_row.html" (dict "project" $project "index" $i) }}
+            {{- end }}
+        </div>
+        {{- end }}
+        <p class="section-note">每个项目介绍页都提供使用入口。欢迎通过项目仓库或 Telegram 交流问题与建议。</p>
+    </div>
+</section>
 {{ end }}

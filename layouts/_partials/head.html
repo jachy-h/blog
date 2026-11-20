@@ -1,0 +1,107 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="format-detection" content="telephone=no">
+{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+<meta name="robots" content="index, follow">
+{{- else }}
+<meta name="robots" content="noindex, nofollow">
+{{- end }}
+
+{{- $pageTitle := site.Title }}
+{{- if not .IsHome }}
+{{- $label := .Title }}
+{{- if eq .Kind "taxonomy" }}
+{{- $label = cond (eq .Data.Plural "tags") "标签" "主题" }}
+{{- end }}
+{{- $pageTitle = printf "%s · %s" $label (site.Params.author | default site.Title) }}
+{{- end }}
+<title>{{ $pageTitle }}</title>
+
+{{- $description := site.Params.description }}
+{{- with .Description }}{{ $description = . }}{{ else }}{{ if and .IsPage (not .IsHome) }}{{ $description = (.Summary | plainify | htmlUnescape | truncate 160) }}{{ end }}{{ end }}
+<meta name="description" content="{{ $description }}">
+{{- if .IsHome }}
+{{- with site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+{{- else }}
+{{- $keywords := .Params.keywords | default .Params.tags }}
+{{- with $keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+{{- end }}
+<meta name="author" content="{{ site.Params.author | default "Jachy" }}">
+<link rel="canonical" href="{{ with .Params.canonicalURL }}{{ trim . " " }}{{ else }}{{ .Permalink }}{{ end }}">
+
+{{- if site.Params.analytics.google.SiteVerificationTag }}
+<meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
+{{- end }}
+{{- if site.Params.analytics.bing.SiteVerificationTag }}
+<meta name="msvalidate.01" content="{{ site.Params.analytics.bing.SiteVerificationTag }}">
+{{- end }}
+
+{{- /* 字体：只加载 Latin 展示字体，中文使用系统字体 */}}
+<link rel="preload" href="{{ "fonts/space-grotesk-latin.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{- /* 样式：Chroma 语法高亮 + 站点设计系统 */}}
+{{- $chroma := resources.Get "css/includes/chroma-styles.css" }}
+{{- $chromaMod := resources.Get "css/includes/chroma-mod.css" }}
+{{- $siteCss := resources.Match "css/extended/*.css" | resources.Concat "assets/css/site.css" }}
+{{- $stylesheet := slice $chroma $chromaMod $siteCss | resources.Concat "assets/css/stylesheet.css" }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $stylesheet = $stylesheet | minify | fingerprint }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" integrity="{{ $stylesheet.Data.Integrity }}" rel="preload stylesheet" as="style">
+{{- else }}
+{{- $stylesheet = $stylesheet | minify }}
+<link crossorigin="anonymous" href="{{ $stylesheet.RelPermalink }}" rel="preload stylesheet" as="style">
+{{- end }}
+
+{{- /* 搜索页 */}}
+{{- if eq .Layout "search" }}
+<link rel="preload" as="fetch" href="{{ "index.json" | relURL }}" crossorigin>
+{{- $fastsearch := resources.Get "js/fastsearch.js" | js.Build (dict "params" (dict "fuseOpts" site.Params.fuseOpts)) | minify }}
+{{- $fuse := resources.Get "js/fuse.basic.min.js" }}
+{{- $search := slice $fuse $fastsearch | resources.Concat "assets/js/search.js" }}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $search = $search | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}" integrity="{{ $search.Data.Integrity }}"></script>
+{{- else }}
+<script defer crossorigin="anonymous" src="{{ $search.RelPermalink }}"></script>
+{{- end }}
+{{- end }}
+
+{{- /* Favicons */}}
+<link rel="icon" href="{{ "favicon.ico" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">
+<meta name="theme-color" content="#f4f1ea" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0d0e0f" media="(prefers-color-scheme: dark)">
+
+{{- range .AlternativeOutputFormats }}
+<link rel="{{ .Rel }}" type="{{ .MediaType.Type | html }}" href="{{ .Permalink | safeURL }}" title="{{ .Name }}">
+{{- end }}
+
+{{- /* 主题在首次绘制前确定，避免闪烁 */}}
+<script>
+    (function () {
+        var root = document.documentElement;
+        try {
+            var saved = localStorage.getItem('pref-theme');
+            var theme = saved === 'dark' || saved === 'light'
+                ? saved
+                : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            root.dataset.theme = theme;
+            root.dataset.js = 'on';
+        } catch (error) {
+            root.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            root.dataset.js = 'on';
+        }
+    })();
+</script>
+
+{{- partial "extend_head.html" . }}
+
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+{{- partial "templates/opengraph.html" . }}
+{{- partial "templates/twitter_cards.html" . }}
+{{- partial "templates/schema_json.html" . }}
+{{- end }}

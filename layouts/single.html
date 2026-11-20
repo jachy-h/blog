@@ -1,0 +1,83 @@
+{{- define "main" }}
+{{- $isPost := eq .Section "posts" -}}
+{{- $isProject := eq .Section "projects" -}}
+{{- $isStatic := not (or $isPost $isProject) -}}
+<article class="article{{ if $isStatic }} article--static{{ end }}">
+    <div class="shell">
+        <div class="article-grid">
+            {{- if and (not $isStatic) site.Params.ShowBreadCrumbs }}
+            {{ partial "breadcrumbs.html" . }}
+            {{- end }}
+
+            <header class="article-head">
+                {{- if $isStatic }}
+                <p class="kicker">PROFILE / 关于</p>
+                {{- end }}
+                <h1>{{ .Title }}</h1>
+                {{- if not $isStatic }}
+                {{- with .Description }}
+                <p class="article-lede">{{ . }}</p>
+                {{- end }}
+                {{- end }}
+                {{- if and (not $isStatic) (not (.Param "hideMeta")) }}
+                {{ partial "post_meta.html" . }}
+                {{- end }}
+            </header>
+
+            {{- partial "toc.html" . }}
+
+            <div class="article-body">
+                <div class="prose">
+                    {{ .Content }}
+                </div>
+
+                {{- if not $isStatic }}
+                <footer class="article-footer">
+                    {{- with .GetTerms "tags" }}
+                    <ul class="article-tags" aria-label="标签">
+                        {{- range . }}
+                        <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+                        {{- end }}
+                    </ul>
+                    {{- end }}
+
+                    {{- if and site.Params.ShowShareButtons (ne .Params.disableShare true) }}
+                    {{ partial "share.html" . }}
+                    {{- end }}
+
+                    {{- with site.Params.editPost }}
+                    {{- if and .URL $.File }}
+                    <a class="article-edit" href="{{ .URL }}/{{ $.File.Path }}" target="_blank" rel="noopener noreferrer">查看源文件 ↗</a>
+                    {{- end }}
+                    {{- end }}
+
+                    {{- if site.Params.ShowPostNavLinks }}
+                    {{- $pages := .CurrentSection.RegularPages }}
+                    {{- if gt (len $pages) 1 }}
+                    {{- $prev := $pages.Prev . }}
+                    {{- $next := $pages.Next . }}
+                    {{- if or $prev $next }}
+                    <nav class="post-nav" aria-label="上下篇">
+                        {{- with $prev }}
+                        <a class="post-nav-item" href="{{ .RelPermalink }}">
+                            <span class="post-nav-label">← 上一篇</span>
+                            <span class="post-nav-title">{{ .Title }}</span>
+                        </a>
+                        {{- end }}
+                        {{- with $next }}
+                        <a class="post-nav-item post-nav-item--next" href="{{ .RelPermalink }}">
+                            <span class="post-nav-label">下一篇 →</span>
+                            <span class="post-nav-title">{{ .Title }}</span>
+                        </a>
+                        {{- end }}
+                    </nav>
+                    {{- end }}
+                    {{- end }}
+                    {{- end }}
+                </footer>
+                {{- end }}
+            </div>
+        </div>
+    </div>
+</article>
+{{- end }}

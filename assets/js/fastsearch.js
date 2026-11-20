@@ -433,9 +433,6 @@ const initSearch = async () => {
     }
 
     els.input.disabled = false;
-    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-        els.input.focus();
-    }
     renderRecent();
     setStatus('正在载入搜索索引…');
 

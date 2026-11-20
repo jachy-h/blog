@@ -1,39 +1,19 @@
-{{- /*
-  首页项目卡片
-  数据来源：data/projects.yaml
-  可在 config.toml 的 [params] 中通过 projectsTitle 修改标题
-*/ -}}
 {{- $projects := hugo.Data.projects -}}
 {{- if $projects }}
-<section class="projects home-section" aria-labelledby="projects-heading">
-    <div class="section-heading"><div><p class="home-kicker">SELECTED PROJECTS</p><h2 id="projects-heading">{{ site.Params.projectsTitle | default "Projects" }}</h2></div><a href="{{ "projects/" | relURL }}">项目介绍 →</a></div>
-    <div class="projects-grid">
-        {{- range $projects }}
-        {{- $url := .caseStudy | default .url | default "" }}
-        {{- $external := findRE "://" $url }}
-        <a class="project-card" href="{{ $url | default "#" }}"
-            {{- if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>
-            <h3 class="project-head">
-                {{- with .icon }}
-                {{- if hasPrefix . "/" }}
-                <img class="project-icon" src="{{ . }}" alt="" loading="lazy" />
-                {{- else }}
-                <span class="project-icon" aria-hidden="true">{{ . }}</span>
-                {{- end }}
-                {{- end }}
-                <span class="project-name">{{ .name }}</span>
-                {{- if $external }}<span class="project-arrow" aria-hidden="true">↗</span>{{ end }}
-            </h3>
-            {{- with .description }}
-            <p class="project-desc">{{ . }}</p>
+<section class="section projects-section" aria-labelledby="projects-heading">
+    <div class="shell">
+        <div class="section-head">
+            <div>
+                <p class="kicker">01 / SELECTED PROJECTS</p>
+                <h2 id="projects-heading">{{ site.Params.projectsTitle | default "把想法做成工具" }}</h2>
+            </div>
+            <a class="section-link" href="{{ "projects/" | relLangURL }}">项目介绍 →</a>
+        </div>
+        <div class="project-list">
+            {{- range $i, $project := $projects }}
+            {{- partial "project_row.html" (dict "project" $project "index" $i) }}
             {{- end }}
-            {{- with .tags }}
-            <ul class="project-tags">
-                {{- range . }}<li>{{ . }}</li>{{ end }}
-            </ul>
-            {{- end }}
-        </a>
-        {{- end }}
+        </div>
     </div>
 </section>
 {{- end }}

@@ -1,0 +1,76 @@
+/* 字体：Space Grotesk Latin 子集，仅用于拉丁字母、数字与标签 */
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 700;
+    src: url("/fonts/space-grotesk-latin.woff2") format("woff2-variations");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+    color-scheme: light;
+
+    --font-sans: "PingFang SC", "HarmonyOS Sans SC", "Source Han Sans SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+    --font-display: "Space Grotesk", var(--font-sans);
+    --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+
+    --paper: #f4f1ea;
+    --surface: #ebe6da;
+    --surface-2: #e2dccd;
+    --ink: #17171a;
+    --muted: #625f56;
+    --faint: #726d61;
+    --line: #d6d0c2;
+    --line-strong: #b3ac9c;
+    --accent: #b83a27;
+    --accent-2: #8f2b1c;
+    --accent-ink: #fffaf6;
+    --accent-soft: rgba(184, 58, 39, 0.07);
+    --code-surface: #e9e3d5;
+    --code-panel: #f0ebdf;
+
+    --shell: 1240px;
+    --gutter: clamp(20px, 5vw, 80px);
+    --header-h: 72px;
+    --radius: 0;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --t-fast: 160ms;
+    --t: 220ms;
+
+    /* PaperMod 变量映射：保证未覆盖到的主题 partial 仍能取到当前色板 */
+    --theme: var(--paper);
+    --entry: var(--surface);
+    --primary: var(--ink);
+    --secondary: var(--muted);
+    --tertiary: var(--line);
+    --content: var(--ink);
+    --border: var(--line);
+    --code-bg: var(--code-surface);
+    --code-block-bg: var(--code-panel);
+    --gap: 24px;
+    --content-gap: 24px;
+    --nav-width: var(--shell);
+    --main-width: 720px;
+    --footer-height: auto;
+}
+
+html[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0d0e0f;
+    --surface: #15171a;
+    --surface-2: #1b1e21;
+    --ink: #ecebe4;
+    --muted: #918e86;
+    --faint: #85827a;
+    --line: #26282c;
+    --line-strong: #3a3d42;
+    --accent: #ff6b4d;
+    --accent-2: #ff8a70;
+    --accent-ink: #140b09;
+    --accent-soft: rgba(255, 107, 77, 0.09);
+    --code-surface: #17191c;
+    --code-panel: #121417;
+}
+
+

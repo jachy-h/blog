@@ -1,0 +1,21 @@
+/* 动效：只保留功能性反馈；系统要求减少动态时全部静止 */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .js [data-moment] .moment-words span {
+        opacity: 1;
+        transform: none;
+    }
+}

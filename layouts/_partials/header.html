@@ -1,0 +1,71 @@
+{{- $current := .RelPermalink -}}
+<header class="site-header">
+    <div class="shell header-inner">
+        <a class="wordmark" href="{{ "" | relLangURL }}" aria-label="{{ site.Params.author | default "Jachy" }} 首页">
+            <span class="wordmark-name">{{ site.Params.author | default "Jachy" | upper }}</span>
+            <span class="wordmark-desc">开发实践与个人工具</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="主导航">
+            <ul>
+                {{- range site.Menus.main }}
+                {{- $url := .URL | relLangURL }}
+                {{- $active := or (eq $url $current) (and (ne $url "/") (hasPrefix $current $url)) }}
+                <li>
+                    <a href="{{ $url }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>
+                        {{- .Name -}}
+                        {{- if eq .Name "搜索" }}<kbd aria-hidden="true">/</kbd>{{ end -}}
+                    </a>
+                </li>
+                {{- end }}
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <button class="icon-button theme-toggle" type="button" data-theme-toggle aria-label="切换明暗主题">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="4.2"></circle>
+                    <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M18.7 5.3l-1.4 1.4M6.7 17.3l-1.4 1.4"></path>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M20.5 14.1A8.6 8.6 0 0 1 9.9 3.5 8.6 8.6 0 1 0 20.5 14.1Z"></path>
+                </svg>
+            </button>
+            <button class="icon-button menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-controls="site-panel" aria-label="打开菜单">
+                <span class="menu-bars" aria-hidden="true"><i></i><i></i></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<div class="site-panel" id="site-panel" aria-label="站点菜单">
+    <div class="site-panel-head">
+        <span class="wordmark-name">{{ site.Params.author | default "Jachy" | upper }}</span>
+        <button class="icon-button panel-close" type="button" data-menu-close aria-label="关闭菜单">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+                <path d="M5 5l14 14M19 5L5 19"></path>
+            </svg>
+        </button>
+    </div>
+    <nav class="panel-nav" aria-label="移动端导航">
+        {{- range site.Menus.main }}
+        {{- $url := .URL | relLangURL }}
+        {{- $active := or (eq $url $current) (and (ne $url "/") (hasPrefix $current $url)) }}
+        <a href="{{ $url }}"{{ if $active }} class="is-active" aria-current="page"{{ end }}>
+            <span>{{ .Name }}</span>
+            <span class="panel-arrow" aria-hidden="true">↗</span>
+        </a>
+        {{- end }}
+    </nav>
+    <div class="panel-foot">
+        <button class="panel-theme" type="button" data-theme-toggle>
+            <span data-theme-label>切换明暗主题</span>
+            <span class="panel-arrow" aria-hidden="true">◐</span>
+        </button>
+        <div class="panel-social">
+            <a href="{{ "index.xml" | relURL }}">RSS</a>
+            <a href="https://github.com/jachy-h" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://t.me/hoi12138" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+        </div>
+    </div>
+</div>

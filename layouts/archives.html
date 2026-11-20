@@ -1,0 +1,48 @@
+{{- define "main" }}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections -}}
+<section class="page-head">
+    <div class="shell">
+        <p class="kicker">ARCHIVE / 时间索引</p>
+        <h1>{{ .Title }}</h1>
+        {{- with .Description }}<p class="page-lede">{{ . }}</p>{{ end }}
+        <div class="page-meta">
+            <span>{{ len $pages }} 篇</span>
+            <span aria-hidden="true">/</span>
+            <span>按发布时间分组</span>
+            {{- with .OutputFormats.Get "rss" }}
+            <span aria-hidden="true">/</span>
+            <a href="{{ .RelPermalink }}">RSS ↗</a>
+            {{- end }}
+        </div>
+    </div>
+</section>
+
+<section class="index-section" aria-label="时间归档">
+    <div class="shell">
+        {{- range $pages.GroupByPublishDate "2006" }}
+        {{- if ne .Key "0001" }}
+        <div class="year-block">
+            <p class="year-label">{{ .Key }}</p>
+            <div class="year-rows">
+                {{- range .Pages.GroupByDate "01" }}
+                <p class="month-label">{{ .Key }} 月 <span>{{ len .Pages }} 篇</span></p>
+                {{- range .Pages }}
+                {{- $cats := .GetTerms "categories" }}
+                <a class="post-row" href="{{ .RelPermalink }}">
+                    <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format "01.02" }}</time>
+                    <span class="post-main">
+                        <span class="post-title">{{ .Title }}</span>
+                        {{- with $cats }}{{ with index . 0 }}<span class="post-cat">{{ .LinkTitle }}</span>{{ end }}{{ end }}
+                    </span>
+                    <span class="post-time">{{ .ReadingTime }} 分钟</span>
+                    <span class="post-arrow" aria-hidden="true">→</span>
+                </a>
+                {{- end }}
+                {{- end }}
+            </div>
+        </div>
+        {{- end }}
+        {{- end }}
+    </div>
+</section>
+{{- end }}

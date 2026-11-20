@@ -1,0 +1,9 @@
+{{- $url := .Permalink -}}
+{{- $title := .Title -}}
+<div class="share-row" aria-label="分享本文">
+    <span class="share-label">分享</span>
+    <button class="share-link" type="button" data-copy-url data-url="{{ $url }}">复制链接</button>
+    <a class="share-link" href="https://t.me/share/url?url={{ $url | urlquery }}&amp;text={{ $title | urlquery }}" target="_blank" rel="noopener noreferrer">Telegram ↗</a>
+    <a class="share-link" href="https://x.com/intent/tweet?url={{ $url | urlquery }}&amp;text={{ $title | urlquery }}" target="_blank" rel="noopener noreferrer">X ↗</a>
+    <span class="share-status" role="status" aria-live="polite"></span>
+</div>

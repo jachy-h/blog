@@ -1,0 +1,12 @@
+{{- $toc := .TableOfContents -}}
+{{- if and (.Param "showtoc") (gt (len $toc) 40) -}}
+{{- $mobileToc := replaceRE `id="TableOfContents"` "" $toc -}}
+<aside class="article-toc" aria-label="本文目录">
+    <p class="toc-label">目录 <span aria-hidden="true">/ INDEX</span></p>
+    {{ $toc }}
+</aside>
+<details class="article-toc-mobile">
+    <summary>目录 <span aria-hidden="true">/ INDEX</span></summary>
+    {{ $mobileToc | safeHTML }}
+</details>
+{{- end -}}

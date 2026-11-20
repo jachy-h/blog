@@ -1,0 +1,47 @@
+/* ---------- 404 ---------- */
+
+.notfound {
+    padding-block: clamp(56px, 10vh, 120px) clamp(80px, 14vh, 160px);
+}
+
+.notfound-num {
+    margin: 0;
+    color: var(--line-strong);
+    font-family: var(--font-display);
+    font-size: clamp(120px, 24vw, 300px);
+    font-weight: 600;
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    font-variant-numeric: tabular-nums;
+}
+
+.notfound h1 {
+    margin: 24px 0 16px;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+}
+
+.notfound-copy {
+    max-width: 34em;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.notfound-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .notfound-num {
+        font-size: clamp(110px, 42vw, 180px);
+    }
+
+    .notfound-links .btn {
+        flex: 1 1 auto;
+    }
+}
