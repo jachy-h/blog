@@ -1,5 +1,5 @@
 ---
-title: "Git 踩坑记录"
+title: "Git 和浏览器踩坑记录"
 date: 2023-11-20
 categories: ["运维", "Git", "踩虫记"]
 draft: false
@@ -75,7 +75,7 @@ sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
 
 ```bash
 # 设置环境变量
-export N_NODE_MIRROR=https://npm.taobao.org/mirrors/node
+export N_NODE_MIRROR=https://npmmirror.com/mirrors/node/
 
 # 安装
 sudo -E n stable

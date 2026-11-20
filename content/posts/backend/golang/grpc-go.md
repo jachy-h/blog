@@ -7,20 +7,22 @@ draft: false
 
 ### 快速开始
 
-1. 安装proto-gen-go-grpc插件
+1. 安装 `protoc-gen-go` 和 `protoc-gen-go-grpc` 插件
 
 ```bash
+go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
 ```
 
-来看看版本
+确认插件已安装：
 
 ```bash
-protoc-gen-go-grpc --version                                   
+protoc-gen-go-grpc --version
 protoc-gen-go-grpc 1.1.0
 ```
 
-2. 编写proto文件
+2. 编写 proto 文件
+
 ```proto
 syntax = "proto3";
 
@@ -49,6 +51,6 @@ protoc -I=. --go_out=./grpc/service --go-grpc_out=./grpc/service ./grpc/service/
 ```
 
 说明：
-- `go_out`: 生成后的`*.pb.go`文件位置
-- `go-grpc_out`: 生成后的`*_grpc.pb.go`文件位置
-- `-I`: 即`-IPATH`或`--proto_path=PATH`， 指定搜索路径参数，表示我们在那个路径下搜索`.proto`文件
+- `go_out`：生成后的 `*.pb.go` 文件位置
+- `go-grpc_out`：生成后的 `*_grpc.pb.go` 文件位置
+- `-I`：即 `-IPATH` 或 `--proto_path=PATH`，指定搜索路径，表示在哪个路径下搜索 `.proto` 文件

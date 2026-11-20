@@ -1,39 +1,38 @@
 ---
-title: Agent 工具笔记
+title: "Agent 工具笔记"
 subtitle: ""
 date: 2026-02-27T13:01:27+08:00
 categories: []
 draft: false
 editorialLabel: "笔记"
 ---
-> 以下为 2026 年 2 月的工具试用笔记，套餐与免费额度未重新验证，请以服务方当前说明为准。
 
-## github copilot
+> 以下为 2026 年 2 月的工具试用笔记。套餐与免费额度未重新验证，请以服务方当前说明为准。
 
-已购买年套餐， 主要编程战斗力
+## GitHub Copilot
 
-## qwen code
+已购买年套餐，是目前主要的编程工具。
 
-`qwen code`  内置免费 1k 请求每月, 编程效果符合预期
+## Qwen Code
 
+`qwen code` 每月内置 1k 免费请求，编程效果符合预期。
 
-## open code
+## OpenCode
 
-`opencode` 的 `zen`, 自带 `minimax 2.5 free` , 速度挺快， 效果符合预期
+`opencode` 的 `zen` 自带 `minimax 2.5 free`，速度挺快，效果符合预期。
 https://opencode.ai/zen
 
-## iflow cli
+## iFlow CLI
 
-尝试中
+尝试中。
 
-## openrouter
+## OpenRouter
 
-对接很多模型， 但是用起来好慢， 暂时感觉有点问题
+对接的模型很多，但用起来很慢，暂时感觉有问题。
 
+## Coding
 
-## coding
-
-基于 `git worktree` 各自开辟 `feat/fix` 分支工作。 需要Git >= 2.5
+基于 `git worktree` 各自开辟 `feat`/`fix` 分支工作，需要 Git >= 2.5。
 
 ```
 # 1. 进入你希望新工作区所在的父目录

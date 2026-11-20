@@ -5,7 +5,7 @@ categories: ["AI", "工具", "踩虫记"]
 draft: false
 ---
 
-![MCP 使用流程](pics/MCP 使用流程理解.excalidraw.png)
+![MCP 使用流程](<pics/MCP 使用流程理解.excalidraw.png>)
 
 > **重要参考**：[MCP 中文入门指南](https://github.com/liaokongVFX/MCP-Chinese-Getting-Started-Guide)
 

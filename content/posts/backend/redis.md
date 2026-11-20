@@ -26,7 +26,7 @@ redis-cli
 redis-cli -h 127.0.0.1 -p 6379 --askpass
 ```
 
-`-p` 后面必须提供端口号；`--askpass` 用于交互输入密码。此前笔记里的连接命令漏写了端口，不应直接复制。
+`-p` 指定端口，`--askpass` 让 redis-cli 交互询问密码。
 
 参考：[Redis CLI 文档](https://redis.io/docs/latest/develop/tools/cli/)。
 
@@ -67,4 +67,4 @@ SET blog:demo:temporary hello EX 60
 DEL blog:demo:message blog:demo:temporary
 ```
 
-原笔记还列出了 [DUMP](https://redis.io/docs/latest/commands/dump/)：它返回键值的序列化表示，并不是查看字符串内容的常用方式。日常检查字符串值使用 GET；其他数据类型需要对应的查询命令。
+`DUMP` 返回键值的[序列化表示](https://redis.io/docs/latest/commands/dump/)，不适合查看字符串内容。日常检查字符串用 `GET`；其他数据类型用对应的查询命令。

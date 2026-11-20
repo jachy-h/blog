@@ -50,7 +50,7 @@ draft: false
 | 2 | teacher-Zhang |
 | 3 | teacher-Li |
 
-**class_student 表**
+**class_teacher 表**
 
 | id | class_id | teacher_id |
 |----|----------|------------|
@@ -120,10 +120,10 @@ SELECT * FROM table_name
 
 ### 投影查询
 
-使用 `SELECT *` 表示查询表的所有列，使用 `SELECT 列 1, 列 2, 列 3` 则可以仅返回指定列，这种操作称为投影。
+使用 `SELECT *` 表示查询表的所有列，使用 `SELECT 列1, 列2, 列3` 则可以仅返回指定列，这种操作称为投影。
 
 ```sql
-SELECT 列 1 别名 1, 列 2 别名 2, 列 3 别名 3 FROM ...
+SELECT 列1 别名1, 列2 别名2, 列3 别名3 FROM ...
 ```
 
 ### 条件查询
@@ -134,7 +134,7 @@ SELECT 列 1 别名 1, 列 2 别名 2, 列 3 别名 3 FROM ...
 SELECT * FROM table_name WHERE 条件表达式
 ```
 
-关系运算符：(如果不加小括号，则按照如下顺序为优先级计算)
+逻辑运算符的优先级如下，可以用小括号改变计算顺序：
 
 - `NOT`
 - `AND`
@@ -150,11 +150,11 @@ SELECT * FROM table_name ORDER BY score DESC;
 - 降序：`DESC`
 - 升序：`ASC`（默认，可省略）
 
-PS: 先 `where` 再 `order by`
+PS：执行时先 `where` 再 `order by`。
 
 ### 分页
 
-`LIMIT n OFFSET m` 从第 m 条记录开始，取 n 条记录
+`LIMIT n OFFSET m` 跳过前 m 条记录，再取 n 条。
 
 ```sql
 SELECT * FROM table_name LIMIT 10 OFFSET 40
@@ -164,7 +164,7 @@ SELECT * FROM table_name LIMIT 10 OFFSET 40
 
 - offset 是可选的，不写则为 `offset 0`
 - 在 MySQL 中，`LIMIT 15 OFFSET 30` 还可以简写成 `LIMIT 30, 15`
-- 随着 `offset n` 中，n 增大，效率会降低
+- `OFFSET` 越大，扫描的行越多，效率越低
 
 ### 分组
 
@@ -184,13 +184,13 @@ SELECT * FROM table_name GROUP BY column_a, column_b HAVING count(name) > 1
 
 #### count
 
-查询行数，且查询到的结果是二维表，只是这个表是一行一列。列名为 `count(*)`
+查询行数。结果是一张只有一行一列的二维表，列名为 `count(*)`。
 
 ```sql
 SELECT count(*) FROM table_name
 ```
 
-功能同上，但列名为 `num`
+可以给结果列起别名，例如列名为 `num`：
 
 ```sql
 SELECT count(*) num FROM table_name
@@ -211,7 +211,7 @@ SELECT count(*) num FROM table_name
 
 ### 就硬查
 
-查询方式👇；如下的查询，会形成笛卡尔积，即 a 表里的每条数据，都和 b 表里的每条数据匹配一次。得到的结果集，列数是 a 表和 b 表的列数之和，行数是 a，b 表的行数乘积
+下面这种查询会形成笛卡尔积：a 表里的每条数据都和 b 表里的每条数据匹配一次。结果集的列数是两表列数之和，行数是两表行数之积。
 
 ```sql
 SELECT * FROM table_a, table_b
@@ -270,7 +270,7 @@ SELECT ... FROM tableA ??? JOIN tableB ON tableA.column1 = tableB.column2;
 
 ## 查询条件
 
-- 验证为空 `IS NULL`
+- 判断为空：`IS NULL`
 
 ## DELETE
 
@@ -286,10 +286,10 @@ DELETE p.* FROM Person p, Person p1
 ## INSERT
 
 ```sql
-INSERT INTO 表名 (字段 1, 字段 2, ...) VALUES (值 1, 值 2, ...);
+INSERT INTO 表名 (字段1, 字段2, ...) VALUES (值1, 值2, ...);
 ```
 
-插入多条记录，一定要带小括号！！！
+插入多条记录时，每组值都要用小括号括起来。
 
 ```sql
 INSERT INTO Activity (player_id, device_id, event_date, games_played)
@@ -304,5 +304,5 @@ VALUES
 ## UPDATE
 
 ```sql
-UPDATE 表名 SET 字段 1=值 1, 字段 2=值 2, ... WHERE ...;
+UPDATE 表名 SET 字段1=值1, 字段2=值2, ... WHERE ...;
 ```

@@ -7,7 +7,7 @@ draft: false
 
 ## 为什么需要 Observable
 
-RxJS 说是弥补关于数据处理场景的一块空白 → **推送多个数据**。
+RxJS 补上了数据处理场景中的一块空白：**推送多个数据**。
 
 这里把我们对数据的处理方式做了两个维度的分类：
 
@@ -20,12 +20,12 @@ RxJS 说是弥补关于数据处理场景的一块空白 → **推送多个数�
 
 **Pull** 就是我要的时候，就能要到。生产者无感。
 
-- 每个 JS 函数都是在 Pull
-- ES2015 的生成器（`function*`）弥补了"拉取多个值"的空白
+- 每个 JS 函数调用都是在 Pull
+- ES2015 的生成器（`function*`）弥补了“拉取多个值”的空白
 
-**Push** 就是我决定啥时候给，消费者无感。
+**Push** 是生产者决定什么时候给，消费者等着接收。
 
-- 典型例子就是 `Promise`，等 `then` 的时候自然会 `push` 给你
+- 典型例子是 `Promise`：调用 `then` 时，结果会被推给回调
 
 从生产者和消费者的角度理解：
 
@@ -174,7 +174,7 @@ setTimeout(() => subscription.unsubscribe(), 1000)
 
 **重要：Observable 是在被 subscribe 了才执行的。**
 
-这是理解"多播"与"单播"的关键点：
+这是理解“多播”与“单播”的关键点：
 
 ```js
 let n = 0;
@@ -258,7 +258,7 @@ RxJS 有两类操作符：**Pipeable Operators** 和 **Creation Operators**
 
 ### Creation Operators
 
-可以理解为一种生成新的 Observable 的独立函数。比如 `of(1,2,3)` 生成一个 Observable，会一个个发出 1, 2, 3。
+可以理解为生成新 Observable 的独立函数。比如 `of(1,2,3)` 会生成一个 Observable，依次发出 1、2、3。
 
 ### Pipeable Operators
 
@@ -327,4 +327,4 @@ interval(200) // 每 200ms 发出一个递增数字
 
 ---
 
-**总结**：RxJS 是一个强大的响应式编程库，核心是 Observable。理解 Pull/Push、单播/多播、以及各类操作符的用法，是掌握 RxJS 的关键。
+**总结**：RxJS 的核心是 Observable。理解 Pull/Push、单播/多播和操作符的用法，是使用它的基础。

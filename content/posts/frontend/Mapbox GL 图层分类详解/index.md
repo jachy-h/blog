@@ -45,7 +45,9 @@ Mapbox GL 提供了多种图层类型用于地图渲染：
 
 ### 3. 组合 Composition
 
-## Trouble Shooting
+组合类表达式把多个表达式拼在一起，例如 `interpolate`、`step`、`case`、`match`、`coalesce`。
+
+## Troubleshooting
 
 ### 图标/文字重叠问题
 

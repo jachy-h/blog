@@ -8,9 +8,11 @@ draft: false
 ## 国内 Docker 镜像源
 
 ```sh
-# 这个源好用
+# 示例使用这个源
 docker.m.daocloud.io
 ```
+
+镜像源的可用性会变化，失效时需要换用其他源。
 
 ## 使用方法
 

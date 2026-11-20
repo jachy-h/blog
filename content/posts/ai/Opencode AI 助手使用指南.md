@@ -1,5 +1,5 @@
 ---
-title: "Opencode AI 助手使用指南"
+title: "OpenCode AI 助手使用指南"
 date: 2026-01-26
 categories: ["AI", "工具"]
 draft: false
@@ -10,9 +10,9 @@ draft: false
 
 ## 安装步骤
 
-1. 安装 [ghostty](https://ghostty.org/docs/install/binary): opencode 本身设计的文字颜色在深色背景下更好看
-2. 安装 [opencode](https://opencode.ai/docs/)
-3. 在工作目录配置 `opencode.jsonc`, 示例如下：
+1. 安装 [Ghostty](https://ghostty.org/docs/install/binary)：OpenCode 的配色在深色背景下更好看
+2. 安装 [OpenCode](https://opencode.ai/docs/)
+3. 在工作目录配置 `opencode.jsonc`，示例如下：
 
 ```jsonc
 {
@@ -33,6 +33,6 @@ draft: false
 }
 ```
 
-4. 打开 ghostty, 输入 `opencode`, 进入工具
-5. 输入 `/connect`，选择上面我们配置的百炼入口和模型
+4. 打开 Ghostty，输入 `opencode`，进入工具
+5. 输入 `/connect`，选择上面配置的百炼入口和模型
 6. 愉快玩耍
