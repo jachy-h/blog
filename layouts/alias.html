@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "zh" }}">
+<head>
+  <title>{{ .Permalink }}</title>
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{- /* Hugo 生成的别名页（如 /posts/page/1/）是 200 + meta refresh 的重复页，
+         GitHub Pages 无法给它们做 301，这里明确 noindex，避免被当成重复内容收录。 */}}
+  <meta name="robots" content="noindex, follow">
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url={{ .Permalink }}">
+</head>
+</html>

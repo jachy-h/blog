@@ -427,12 +427,28 @@ const resetSearch = () => {
     els.input.focus();
 };
 
+// 进入搜索页时自动聚焦输入框；触屏设备会弹出软键盘遮挡结果，跳过
+const focusSearchInput = () => {
+    if (!els.input || els.input.disabled) {
+        return;
+    }
+    if (!window.matchMedia('(pointer: fine)').matches) {
+        return;
+    }
+    try {
+        els.input.focus({ preventScroll: true });
+    } catch (error) {
+        els.input.focus();
+    }
+};
+
 const initSearch = async () => {
     if (!els.input || !els.results) {
         return;
     }
 
     els.input.disabled = false;
+    focusSearchInput();
     renderRecent();
     setStatus('正在载入搜索索引…');
 
@@ -455,6 +471,7 @@ const initSearch = async () => {
         state.category = knownCategories.has(category) ? category : '';
         if (query) {
             els.input.value = query;
+            els.input.setSelectionRange(query.length, query.length);
         }
 
         buildFilters();
@@ -540,3 +557,10 @@ document.addEventListener('keydown', (event) => {
 });
 
 window.addEventListener('load', initSearch);
+
+// 通过站内链接返回搜索页时（bfcache），同样重新聚焦
+window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+        focusSearchInput();
+    }
+});

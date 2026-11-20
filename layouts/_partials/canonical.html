@@ -1,0 +1,27 @@
+{{- /*
+  Canonical URL 唯一来源。
+
+  规则：
+  1. 页面显式设置 canonicalURL 时优先使用；
+  2. 分页列表页（/posts/page/2/、/tags/x/page/2/ 等）自指，不要把第 2 页起
+     canonical 指回第 1 页 —— 那是“Google 选择的规范网页与用户指定的不同”
+     最常见的原因，因为分页内容与第 1 页并不相同；
+  3. 其余页面使用自身 Permalink（始终是 https://jinyu.cool/ 的绝对地址）。
+
+  注意：只有真正会调用 .Paginate 的模板才进入第 2 条：
+  - kind=term   -> layouts/term.html 调用 .Paginate
+  - kind=section 且无自定义 layout -> layouts/list.html 调用 .Paginate
+  首页（home）与 taxonomy（/tags/、/categories/）不分页，故不触碰 .Paginator，
+  避免意外生成 /page/2/ 这类重复页。
+*/ -}}
+{{- $canonical := .Permalink -}}
+{{- with .Params.canonicalURL -}}
+  {{- $canonical = trim . " " -}}
+{{- else -}}
+  {{- if or (eq .Kind "term") (and (eq .Kind "section") (eq .Layout "")) -}}
+    {{- with .Paginator -}}
+      {{- $canonical = .URL | absURL -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $canonical -}}

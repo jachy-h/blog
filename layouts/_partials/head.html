@@ -3,7 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <meta name="format-detection" content="telephone=no">
-{{- if hugo.IsProduction | or (eq site.Params.env "production") | and (ne .Params.robotsNoIndex true) }}
+{{- /* 404 页面由 GitHub Pages 以 200 状态返回，不能进索引 */}}
+{{- if and (ne .Kind "404") (hugo.IsProduction | or (eq site.Params.env "production")) (ne .Params.robotsNoIndex true) }}
 <meta name="robots" content="index, follow">
 {{- else }}
 <meta name="robots" content="noindex, nofollow">
@@ -29,7 +30,10 @@
 {{- with $keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
 {{- end }}
 <meta name="author" content="{{ site.Params.author | default "Jachy" }}">
-<link rel="canonical" href="{{ with .Params.canonicalURL }}{{ trim . " " }}{{ else }}{{ .Permalink }}{{ end }}">
+{{- /* 404 不发 canonical，避免 Google 把错误页当成有效页面的规范版本 */}}
+{{- if ne .Kind "404" }}
+<link rel="canonical" href="{{ partial "canonical.html" . }}">
+{{- end }}
 
 {{- if site.Params.analytics.google.SiteVerificationTag }}
 <meta name="google-site-verification" content="{{ site.Params.analytics.google.SiteVerificationTag }}">
