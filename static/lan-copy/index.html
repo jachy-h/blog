@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-type="software" data-radius="soft" data-ground="sky" data-buttons="tonal" data-motion>
+<html lang="zh-CN" data-type="software" data-radius="sharp" data-ground="sky" data-buttons="arrow" data-motion>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -11,7 +11,115 @@
 <meta property="og:image" content="https://jinyu.cool/lan-copy/share.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#f6f9fc">
+<meta name="theme-color" content="#07080a">
+<meta property="og:locale" content="zh_CN">
+<script>
+(function () {
+  var lang;
+  try {
+    var q = new URLSearchParams(location.search).get('lang');
+    lang = q || localStorage.getItem('lan-copy-lang');
+  } catch (e) {}
+  if (!lang) {
+    var nav = (navigator.language || '').toLowerCase();
+    lang = nav.indexOf('zh') === 0 ? 'zh' : 'en';
+  }
+  if (lang !== 'zh' && lang !== 'en') lang = 'en';
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.documentElement.dataset.lang = lang;
+  document.documentElement.classList.add('i18n-pending');
+})();
+</script>
+<style>html.i18n-pending body { visibility: hidden; }
+.lc-lang { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 34px; padding: 0; border: 1px solid #2a2d33; border-radius: 0; background: transparent; color: var(--p-ink); font-family: var(--font-text); font-size: 12px; letter-spacing: .06em; cursor: pointer; transition: color 160ms, border-color 160ms; }
+.lc-lang:hover { color: var(--lc-accent); border-color: #3d424b; }
+.lc-lang:focus-visible { outline-color: var(--lc-accent); }
+@media (max-width: 1023px) { .lc-lang { height: 44px; } }
+
+html[data-lang="en"] #local .mo-la__type { max-width: 12ch; font-size: clamp(40px, 7.2vw, 104px); }
+
+/* marketing: the share tile, the why, the how, the compare */
+.lc-eyebrow { display: flex; align-items: center; gap: 8px; margin: 0 0 14px; font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--lc-accent); }
+.lc-share-tile { width: 260px; display: flex; flex-direction: column; gap: 12px; padding: 16px; background: #0b0d10; border: 1px solid #2a2d33; }
+.lc-share-tile__head { display: flex; justify-content: space-between; gap: 8px; font-size: 11.5px; letter-spacing: .12em; color: #8b919a; text-transform: uppercase; }
+.lc-share-tile__body { display: flex; align-items: center; gap: 14px; }
+.lc-share-tile .lc-qr { width: 92px; height: 92px; flex: none; color: #1b1d22; }
+.lc-share-tile__meta b { display: block; font-family: var(--font-mono); font-size: 12.5px; font-weight: 400; color: #e9e7e2; letter-spacing: -.01em; }
+.lc-share-tile__meta span { display: block; margin-top: 5px; font-size: 11.5px; line-height: 1.5; color: #8b919a; }
+.lc-share-tile__foot { display: flex; align-items: center; gap: 7px; padding-top: 10px; border-top: 1px solid #23262b; font-size: 11.5px; letter-spacing: .04em; color: #8b919a; }
+.lc-why__grid { margin-top: 28px; align-items: start; }
+.lc-why h2 { font-family: var(--font-text); font-size: var(--t-h2); line-height: 1.18; font-weight: 500; letter-spacing: -.02em; color: var(--p-ink); }
+.lc-why h2 .muted { color: var(--p-muted); }
+.lc-why__grid > .span-6 > p { margin-top: 22px; max-width: 52ch; font-size: 17px; line-height: 1.7; color: var(--p-muted); }
+.lc-route { padding-top: 2px; }
+.lc-route__row { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 6px 16px; padding: 18px 0; border-bottom: 1px solid #23262b; }
+.lc-route__row.is-short { border-bottom: 0; }
+.lc-route__label { font-size: 11.5px; letter-spacing: .12em; color: #8b919a; }
+.lc-route__line { display: flex; align-items: center; gap: 9px; font-size: 11.5px; letter-spacing: .05em; color: #cfd2d8; flex-wrap: wrap; }
+.lc-route__line i, .lc-route__line b { padding: 6px 8px; border: 1px solid #2a2d33; font-style: normal; font-weight: 400; }
+.lc-route__line b { color: var(--lc-accent); }
+.lc-route__line span { color: #6f7681; }
+.lc-route__line .is-blue { color: var(--lc-accent); font-size: 15px; }
+.lc-route__row.is-short .lc-route__line i { border-color: #3d5a99; }
+.lc-route__note { grid-column: 1 / -1; font-size: 11.5px; color: #6f7681; }
+.lc-why__alts { margin-top: 30px; }
+.lc-why__alts > div { padding: 16px 24px 0 0; }
+.lc-why__alts > div + div { border-left: 1px solid #23262b; }
+.lc-why__alts span { font-size: 11.5px; letter-spacing: .12em; color: var(--lc-accent); }
+.lc-why__alts h3 { margin-top: 8px; font-family: var(--font-text); font-size: 17px; font-weight: 500; color: var(--p-ink); }
+.lc-why__alts p { margin-top: 6px; font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+.lc-how { margin-top: 26px; }
+.lc-how__step { padding: 20px 24px 0 0; border-right: 1px solid #23262b; min-width: 0; }
+.lc-how__step + .lc-how__step { border-left: 1px solid #23262b; }
+.lc-how__step:last-child { padding-right: 0; border-right: 0; }
+.lc-how__step h3 { font-family: var(--font-text); font-size: 17px; font-weight: 500; color: var(--p-ink); }
+.lc-how__step p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+.lc-how__step code { padding: 1px 4px; background: #111417; font-family: var(--font-mono); font-size: 12px; color: var(--p-ink); }
+.lc-how__visual { display: flex; align-items: flex-start; justify-content: flex-start; min-height: 236px; margin-top: 18px; padding: 16px; overflow: hidden; background: #0a0c0f; border: 1px solid #23262b; }
+.lc-how__visual .lc-term { width: 100%; max-width: 260px; }
+.lc-how__visual--qr { flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+.lc-how__visual--qr .lc-qr { width: 120px; height: 120px; color: #1b1d22; }
+.lc-how__addr { font-family: var(--font-mono); font-size: 12px; color: #8b919a; }
+.lc-how__files { flex-direction: column; justify-content: center; padding: 12px 16px; }
+.lc-how__file { display: grid; grid-template-columns: 20px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; padding: 12px 0; border-bottom: 1px solid #23262b; font-size: 12px; color: #cfd2d8; }
+.lc-how__file:last-child { border-bottom: 0; }
+.lc-how__file em { font-style: normal; font-size: 11.5px; color: #8b919a; }
+.lc-compare { margin-top: 10px; }
+.lc-compare__row { display: grid; grid-template-columns: 1.2fr repeat(3, minmax(0, 1fr)); gap: 16px; padding: 12px 0; border-bottom: 1px solid #23262b; font-size: 12px; color: var(--p-muted); }
+.lc-compare__row > span:first-child { color: #cfd2d8; }
+.lc-compare__row .is-us { color: var(--p-ink); }
+.lc-compare__head { padding: 10px 0; font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: #8b919a; border-bottom: 0; }
+.lc-compare__head .is-us { color: var(--lc-accent); }
+.nav__link { position: relative; }
+.nav__link.is-active { color: var(--p-ink); }
+.nav__link.is-active::after { content: ""; position: absolute; left: var(--s-2); right: var(--s-2); bottom: 7px; height: 2px; background: var(--lc-accent); }
+.nav.is-open .nav__link.is-active { color: var(--lc-accent); }
+.nav.is-open .nav__link.is-active::after { left: 0; right: auto; width: 24px; bottom: 10px; }
+@media (max-width: 1023px) {
+  .lc-share-tile { width: 100%; }
+  .lc-why__grid { margin-top: 18px; }
+  .lc-why__grid > .span-6 > p { margin-top: 14px; font-size: 16px; }
+  .lc-route__row { padding: 14px 0; }
+  .lc-why__alts { margin-top: 22px; }
+}
+@media (max-width: 639px) {
+  .lc-share-tile { width: 100%; padding: 12px; }
+  .lc-share-tile .lc-qr { width: 82px; height: 82px; }
+  .lc-why__alts { border-top: 0; }
+  .lc-why__alts > div { padding: 14px 0 0; }
+  .lc-why__alts > div + div { border-left: 0; border-top: 1px solid #23262b; }
+  .lc-why__alts > div:last-child { padding-bottom: 14px; }
+  .lc-how { border-top: 0; }
+  .lc-how__step { padding: 18px 0 16px; border-right: 0; border-top: 1px solid #23262b; }
+  .lc-how__step + .lc-how__step { border-left: 0; }
+  .lc-how__step:last-child { padding-right: 0; }
+  .lc-how__visual { min-height: 55px; padding: 8px; }
+  #how { --hm: 1; }
+  .lc-compare__row { grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; font-size: 12px; }
+  .lc-compare__head { font-size: 11.5px; }
+}
+</style>
+<noscript><style>html.i18n-pending body { visibility: visible; }</style></noscript>
 <link rel="canonical" href="https://jinyu.cool/lan-copy/">
 <meta name="site-kind" content="software">
 <meta name="page-type" content="software">
@@ -23,6 +131,9 @@
 <link rel="stylesheet" href="assets/icons/icon.css">
 <link rel="stylesheet" href="assets/diagrams/diagram.css">
 <style>
+@font-face { font-family: "Anton"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/anton.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+2122; }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 400; font-display: swap; src: url("assets/fonts/ibm-plex-mono-400.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC; }
+@font-face { font-family: "IBM Plex Mono"; font-style: normal; font-weight: 500; font-display: swap; src: url("assets/fonts/ibm-plex-mono-500.woff2") format("woff2"); unicode-range: U+0000-00FF, U+2000-206F, U+20AC; }
 @font-face {
   font-family: "Instrument Sans";
   font-style: normal; font-weight: 400 700; font-stretch: 75% 100%; font-display: swap;
@@ -40,16 +151,21 @@
   unicode-range: U+0000-00FF, U+2000-206F, U+20AC;
 }
 :root {
-  --p-bg: #f6f9fc; --p-surface: #e9edf2; --p-ink: #14213d; --p-muted: #5a667c;
-  --p-accent: #3977f6; --p-accent-ink: #111111; --p-action: #3977f6; --p-action-ink: #111111;
-  --p-inv-bg: #14213d; --p-inv-surface: #212e49; --p-inv-ink: #f6f9fc; --p-inv-muted: #97a0af;
-  --p-inv-accent: #f6f9fc; --p-inv-accent-ink: #14213d; --p-inv-action: #f6f9fc; --p-inv-action-ink: #14213d;
-  --font-display: "Instrument Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
-  --font-text: "Instrument Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
-  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
-  --display-weight: 500; --display-tracking: -0.028em; --display-tracking-xl: -0.036em;
-  --display-stretch: 96%; --ly-scale: 1.04;
+  color-scheme: dark;
+  --p-bg: #07080a; --p-surface: #101216; --p-ink: #e9e7e2; --p-muted: #8b919a;
+  --p-accent: #7da4ff; --p-accent-ink: #06101f; --p-action: #3977f6; --p-action-ink: #06101f;
+  --p-inv-bg: #e9e7e2; --p-inv-surface: #f4f2ec; --p-inv-ink: #07080a; --p-inv-muted: #5d636c;
+  --p-inv-accent: #1c4fbf; --p-inv-accent-ink: #ffffff; --p-inv-action: #07080a; --p-inv-action-ink: #f4f2ec;
+  --font-display: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", monospace;
+  --font-text: "IBM Plex Mono", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", monospace;
+  --font-ui: "Instrument Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-wordmark: "Anton", Impact, "Arial Narrow Bold", sans-serif;
+  --display-weight: 500; --display-tracking: -0.01em; --display-tracking-xl: -0.02em;
+  --display-stretch: 100%; --ly-scale: 1.04;
   --lc-blue: #3977f6; --lc-blue-deep: #2362df; --lc-ink: #14213d; --lc-line: #e3e9f3; --lc-soft: #eff4fa;
+  --lc-accent: #7da4ff; --lc-dark: #07080a; --lc-surface: #0d0f12; --lc-line-dark: #25282e;
+  --t-h2: clamp(26px, 2.8vw, 38px); --t-lead: 18px; --t-body: 16px;
 }
 /* the hero's lit ground: the product's own cool background, one soft light, no grain */
 .hero__art { background:
@@ -67,66 +183,66 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 
 /* ---------------------------------------------------------------- the app UI inside the page */
 .ui.lc {
-  --fx-bg: #ffffff; --fx-surface: #f2f6fb; --fx-ink: #14213d; --fx-muted: #64718a;
-  --fx-accent: #3977f6; --fx-accent-ink: #ffffff; --ui-font: var(--font-text);
+  --fx-bg: #f3efe6; --fx-surface: #e8e2d6; --fx-ink: #1b1d22; --fx-muted: #5f646c;
+  --fx-accent: #3977f6; --fx-accent-ink: #ffffff; --ui-font: var(--font-ui);
   --ui-mono: var(--font-mono); --ui-radius: 12px;
 }
 .lc-win { overflow: hidden; border-radius: 14px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); }
 .lc-bar { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 12px; border-bottom: 1px solid var(--u-line); background: var(--u-fill); }
-.lc-brand { display: flex; align-items: center; gap: 7px; min-width: 0; font-size: 13px; font-weight: 500; white-space: nowrap; }
+.lc-brand { display: flex; align-items: center; gap: 7px; min-width: 0; font-size: 14px; font-weight: 500; white-space: nowrap; }
 .lc-brand img { width: 22px; height: 22px; flex: none; border-radius: 6px; }
 .lc-nav { display: flex; align-items: center; gap: 1px; margin-left: 4px; font-size: 12.5px; color: var(--u-muted); white-space: nowrap; }
 .lc-nav i { font-style: normal; padding: 5px 8px; border-radius: 6px; }
 .lc-nav .is-on { background: var(--u-bg); color: var(--u-ink); font-weight: 500; box-shadow: inset 0 0 0 1px var(--u-line); }
-.lc-state { display: flex; align-items: center; gap: 6px; margin-left: auto; padding: 2px 7px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--u-line); font-size: 12px; color: #256a50; white-space: nowrap; }
+.lc-state { display: flex; align-items: center; gap: 6px; margin-left: auto; padding: 2px 7px; border-radius: 99px; background: #fbf7ef; box-shadow: inset 0 0 0 1px var(--u-line); font-size: 12px; color: #256a50; white-space: nowrap; }
 .lc-dot { width: 7px; height: 7px; border-radius: 50%; background: #42b990; box-shadow: 0 0 0 3px rgb(66 185 144 / .14); flex: none; }
 .lc-body { display: grid; grid-template-columns: 142px minmax(0, 1fr); }
 .lc-side { display: grid; align-content: start; gap: 1px; padding: 10px 8px; border-right: 1px solid var(--u-line); background: var(--u-fill); }
-.lc-side__label { margin: 10px 8px 3px; font-size: 11.5px; color: var(--u-soft); }
+.lc-side__label { margin: 10px 8px 3px; font-size: 12.5px; color: var(--u-soft); }
 .lc-side__row { display: flex; align-items: center; gap: 7px; height: 30px; padding: 0 8px; border-radius: 6px; font-size: 12.5px; color: var(--u-muted); }
 .lc-side__row svg { width: 14px; height: 14px; flex: none; }
-.lc-side__row em { margin-left: auto; font-style: normal; font-size: 11.5px; color: var(--u-soft); }
+.lc-side__row em { margin-left: auto; font-style: normal; font-size: 12.5px; color: var(--u-soft); }
 .lc-side__row.is-on { background: var(--u-bg); color: var(--u-ink); font-weight: 500; box-shadow: inset 0 0 0 1px var(--u-line); }
 .lc-main { min-width: 0; display: flex; flex-direction: column; }
 .lc-toolbar { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 14px; border-bottom: 1px solid var(--u-line); }
-.lc-toolbar b { font-size: 13px; font-weight: 500; }
-.lc-toolbar .lc-count { font-size: 11.5px; color: var(--u-soft); }
+.lc-toolbar b { font-size: 14px; font-weight: 500; }
+.lc-toolbar .lc-count { font-size: 12.5px; color: var(--u-soft); }
 .lc-btn { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; margin-left: auto; border-radius: 6px; background: var(--u-ink); color: var(--u-bg); font-size: 12px; font-weight: 500; box-shadow: inset 0 1px 0 rgb(255 255 255 / .12); }
 .lc-btn--ghost { margin-left: 0; background: var(--u-bg); color: var(--u-ink); box-shadow: inset 0 0 0 1px var(--u-line-2); }
 .lc-cols, .lc-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) 78px 58px; gap: 8px; align-items: center; padding: 0 14px; }
-.lc-cols { height: 30px; border-bottom: 1px solid var(--u-line); font-size: 11.5px; color: var(--u-soft); }
+.lc-cols { height: 30px; border-bottom: 1px solid var(--u-line); font-size: 12.5px; color: var(--u-soft); }
 .lc-row { height: 45px; border-bottom: 1px solid var(--u-line); font-size: 12.5px; }
 .lc-row.is-sel { background: color-mix(in oklab, var(--u-accent) 8%, var(--u-bg)); box-shadow: inset 2px 0 0 var(--u-accent); }
 .lc-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
-.lc-name small { margin-left: 6px; font-size: 11px; font-weight: 400; color: var(--u-soft); }
-.lc-date, .lc-size { color: var(--u-muted); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.lc-name small { margin-left: 6px; font-size: 12px; font-weight: 400; color: var(--u-soft); }
+.lc-date, .lc-size { color: var(--u-muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
 .lc-size { text-align: right; }
-.lc-type { display: grid; place-items: center; width: 20px; height: 24px; border-radius: 4px; color: #fff; font-size: 8px; font-weight: 500; letter-spacing: .02em; }
-.lc-type--pdf { background: #d64545; } .lc-type--xls { background: #2f8f5b; } .lc-type--doc { background: #3977f6; }
-.lc-type--mp4 { background: #7a5cd6; } .lc-type--png { background: #c98a1b; } .lc-type--zip { background: #5a667c; }
-.lc-drop { display: flex; align-items: center; gap: 8px; margin: 10px 14px 12px; padding: 8px 10px; border-radius: 7px; background: var(--u-fill); color: var(--u-muted); font-size: 11.5px; }
+.lc-type { display: grid; place-items: center; width: 20px; height: 24px; border-radius: 4px; color: #fff; font-size: 11.5px; font-weight: 500; letter-spacing: .02em; }
+.lc-type--pdf { background: #c23636; } .lc-type--xls { background: #25774a; } .lc-type--doc { background: #2c60d0; }
+.lc-type--mp4 { background: #6446bd; } .lc-type--png { background: #a56c0c; } .lc-type--zip { background: #4b576b; }
+.lc-drop { display: flex; align-items: center; gap: 8px; margin: 10px 14px 12px; padding: 8px 10px; border-radius: 7px; background: var(--u-fill); color: var(--u-muted); font-size: 12.5px; }
 .lc-drop svg { width: 14px; height: 14px; flex: none; }
 
 /* the share card over the hero's window */
 .lc-share { padding: 16px 16px 14px; border-radius: 16px; background: #fff; border: 1px solid rgb(20 33 61 / .11); box-shadow: 0 1px 0 rgb(255 255 255 / .8) inset, 0 24px 56px -28px rgb(20 33 61 / .55); }
-.lc-share__head { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; }
+.lc-share__head { display: flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 500; }
 .lc-share__head svg { width: 15px; height: 15px; color: var(--lc-blue-deep); }
 .lc-share__body { display: flex; align-items: center; gap: 14px; margin-top: 13px; }
 .lc-qr { width: 92px; height: 92px; flex: none; padding: 7px; border-radius: 8px; background: #fff; box-shadow: inset 0 0 0 1px rgb(20 33 61 / .12); color: var(--lc-ink); }
 .lc-qr svg { display: block; width: 100%; height: 100%; }
 .lc-share__addr { min-width: 0; }
-.lc-share__addr b { display: block; font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: -.02em; }
-.lc-share__addr span { display: block; margin-top: 4px; font-size: 11.5px; line-height: 1.45; color: #64718a; }
+.lc-share__addr b { display: block; font-family: var(--font-mono); font-size: 14px; font-weight: 500; letter-spacing: -.02em; }
+.lc-share__addr span { display: block; margin-top: 4px; font-size: 12.5px; line-height: 1.45; color: #64718a; }
 .lc-share__bar { position: relative; height: 4px; margin-top: 14px; border-radius: 99px; background: #e8eef7; overflow: hidden; }
 .lc-share__bar i { position: absolute; inset: 0 auto 0 0; width: 100%; border-radius: inherit; background: var(--lc-blue); transform-origin: left; animation: lc-send 3.6s cubic-bezier(.22, 1, .36, 1) 1 both; }
 @keyframes lc-send { 0% { transform: scaleX(.08); } 55%, 100% { transform: scaleX(1); } }
-.lc-share__foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 11.5px; color: #64718a; }
+.lc-share__foot { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; font-size: 12.5px; color: #64718a; }
 .lc-share__foot b { font-weight: 500; color: #2f7d60; }
 @media (prefers-reduced-motion: reduce) { .lc-share__bar i { animation: none; } }
 
 /* the big app frame: file list beside the open document */
 .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: 46px minmax(0, 1fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--r-lg); box-shadow: var(--u-shadow); overflow: hidden; }
-.app > .lc-chrome { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--u-line); background: var(--u-fill); font-size: 13px; }
+.app > .lc-chrome { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; padding: 0 16px; border-bottom: 1px solid var(--u-line); background: var(--u-fill); font-size: 14px; }
 .app > .lc-chrome .lc-brand { font-weight: 500; }
 .app > .lc-chrome .lc-crumb { color: var(--u-muted); }
 .app > .lc-chrome .lc-crumb b { color: var(--u-ink); font-weight: 500; }
@@ -137,19 +253,19 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 .app .lc-toolbar { height: 44px; }
 .lc-preview { height: 100%; display: flex; flex-direction: column; background: var(--u-bg); }
 .lc-preview__bar { display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 14px; border-bottom: 1px solid var(--u-line); background: var(--u-bg); }
-.lc-preview__bar b { font-size: 13px; font-weight: 500; }
-.lc-preview__bar span { font-size: 11.5px; color: var(--u-soft); }
+.lc-preview__bar b { font-size: 14px; font-weight: 500; }
+.lc-preview__bar span { font-size: 12.5px; color: var(--u-soft); }
 .lc-preview__bar .lc-btn { margin-left: auto; }
-.lc-paper { width: min(84%, 430px); margin: 18px auto 0; padding: 26px 30px 40px; background: #fff; border: 1px solid #e0e7f1; box-shadow: 0 10px 30px -18px rgb(20 33 61 / .45); color: #2b3650; font-size: 12.5px; line-height: 1.85; }
+.lc-paper { width: min(84%, 430px); margin: 18px auto 0; padding: 26px 30px 40px; background: #fbf7ef; border: 1px solid #e2dccd; box-shadow: 0 10px 30px -18px rgb(20 33 61 / .45); color: #2b3650; font-size: 12.5px; line-height: 1.85; }
 .lc-paper h4 { margin: 0; font-size: 19px; line-height: 1.3; font-weight: 500; letter-spacing: -.02em; color: #14213d; }
-.lc-paper .lc-paper__meta { margin-top: 6px; font-size: 11.5px; color: #64718a; }
-.lc-paper .lc-paper__rule { height: 1px; margin: 14px 0 16px; background: #e7edf5; }
+.lc-paper .lc-paper__meta { margin-top: 6px; font-size: 12.5px; color: #64718a; }
+.lc-paper .lc-paper__rule { height: 1px; margin: 14px 0 16px; background: #e6dfd1; }
 .lc-paper p { margin: 0 0 10px; }
 .lc-paper ol { margin: 0; padding-left: 18px; }
 .lc-paper li { margin-bottom: 7px; }
-.lc-paper .lc-fig { margin-top: 14px; padding: 10px 12px; border-radius: 6px; background: #f3f7fc; font-size: 11.5px; color: #52627c; box-shadow: inset 0 0 0 1px #e5ecf5; }
-.lc-pager { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 14px auto 18px; font-size: 11.5px; color: #64718a; }
-.lc-pager i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 1px #dfe7f2; font-style: normal; color: #14213d; }
+.lc-paper .lc-fig { margin-top: 14px; padding: 10px 12px; border-radius: 6px; background: #f6f1e7; font-size: 12.5px; color: #52627c; box-shadow: inset 0 0 0 1px #e6dfd1; }
+.lc-pager { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 14px auto 18px; font-size: 12.5px; color: #5f646c; }
+.lc-pager i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #fbf7ef; box-shadow: inset 0 0 0 1px #e2dccd; font-style: normal; color: #14213d; }
 @media (max-width: 1023px) {
   .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: 46px auto minmax(0, 1fr); }
   .app > .app__pane--list { max-height: 250px; border-left: 0; border-top: 1px solid var(--u-line); }
@@ -167,20 +283,20 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 /* split: the fragment page, cut by its frame */
 .lc-frag { width: 520px; overflow: hidden; border-radius: 13px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); }
 .lc-frag__bar { display: flex; align-items: center; gap: 8px; height: 46px; padding: 0 14px; border-bottom: 1px solid var(--u-line); }
-.lc-frag__bar b { font-size: 13px; font-weight: 500; }
-.lc-frag__bar .lc-count { font-size: 11.5px; color: var(--u-soft); }
+.lc-frag__bar b { font-size: 14px; font-weight: 500; }
+.lc-frag__bar .lc-count { font-size: 12.5px; color: var(--u-soft); }
 .lc-compose { display: flex; align-items: center; gap: 10px; margin: 12px 14px; padding: 11px 12px; border-radius: 9px; background: var(--u-fill); box-shadow: inset 0 0 0 1px var(--u-line); color: var(--u-soft); font-size: 12.5px; }
 .lc-compose span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .lc-compose .lc-btn { margin-left: 0; height: 24px; }
 .lc-frag__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; padding: 0 14px 14px; }
 .lc-fcard { display: flex; flex-direction: column; min-width: 0; padding: 10px 11px; border-radius: 9px; background: var(--u-fill); box-shadow: inset 0 0 0 1px var(--u-line); }
-.lc-fcard__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 11.5px; color: var(--u-soft); }
+.lc-fcard__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12.5px; color: var(--u-soft); }
 .lc-fcard__head b { font-size: 12px; font-weight: 500; color: var(--u-ink); }
 .lc-fcard p { margin: 7px 0 10px; font-size: 12px; line-height: 1.5; color: var(--u-text-2); }
-.lc-fcard p .lc-url { font-family: var(--font-mono); font-size: 11.5px; color: var(--u-accent-text); }
-.lc-fcard__foot { display: flex; align-items: center; gap: 6px; margin-top: auto; font-size: 11px; color: var(--u-soft); }
-.lc-fcard__foot .lc-btn { margin-left: auto; height: 22px; padding: 0 7px; font-size: 11px; }
-.lc-thumb { margin: 8px 0 9px; padding: 8px; border-radius: 6px; background: #fff; box-shadow: inset 0 0 0 1px var(--u-line); }
+.lc-fcard p .lc-url { font-family: var(--font-mono); font-size: 12.5px; color: var(--u-accent-text); }
+.lc-fcard__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-top: auto; font-size: 12px; color: var(--u-soft); }
+.lc-fcard__foot .lc-btn { flex: none; margin-left: auto; height: 22px; padding: 0 5px; font-size: 12px; }
+.lc-thumb { margin: 8px 0 9px; padding: 8px; border-radius: 6px; background: #fbf7ef; box-shadow: inset 0 0 0 1px var(--u-line); }
 .lc-thumb .lc-thumb__bar { display: flex; gap: 3px; margin-bottom: 6px; }
 .lc-thumb .lc-thumb__bar i { width: 4px; height: 4px; border-radius: 50%; background: #c8d3e2; }
 .lc-thumb .lc-thumb__rows { display: grid; gap: 3px; }
@@ -194,24 +310,24 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 #print .card > .panel { --p-h: 236px; }
 #print .card .stage > .at-rise { --ax: 18px; --ay: 26px; }
 .lc-mini { width: 292px; overflow: hidden; border-radius: 10px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); }
-.lc-mini__bar { display: flex; align-items: center; gap: 7px; height: 34px; padding: 0 10px; border-bottom: 1px solid var(--u-line); font-size: 11.5px; color: var(--u-muted); }
+.lc-mini__bar { display: flex; align-items: center; gap: 7px; height: 34px; padding: 0 10px; border-bottom: 1px solid var(--u-line); font-size: 12.5px; color: var(--u-muted); }
 .lc-mini__bar b { font-size: 12px; font-weight: 500; color: var(--u-ink); }
 .lc-mini__body { padding: 8px 10px 10px; }
-.lc-filepick { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--u-line); font-size: 11.5px; }
+.lc-filepick { display: flex; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--u-line); font-size: 12.5px; }
 .lc-filepick:last-child { border-bottom: 0; }
 .lc-filepick .lc-type { width: 18px; height: 22px; }
 .lc-filepick span { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.lc-filepick em { font-style: normal; color: var(--u-soft); font-size: 11px; }
-.lc-pageview { margin: 8px auto 0; width: 128px; padding: 10px 12px 14px; background: #fff; border: 1px solid #e2e9f3; box-shadow: 0 6px 16px -12px rgb(20 33 61 / .5); }
-.lc-pageview i { display: block; height: 4px; margin-bottom: 5px; border-radius: 2px; background: #e6edf6; }
+.lc-filepick em { font-style: normal; color: var(--u-soft); font-size: 12px; }
+.lc-pageview { margin: 8px auto 0; width: 128px; padding: 10px 12px 14px; background: #fbf7ef; border: 1px solid #e2dccd; box-shadow: 0 6px 16px -12px rgb(20 33 61 / .5); }
+.lc-pageview i { display: block; height: 4px; margin-bottom: 5px; border-radius: 2px; background: #e3dccd; }
 .lc-pageview i:nth-child(1) { width: 58%; height: 6px; background: #c9d6e8; }
 .lc-pageview i:nth-child(2) { width: 92%; } .lc-pageview i:nth-child(3) { width: 84%; } .lc-pageview i:nth-child(4) { width: 90%; } .lc-pageview i:nth-child(5) { width: 62%; }
-.lc-pageview .lc-pageview__foot { display: flex; justify-content: space-between; margin-top: 9px; font-size: 9px; color: #71809a; }
+.lc-pageview .lc-pageview__foot { display: flex; justify-content: space-between; margin-top: 9px; font-size: 11.5px; color: #71809a; }
 .lc-queue { display: grid; gap: 7px; }
-.lc-setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 5px 0; border-top: 1px solid var(--u-line); font-size: 11.5px; color: var(--u-muted); }
+.lc-setting { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 5px 0; border-top: 1px solid var(--u-line); font-size: 12.5px; color: var(--u-muted); }
 .lc-setting:first-child { border-top: 0; }
 .lc-setting b { font-weight: 500; color: var(--u-ink); }
-.lc-queue__row { display: flex; align-items: center; gap: 7px; font-size: 11.5px; color: var(--u-muted); }
+.lc-queue__row { display: flex; align-items: center; gap: 7px; font-size: 12.5px; color: var(--u-muted); }
 .lc-queue__row b { font-size: 12px; font-weight: 500; color: var(--u-ink); }
 .lc-check { display: grid; place-items: center; width: 16px; height: 16px; flex: none; border-radius: 50%; background: #e3f4ec; color: #237a55; }
 .lc-check svg { width: 10px; height: 10px; }
@@ -220,32 +336,32 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 #plugins .card > .panel { --p-h: 226px; }
 #plugins .card .stage > .at-rise { --ax: 18px; --ay: 22px; }
 .lc-plugin { width: 300px; overflow: hidden; border-radius: 10px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); }
-.lc-plugin__row { display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--u-line); font-size: 11.5px; }
+.lc-plugin__row { display: flex; align-items: center; gap: 8px; padding: 9px 11px; border-top: 1px solid var(--u-line); font-size: 12.5px; }
 .lc-plugin__row:first-child { border-top: 0; }
 .lc-plugin__row b { font-size: 12px; font-weight: 500; }
-.lc-plugin__row span { margin-left: auto; font-size: 11px; color: var(--u-soft); }
-.lc-plugin__row .lc-pill { margin-left: auto; height: 19px; padding: 0 7px; display: inline-flex; align-items: center; gap: 4px; border-radius: 99px; font-size: 10.5px; color: #237a55; background: #e3f4ec; }
+.lc-plugin__row span { margin-left: auto; font-size: 12px; color: var(--u-soft); }
+.lc-plugin__row .lc-pill { margin-left: auto; height: 19px; padding: 0 7px; display: inline-flex; align-items: center; gap: 4px; border-radius: 99px; font-size: 12px; color: #237a55; background: #e3f4ec; }
 .lc-plugin__row .lc-pill--off { color: #7a6a4a; background: #f4efe4; }
 .lc-plugin__row .lc-ico { display: grid; place-items: center; width: 22px; height: 22px; flex: none; border-radius: 6px; background: var(--u-fill-2); color: var(--u-muted); }
 .lc-plugin__row .lc-ico svg { width: 13px; height: 13px; }
-.lc-events { width: 300px; overflow: hidden; border-radius: 10px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); font-size: 11.5px; }
+.lc-events { width: 300px; overflow: hidden; border-radius: 10px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow); font-size: 12.5px; }
 .lc-event { display: flex; align-items: center; gap: 7px; padding: 8px 10px; border-top: 1px solid var(--u-line); color: var(--u-muted); }
 .lc-event:first-child { border-top: 0; }
-.lc-event code { font-family: var(--font-mono); font-size: 10.5px; color: var(--u-ink); }
-.lc-event time { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--u-soft); font-size: 10.5px; }
+.lc-event code { font-family: var(--font-mono); font-size: 12px; color: var(--u-ink); }
+.lc-event time { margin-left: auto; font-variant-numeric: tabular-nums; color: var(--u-soft); font-size: 12px; }
 .lc-event .lc-dot { width: 5px; height: 5px; box-shadow: none; }
 .lc-event.is-new { animation: lc-event 3.6s ease-in-out 1 both; }
 @keyframes lc-event { 0%, 8% { background: var(--u-tint); } 30%, 100% { background: transparent; } }
 @media (prefers-reduced-motion: reduce) { .lc-event.is-new { animation: none; } }
-.lc-container { display: grid; gap: 7px; font-size: 11.5px; color: var(--u-muted); }
+.lc-container { display: grid; gap: 7px; font-size: 12.5px; color: var(--u-muted); }
 .lc-container__head { display: flex; align-items: center; gap: 7px; }
 .lc-container__head b { font-size: 12px; font-weight: 500; color: var(--u-ink); }
 .lc-container__kv { display: flex; justify-content: space-between; gap: 12px; padding-top: 6px; border-top: 1px solid var(--u-line); }
-.lc-container__kv b { font-weight: 500; color: var(--u-ink); font-family: var(--font-mono); font-size: 10.5px; }
+.lc-container__kv b { font-weight: 500; color: var(--u-ink); font-family: var(--font-mono); font-size: 12px; }
 .lc-off { display: grid; gap: 8px; justify-items: start; }
 .lc-off .lc-off__title { display: flex; align-items: center; gap: 7px; font-size: 12px; font-weight: 500; color: var(--u-ink); }
 .lc-off .lc-off__title i { width: 7px; height: 7px; border-radius: 50%; background: #c98a1b; }
-.lc-off p { margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--u-muted); }
+.lc-off p { margin: 0; font-size: 12.5px; line-height: 1.5; color: var(--u-muted); }
 
 /* the devices section */
 #devices .frame--split { padding: clamp(20px, 4vw, 52px); }
@@ -254,9 +370,9 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 
 /* the plugin manifest strip */
 .lc-manifest { margin-top: var(--s-6); display: flex; flex-direction: column; overflow: hidden; min-width: 0; border-radius: 12px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow-sm); }
-.lc-manifest__bar { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-bottom: 1px solid var(--u-line); font-size: 11.5px; color: var(--u-muted); }
+.lc-manifest__bar { display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border-bottom: 1px solid var(--u-line); font-size: 12.5px; color: var(--u-muted); }
 .lc-manifest__bar b { font-size: 12px; font-weight: 500; color: var(--u-ink); }
-.lc-manifest pre { margin: 0; padding: 10px 14px 12px; font-family: var(--font-mono); font-size: 11px; line-height: 1.55; color: #2b3650; white-space: pre-wrap; overflow-wrap: anywhere; }
+.lc-manifest pre { margin: 0; padding: 10px 14px 12px; font-family: var(--font-mono); font-size: 12px; line-height: 1.55; color: #2b3650; white-space: pre-wrap; overflow-wrap: anywhere; }
 .group, .grid, .card { min-width: 0; }
 .lc-help { margin-top: var(--s-6); max-width: 360px; padding: 14px; border-radius: 12px; background: var(--u-bg); border: 1px solid var(--u-border); box-shadow: var(--u-shadow-sm); }
 .lc-help__head { display: flex; align-items: center; gap: 8px; font-size: 12.5px; }
@@ -303,7 +419,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
   .lc-manifest + p { display: none; }
   .lc-manifest { margin-top: var(--s-3); }
   .lc-manifest__bar { height: 28px; }
-  .lc-manifest pre { padding: 6px 10px 8px; font-size: 9.5px; line-height: 1.35; }
+  .lc-manifest pre { padding: 6px 10px 8px; font-size: 11.5px; line-height: 1.35; }
   .lc-plugin__import, .lc-off .lc-btn { display: none; }
   #plugins .lc-event:nth-of-type(4) { display: none; }
   #plugins .lc-plugin__row:nth-of-type(n+4) { display: none; }
@@ -324,9 +440,354 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
   .footer__lede { font-size: 16px; }
   .footer__legal { margin-top: var(--s-2); padding-top: var(--s-2); gap: var(--s-1) var(--s-3); }
 }
-@media (max-width: 359px) { .nav:not(.is-open) .nav__actions { display: none; } }
 @media (min-width: 640px) and (max-width: 1023px) { #print { --h: 2; } }
 @media (min-width: 640px) and (max-width: 1279px) { .lc-manifest { display: none; } }
+
+/* ================================================================ dark print system */
+html { background: #07080a; }
+body { background: #07080a; color: var(--p-ink); font-family: var(--font-text); font-size: 16px; }
+::selection { background: var(--p-accent); color: #06101f; }
+a { color: inherit; }
+p, h1, h2, h3 { margin-top: 0; }
+.link { color: var(--p-accent); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: #3d424b; }
+.link:hover { text-decoration-color: currentColor; }
+
+/* the narrow mono nav on a flat bar */
+.nav { background: #0b0d10; border-bottom: 1px solid #1e2126; }
+.nav__bar { gap: 24px; }
+.nav__logo { font-family: var(--font-text); font-size: 14px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--p-ink); gap: 9px; }
+.nav__logo img { border-radius: 2px; }
+.nav__links { gap: 0; }
+.nav__link { font-family: var(--font-text); font-size: 12px; letter-spacing: .02em; color: var(--p-muted); }
+.nav__link:hover { color: var(--p-ink); }
+.nav__link::before { background: var(--p-accent); }
+.nav__actions .btn { height: 34px; padding: 0 13px; font-size: 12px; }
+.nav__toggle { border: 1px solid #2a2d33; border-radius: 0; color: var(--p-ink); }
+.btn { border-radius: 0; font-family: var(--font-text); font-size: 14px; letter-spacing: .01em; }
+.btn--primary { background: var(--p-action); color: var(--p-action-ink); }
+.btn--primary:hover { background: #5b8cff; }
+.btn--secondary { color: var(--p-ink); }
+.btn--xl { font-family: var(--font-text); font-size: 20px; letter-spacing: 0; }
+.btn:focus-visible, .link:focus-visible, .nav__link:focus-visible { outline-color: var(--p-accent); }
+
+/* the masthead */
+main > .hero.hero--mast { height: 100svh; padding: calc(var(--nav) + 78px) 0 50px; }
+.hero--mast .wrap { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+.lc-mast { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 64px; align-items: start; }
+.lc-term { width: 260px; }
+.lc-hero__body { display: flex; flex-direction: column; gap: 24px; }
+.lc-mast__aside { min-width: 0; }
+.lc-term { font-family: var(--font-mono); aspect-ratio: 1; display: flex; flex-direction: column; overflow: hidden; background: #0a0c0f; border: 1px solid #2a2d33; box-shadow: inset 0 0 0 4px #07080a; }
+.lc-term__bar { display: flex; justify-content: space-between; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #23262b; color: #8b919a; font-size: 11.5px; letter-spacing: .04em; }
+.lc-term__body { padding: 14px 12px; font-size: 12px; line-height: 1.85; color: #a9aeb7; }
+.lc-term__body p { margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lc-term__body b { color: #e9e7e2; font-weight: 400; }
+.lc-prompt, .lc-cursor { color: var(--lc-accent); }
+.lc-dim { color: #8b919a; }
+.lc-cap { display: flex; align-items: center; gap: 8px; margin: 12px 0 0; font-size: 11.5px; letter-spacing: .1em; color: #8b919a; text-transform: uppercase; }
+.lc-fill { flex: 1; border-top: 1px dotted #363a42; }
+.lc-mast__copy { min-width: 0; }
+.lc-hero__foot { margin-top: auto; display: flex; align-items: center; gap: 12px; padding-top: 16px; border-top: 1px solid #23262b; font-size: 11.5px; letter-spacing: .12em; color: #8b919a; text-transform: uppercase; }
+.lc-hero__foot .lc-fill { border-top: 1px dotted #363a42; }
+.lc-wordmark { font-family: var(--font-wordmark); font-size: clamp(64px, 13.2vw, 190px); line-height: .82; letter-spacing: -.01em; color: var(--lc-accent); white-space: nowrap; margin: 0; }
+main > .hero--mast h1 { font-family: var(--font-text); font-size: clamp(28px, 2.9vw, 42px); line-height: 1.15; font-weight: 500; letter-spacing: -.02em; color: var(--p-ink); max-width: 24ch; }
+.hero--mast .hero__lead { margin-top: 18px; max-width: 58ch; font-size: 17px; line-height: 1.7; color: var(--p-muted); }
+.hero--mast .btn-row { margin-top: 26px; }
+.hero--mast .hero-facts { margin: 28px 0 0; padding-top: 14px; border-top: 1px solid #23262b; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.hero--mast .hero-facts dt { margin: 0; font-size: 11.5px; letter-spacing: .12em; color: #8b919a; }
+.hero--mast .hero-facts dd { margin: 4px 0 0; font-size: 12px; letter-spacing: .02em; color: #cfd2d8; }
+
+/* section heads and numbered kickers */
+.lc-kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; font-size: 12px; font-weight: 400; letter-spacing: .16em; text-transform: uppercase; color: var(--p-muted); }
+.lc-kicker b { color: var(--lc-accent); font-weight: 500; }
+.lc-kicker::after { content: ""; flex: 1; border-top: 1px solid #2a2d33; }
+.section-head h2, .section .grid h2 { font-family: var(--font-text); font-size: var(--t-h2); line-height: 1.18; font-weight: 500; letter-spacing: -.02em; color: var(--p-ink); }
+.section-head p, .section .grid > p { color: var(--p-muted); }
+.section-head { gap: var(--s-4); }
+.section .grid--top > p { font-size: 18px; line-height: 1.7; }
+
+/* cards become hairline cells, panels become dark frames for the light product UI */
+.section .card, #print .card, #plugins .card { background: transparent; border: 0; border-top: 1px solid #23262b; border-radius: 0; box-shadow: none; padding: 22px 0 8px; }
+.section .card > h3 { font-family: var(--font-text); font-size: 17px; line-height: 1.35; font-weight: 500; letter-spacing: 0; color: var(--p-ink); }
+.section .card > p { margin-top: 8px; font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+.section .card > .panel { margin: 22px 0 0; }
+.section .panel { background: #efe9dd; background-image: none; border: 1px solid #23262b; border-radius: 0; box-shadow: none; }
+.section .panel::after { border-radius: 0; }
+.section .panel .stage { border-radius: 0; }
+.step-num { color: var(--lc-accent); font-size: 11.5px; letter-spacing: .14em; }
+.step-num::before { content: ""; }
+#print .card > p { min-height: 2lh; }
+
+/* framed product windows */
+.frame { background: #0a0c0f; border: 1px solid #23262b; border-radius: 0; box-shadow: none; }
+.frame::after { border-radius: 0; }
+.app.ui { border: 1px solid #2a2d33; border-radius: 0; box-shadow: none; }
+.app > .app__pane + .app__pane { border-color: #23262b; }
+#devices .frame--split { background: #0a0c0f; }
+#fragments .frame--split { background: #f1ece2; }
+
+/* the statement */
+#local .mo-la__type { font-family: var(--font-text); font-weight: 500; color: var(--p-ink); }
+#local .mo-la__sub { color: var(--p-muted); }
+#local .lc-kicker { max-width: 760px; }
+
+/* the FAQ becomes a ruled list */
+#faq .faq__item { border-top: 1px solid #23262b; border-bottom: 0; padding: 14px 0; gap: 4px; }
+#faq .faq__item:first-child { border-top: 1px solid #23262b; padding-top: 14px; }
+#faq .faq__item h3 { font-family: var(--font-text); font-size: 16px; line-height: 1.4; font-weight: 500; color: var(--p-ink); }
+#faq .faq__item p { font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+#faq .lc-help { --fx-bg: #0b0d10; --fx-surface: #111418; --fx-ink: #e9e7e2; --fx-muted: #8b919a; background: #0b0d10; border: 1px solid #23262b; border-radius: 0; box-shadow: none; }
+#faq .lc-help .lc-btn { background: var(--p-action); color: var(--p-action-ink); }
+.faq-mark { color: var(--lc-accent); }
+
+/* the plugin manifest is a dark code block */
+.lc-manifest { background: #0a0c0f; border: 1px solid #23262b; border-radius: 0; box-shadow: none; }
+.lc-manifest__bar { border-bottom-color: #23262b; color: #8b919a; }
+.lc-manifest__bar b { color: var(--p-ink); }
+.lc-manifest pre { color: #c6c9d0; }
+.lc-manifest .k { color: var(--lc-accent); }
+.lc-manifest .s { color: #cfd2d8; }
+.lc-plugin-foot { margin-top: var(--s-6); }
+.lc-plugin-foot .lc-manifest { margin-top: 0; }
+.lc-protocol h3 { font-family: var(--font-text); font-size: 17px; font-weight: 500; color: var(--p-ink); }
+.lc-protocol p { font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+
+/* the close and the footer */
+footer.closing { border-top: 1px solid #23262b; background: #07080a; }
+.closing__cta h2 { font-family: var(--font-text); font-size: var(--t-h2); line-height: 1.18; font-weight: 500; letter-spacing: -.02em; color: var(--p-ink); }
+.closing__cta > .section-head p { color: var(--p-muted); }
+.lc-assets { margin-top: 8px; }
+.lc-asset { display: grid; grid-template-columns: 190px minmax(0, 1fr) 64px 18px; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #23262b; text-decoration: none; }
+.lc-asset:hover { background: #0b0d10; }
+.lc-asset__os { font-size: 11.5px; letter-spacing: .08em; color: var(--lc-accent); }
+.lc-asset__file { font-family: var(--font-mono); font-size: 12px; color: var(--p-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lc-asset__size { font-size: 12px; color: #8b919a; text-align: right; }
+.lc-asset__dl { color: var(--lc-accent); font-size: 14px; text-align: right; }
+.footer .nav__logo { font-size: 14px; letter-spacing: .12em; text-transform: uppercase; }
+.footer__lede { font-family: var(--font-text); font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+.footer__col h3 { font-family: var(--font-text); font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase; color: #8b919a; }
+.footer__col a { font-family: var(--font-text); font-size: 12px; color: var(--p-muted); }
+.footer__col a:hover { color: var(--p-ink); }
+.footer__legal { border-top: 1px solid #23262b; color: #8b919a; font-size: 11.5px; letter-spacing: .02em; }
+.footer__legal .lc-dl { color: var(--p-ink); }
+.footer__legal a { color: var(--p-accent); }
+.close-logo { border-radius: 2px; }
+
+/* phone */
+@media (max-width: 1023px) {
+  .lc-mast { grid-template-columns: 240px minmax(0, 1fr); gap: 40px; }
+  .lc-term__body { font-size: 12px; }
+}
+@media (max-width: 639px) {
+  main > .hero.hero--mast { height: auto; min-height: 100svh; padding: calc(var(--nav) + 14px) 0 14px; }
+  .hero--mast .wrap { justify-content: flex-start; }
+  .lc-mast { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .lc-hero__body { gap: 22px; }
+  .lc-mast__aside { display: block; }
+  .lc-term { width: 160px; }
+  .lc-term__body { font-size: 11.5px; line-height: 1.65; }
+  .lc-cap { margin-top: 10px; }
+  .lc-hero__foot { display: flex; margin-top: 18px; padding-top: 10px; font-size: 11.5px; }
+  .hero--mast .hero-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; padding-top: 10px; }
+  .hero--mast .hero-facts > div:nth-child(3) { grid-column: 1 / -1; }
+  .hero--mast .hero-facts dt { font-size: 11.5px; }
+  .hero--mast .hero-facts dd { font-size: 11.5px; }
+  .lc-cap { margin: 0 0 2px; font-size: 11.5px; }
+  .lc-cap .lc-fill { min-width: 12px; }
+  .lc-term__body { padding: 12px 10px; font-size: 11.5px; line-height: 1.7; }
+  .lc-wordmark { font-size: clamp(58px, 16vw, 64px); margin-bottom: 14px; }
+  main > .hero--mast h1 { font-size: 30px; max-width: 14ch; }
+  .hero--mast .hero__lead { margin-top: 12px; font-size: 15px; line-height: 1.6; }
+  .hero--mast .btn-row { margin-top: 18px; }
+  .hero--mast .hero-facts { margin-top: 22px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .hero--mast .hero-facts dd { font-size: 11.5px; }
+  .lc-kicker { font-size: 11.5px; margin-bottom: 10px; }
+  .section-head h2, .section .grid h2 { font-size: 28px; }
+  .section .grid--top > p { font-size: 16px; line-height: 1.6; }
+  .section .card { padding-top: 16px; }
+  .section .card > h3 { font-size: 16px; }
+  .section .card > p { font-size: 12.5px; }
+  .lc-asset { grid-template-columns: 96px minmax(0, 1fr) 16px; gap: 8px; }
+  .lc-asset__os { font-size: 11.5px; }
+  .lc-asset__file { font-size: 12px; }
+  .lc-asset__size { display: none; }
+  .lc-asset__dl { font-size: 12px; }
+  .footer__lede { font-size: 12px; }
+}
+
+
+.lc-download { width: min(100%, 360px); }
+@media (max-width: 639px) {
+  .nav:not(.is-open) .nav__actions { display: flex !important; }
+  .nav:not(.is-open) .nav__actions > .btn { display: none; }
+  .nav .nav__actions .lc-lang { display: inline-flex !important; }
+  .nav:not(.is-open) .nav__actions + .nav__toggle { margin-left: 0; }
+  .lc-assets { display: none; }
+  .footer .closing__links .footer__col:nth-child(4) { display: none; }
+  #plugins .card > .panel { --p-h: 134px; }
+  html:not([data-lang="en"]) #plugins .group:first-child .card > .panel { --p-h: 190px; }
+  #plugins .lc-plugin__row:nth-of-type(n+5),
+  #plugins .lc-event:nth-of-type(n+5) { display: none; }
+  #plugins .section-head { margin-bottom: 24px; }
+  .app .lc-chrome .lc-btn { display: none; }
+  .lc-protocol { display: none; }
+  .lc-plugin-foot { margin-top: var(--s-4); }
+  #faq .faq-extra { display: none !important; }
+  .lc-download { width: 100%; }
+}
+
+.lc-copy { align-items: start; }
+.lc-install { border-top: 1px solid #23262b; padding-top: 14px; }
+.lc-install .lc-kicker { margin-bottom: 10px; }
+.lc-install__row { display: grid; grid-template-columns: 92px minmax(0, 1fr) 48px 14px; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid #23262b; text-decoration: none; }
+.lc-install__row:hover { background: #0b0d10; }
+.lc-install__row--source { grid-template-columns: 92px minmax(0, 1fr) 64px 14px; }
+.lc-install__os { font-size: 11.5px; letter-spacing: .12em; color: var(--lc-accent); }
+.lc-install__file { min-width: 0; font-family: var(--font-mono); font-size: 12px; color: #cfd2d8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lc-install__size { font-size: 11.5px; color: #8b919a; text-align: right; }
+.lc-install__arrow { color: var(--lc-accent); text-align: right; }
+.lc-install__cmd { margin: 14px 0 0; font-family: var(--font-mono); font-size: 12px; line-height: 1.6; color: #cfd2d8; }
+.lc-install__url { color: #8b919a; }
+.lc-tabs { display: flex; align-items: center; gap: 2px; margin: 10px 0 0; border-bottom: 1px solid #23262b; }
+.lc-tab { position: relative; height: 34px; padding: 0 12px; border: 0; border-radius: 0; background: none; color: #8b919a; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .04em; cursor: pointer; transition: color 160ms; }
+.lc-tab:hover, .lc-tab.is-on { color: var(--p-ink); }
+.lc-tab::after { content: ""; position: absolute; left: 12px; right: 12px; bottom: -1px; height: 2px; background: transparent; }
+.lc-tab.is-on::after { background: var(--lc-accent); }
+.lc-tabpanel[hidden] { display: none; }
+.lc-steps { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.lc-steps li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 8px; align-items: baseline; font-size: 12px; line-height: 1.6; color: #a9aeb7; }
+.lc-steps li > b { font-family: var(--font-mono); font-weight: 400; font-size: 10.5px; letter-spacing: .04em; color: var(--lc-accent); }
+.lc-step code { padding: 1px 4px; background: #111417; font-family: var(--font-mono); font-size: 11.5px; color: #e9e7e2; overflow-wrap: anywhere; }
+.lc-install__note { margin: 8px 0 0; font-size: 11.5px; line-height: 1.5; color: #8b919a; }
+@media (max-width: 1279px) {
+  .lc-copy > .span-6, .lc-copy > .span-5 { grid-column: 1 / -1; }
+  .lc-install { display: none; }
+  .hero--mast .hero-facts { display: none; }
+}
+@media (max-width: 639px) {
+  .hero--mast .hero-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 18px; padding-top: 10px; }
+  .hero--mast .hero-facts > div:nth-child(3) { grid-column: 1 / -1; }
+  .hero--mast .hero-facts dt { font-size: 11.5px; }
+  .hero--mast .hero-facts dd { font-size: 11.5px; }
+}
+
+/* the print section is a paper sheet on the dark page */
+#print { background: #ece9e1; color: #14161a; --p-ink: #14161a; --p-muted: #5a5f67; --lc-accent: #1c4fbf; }
+#print .lc-kicker { color: #5a5f67; }
+#print .lc-kicker b { color: #1c4fbf; }
+#print .lc-kicker::after { border-color: #cfc9bb; }
+#print .section-head h2, #print .card > h3 { color: #14161a; }
+#print .section-head p, #print .card > p { color: #5a5f67; }
+#print .link { color: #1c4fbf; }
+#print .card { border-top-color: #cfc9bb; }
+#print .panel { border-color: #cfc9bb; }
+#print .step-num { color: #1c4fbf; }
+
+#print .lc-mini { --fx-bg: #f8f3ea; --fx-ink: #1b1d22; --fx-muted: #5f646c; --u-bg: #f8f3ea; --u-ink: #1b1d22; --u-muted: #5f646c; color: #1b1d22; background: #f8f3ea; }
+#print .lc-mini .lc-mini__bar b, #print .lc-mini .lc-queue__row b { color: #14213d; }
+#print .lc-mini .lc-queue__row, #print .lc-mini .lc-filepick em { color: #64718a; }
+@media (max-width: 639px) { .lc-term__body { font-size: 11.5px; line-height: 1.7; } }
+
+#plugins { background: #07080a; color: #e9e7e2; --p-ink: #e9e7e2; --p-muted: #8b919a; --lc-accent: #7da4ff; }
+#plugins .lc-plugin, #plugins .lc-events { --fx-bg: #0e1014; --fx-surface: #15181d; --fx-ink: #e9e7e2; --fx-muted: #8b919a; --fx-accent: #7da4ff; --fx-accent-ink: #06101f; background: #0e1014; border-color: #2a2d33; color: #e9e7e2; box-shadow: 0 14px 30px -20px #000; }
+#plugins .lc-plugin__row, #plugins .lc-event { border-top-color: #23262b; }
+#plugins .lc-plugin__row b, #plugins .lc-plugin__row .lc-ico + b { color: #e9e7e2; }
+#plugins .lc-plugin__row .lc-ico { background: #191c22; color: #9aa0a8; }
+#plugins .lc-plugin__row .lc-pill { color: #7fd6a8; background: #11251b; }
+#plugins .lc-plugin__row .lc-pill--off { color: #c9a86a; background: #241f14; }
+#plugins .lc-event { color: #9aa0a8; }
+#plugins .lc-event code { color: #e9e7e2; }
+#plugins .lc-event time { color: #8b919a; }
+#plugins .lc-container { color: #9aa0a8; }
+#plugins .lc-container__head b, #plugins .lc-container__kv b { color: #e9e7e2; }
+#plugins .lc-container__kv { border-top-color: #23262b; }
+#plugins .lc-container .lc-pill { color: #7fd6a8; background: #11251b; }
+#plugins .lc-off__title { color: #e9e7e2; }
+#plugins .lc-off p { color: #8b919a; }
+#plugins .lc-btn { background: #e9e7e2; color: #0e1014; }
+#plugins .lc-btn--ghost { background: transparent; color: #e9e7e2; box-shadow: inset 0 0 0 1px #2a2d33; }
+#plugins .panel { background: #efe9dd; border-color: #2a2d33; }
+#plugins .lc-manifest .k { color: #7da4ff; }
+#plugins .lc-manifest .s { color: #cfd2d8; }
+
+/* ---------------------------------------------------------------- the MiniMax scenes */
+.lc-shot { position: relative; flex: none; margin: 26px 0 0; overflow: hidden; background: #0a0c0f; border: 1px solid #23262b; }
+.lc-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.lc-shot figcaption, .lc-devices__shot figcaption, .lc-close__media figcaption {
+  position: absolute; inset: auto 0 0 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  padding: 14px 18px; background: linear-gradient(transparent, rgb(7 8 10 / .9) 56%);
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #e9e7e2;
+}
+.lc-shot figcaption b, .lc-devices__shot figcaption b, .lc-close__media figcaption b { color: var(--lc-accent); font-weight: 500; }
+.lc-shot--why { height: clamp(190px, 19vw, 250px); }
+.lc-shot--why img { object-position: 62% 52%; }
+.lc-shot--route { height: clamp(186px, 18vw, 236px); }
+.lc-why__alts { margin-top: 26px; }
+.lc-why__alts > .lc-alt { padding: 0; }
+.lc-why__alts > .lc-alt + .lc-alt { padding-left: 0; border-left: 0; }
+.lc-why__alts > .lc-alt:last-child { padding-right: 0; }
+.lc-alt span { font-size: 11.5px; letter-spacing: .12em; color: var(--lc-accent); }
+.lc-alt h3 { margin: 8px 0 0; font-family: var(--font-text); font-size: 17px; line-height: 1.35; font-weight: 500; color: var(--p-ink); }
+.lc-alt p { margin: 6px 0 0; font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+#devices .frame--split { padding: 0; }
+.lc-devices__shot { display: flex; margin: 0; overflow: hidden; background: #0a0c0f; }
+.lc-devices__shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 52% 54%; }
+.lc-close__media { position: relative; flex: 1 1 0; overflow: hidden; min-height: clamp(130px, 18svh, 190px); border: 1px solid #23262b; background: #0a0c0f; }
+.lc-download { flex: none; }
+.lc-assets { flex: none; }
+@media (min-width: 640px) {
+  .closing__cta.close--type { display: grid; grid-template-columns: minmax(0, 1fr) 410px; grid-template-rows: auto auto 1fr; column-gap: 64px; align-items: start; }
+  .closing__cta.close--type > .section-head { grid-column: 1; grid-row: 1; }
+  .closing__cta.close--type > .lc-close__media { grid-column: 2; grid-row: 1 / span 3; width: 100%; height: 100%; min-height: 280px; }
+  .closing__cta.close--type > .lc-download { grid-column: 1; grid-row: 2; align-self: start; }
+  .closing__cta.close--type > .lc-assets { grid-column: 1; grid-row: 3; align-self: end; }
+}
+.lc-close__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 56%; }
+.lc-how__end { display: none; }
+.lc-compare__row { padding: 8px 0; font-size: 13.5px; }
+#compare .section-head { margin-bottom: 24px; }
+.lc-devices__foot { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin: auto 0 0; padding-top: 16px; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: #8b919a; }
+@media (max-width: 639px) { .lc-devices__foot { display: none; } }
+.lc-compare__head { font-size: 11.5px; }
+
+@media (max-width: 639px) {
+  .lc-shot--why { height: 176px; }
+  .lc-shot--route { height: 150px; }
+  .lc-shot--route img { object-fit: contain; }
+  .lc-shot figcaption, .lc-devices__shot figcaption, .lc-close__media figcaption { padding: 10px 12px; font-size: 11.5px; }
+  .lc-shot figcaption span + span, .lc-devices__shot figcaption span + span, .lc-close__media figcaption span + span { display: none; }
+  .lc-why__alts > .lc-alt { padding: 0; }
+  .lc-why__alts > .lc-alt + .lc-alt { margin-top: 18px; }
+  .lc-compare__row { font-size: 12.5px; padding: 9px 0; }
+  .lc-compare__head { font-size: 11px; }
+  #how { --hm: 2; }
+  #how .wrap { min-height: calc(2 * 100lvh - var(--padt) - var(--padb)); }
+  .lc-how__end { display: grid; gap: 14px; margin-top: auto; padding-top: 22px; border-top: 1px solid #23262b; }
+  .lc-how__end p { margin: 0; max-width: 34ch; font-size: 14px; line-height: 1.6; color: var(--p-muted); }
+  .lc-how__end p b { color: var(--p-ink); font-weight: 500; }
+  .lc-how__end .btn { width: 100%; }
+  .lc-close__media { display: none; }
+  footer.closing:has(> .wrap > .closing__cta > .close__media) { --hm: 1; }
+  footer.closing:has(> .wrap > .closing__cta > .close__media) > .wrap { grid-template-rows: minmax(0, 1fr) auto; row-gap: var(--s-7); }
+}
+
+@media (max-width: 639px) {
+  html[data-lang="en"] .hero--mast .hero-facts { display: none; }
+  html[data-lang="en"] .lc-wordmark { font-size: 54px; }
+  html[data-lang="en"] .lc-hero__body { gap: 16px; }
+  html[data-lang="en"] .lc-mast { gap: 16px; }
+  html[data-lang="en"] #why .lc-shot--why { height: 140px; }
+  html[data-lang="en"] #how .section-head h2 { font-size: 26px; }
+  html[data-lang="en"] #how .section-head p { font-size: 15px; }
+  html[data-lang="en"] .lc-how__step { padding: 14px 0 12px; }
+  html[data-lang="en"] .lc-how__end { padding-top: 16px; }
+  html[data-lang="en"] #print .card > .panel { --p-h: 224px; }
+  html[data-lang="en"] #plugins .card > .panel { --p-h: 104px; }
+  html[data-lang="en"] .app > .lc-chrome .lc-crumb { display: none; }
+  html[data-lang="en"] .lc-preview__bar > span { display: none; }
+  html[data-lang="en"] #plugins .lc-plugin__row:nth-of-type(n+3),
+  html[data-lang="en"] #plugins .lc-event:nth-of-type(n+3) { display: none; }
+}
 </style>
 <script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 <script src="assets/backgrounds/backgrounds.js"></script>
@@ -342,14 +803,14 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <a class="skip-link" href="#top">跳到内容</a>
     <a class="nav__logo" href="#top"><img src="assets/lan-copy-logo.svg" width="28" height="28" alt="" style="width:28px;height:28px;border-radius:7px">Lan Copy</a>
     <nav class="nav__links" aria-label="主导航">
-      <div class="nav__item"><a class="nav__link" href="#files">功能</a></div>
-      <div class="nav__item"><a class="nav__link" href="#fragments">快传</a></div>
-      <div class="nav__item"><a class="nav__link" href="#print">打印</a></div>
-      <div class="nav__item"><a class="nav__link" href="#plugins">插件</a></div>
-      <div class="nav__item"><a class="nav__link" href="#faq">问题</a></div>
+      <div class="nav__item"><a class="nav__link" href="#why" data-nav="why">为什么</a></div>
+      <div class="nav__item"><a class="nav__link" href="#how" data-nav="how">怎么用</a></div>
+      <div class="nav__item"><a class="nav__link" href="#files" data-nav="features">功能</a></div>
+      <div class="nav__item"><a class="nav__link" href="#faq" data-nav="faq">问题</a></div>
     </nav>
     <div class="nav__actions">
       <a class="btn btn--primary" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
+      <button class="lc-lang" type="button" data-lang-toggle aria-label="Switch to English" title="Switch to English">EN</button>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="菜单">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -358,69 +819,170 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 </header>
 
 <main id="top">
-  <section class="hero hero--collage" data-enter aria-labelledby="hero-h">
-    <div class="wrap"><div class="hero-text grid hero__grid">
-      <div class="hero__text span-5">
-        <h1 id="hero-h">局域网里的文件快传</h1>
-        <p class="hero__lead">在一台电脑上启动 Lan Copy，同一 Wi-Fi 下的手机、平板和电脑打开浏览器，就能互传文件、文件夹和文字。文件留在本机，不经过网盘或云端。</p>
-        <div class="btn-row">
-          <a class="btn btn--primary" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
-          <a class="btn btn--secondary" href="https://github.com/jachy-h/lan-copy">查看源码</a>
-        </div>
-        <p class="hero__proof">Windows x64 与 macOS Apple Silicon，发布包约 7 MB。</p>
-      </div>
-      <div class="hero__art span-6 start-7" role="img" aria-label="Lan Copy 的内网空间窗口，以及一张分享卡片：同一 Wi-Fi 的设备扫码即可打开">
-        <div class="ly-piece ly-piece--main lc-win lc ui" aria-hidden="true">
-          <div class="lc-bar">
-            <span class="lc-brand"><img src="assets/lan-copy-logo.svg" alt="">Lan Copy</span>
-            <span class="lc-nav"><i class="is-on">内网空间</i><i>碎片快传</i><i>插件服务</i></span>
-            <span class="lc-state"><i class="lc-dot"></i>在线</span>
-          </div>
-          <div class="lc-body">
-            <div class="lc-side">
-              <span class="lc-side__row is-on"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M1.8 4.2h4l1.4 1.6h7v6.4h-12.4z"/><path d="M1.8 4.2V3h4.6"/></svg>全部文件<em>12</em></span>
-              <span class="lc-side__row"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1.8" y="3" width="12.4" height="10" rx="1.2"/><circle cx="5.4" cy="6.4" r="1.1"/><path d="m3 11 3-2.6 2.2 2 2-1.6 2.6 2.2"/></svg>照片<em>4</em></span>
-              <span class="lc-side__row"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2.4" y="2.4" width="11.2" height="11.2" rx="1.4"/><path d="m6.4 5.8 3.6 2.2-3.6 2.2z"/></svg>视频<em>2</em></span>
-              <span class="lc-side__row"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 1.8h5.2L12.6 5v9.2H4z"/><path d="M9.2 1.8V5h3.4M6 8h4.6M6 10.4h4.6"/></svg>文档<em>5</em></span>
-              <span class="lc-side__label">共享</span>
-              <span class="lc-side__row"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="8" r="5.8"/><path d="M2.5 8h11M8 2.2c1.6 1.7 2.4 3.6 2.4 5.8S9.6 12.1 8 13.8C6.4 12.1 5.6 10.2 5.6 8S6.4 3.9 8 2.2z"/></svg>家庭 Wi-Fi</span>
+    <section class="hero hero--mast" data-enter aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-text lc-hero__body">
+        <div class="lc-mast">
+          <div class="lc-mast__aside">
+            <div class="lc-share-tile" role="img" aria-label="Open Lan Copy on another device: scan the QR code or type the LAN address 192.168.1.12:8080">
+              <div class="lc-share-tile__head"><span>OPEN ON ANY DEVICE</span><span>0.8.1</span></div>
+              <div class="lc-share-tile__body">
+                <span class="lc-qr"><svg viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h7v1H0zM10 0h2v1H10zM14 0h1v1H14zM18 0h7v1H18zM0 1h1v1H0zM6 1h1v1H6zM9 1h1v1H9zM12 1h2v1H12zM15 1h2v1H15zM18 1h1v1H18zM24 1h1v1H24zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM10 2h2v1H10zM14 2h1v1H14zM18 2h1v1H18zM20 2h3v1H20zM24 2h1v1H24zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM9 3h1v1H9zM12 3h2v1H12zM15 3h2v1H15zM18 3h1v1H18zM20 3h3v1H20zM24 3h1v1H24zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM10 4h2v1H10zM14 4h1v1H14zM18 4h1v1H18zM20 4h3v1H20zM24 4h1v1H24zM0 5h1v1H0zM6 5h1v1H6zM9 5h1v1H9zM12 5h2v1H12zM15 5h2v1H15zM18 5h1v1H18zM24 5h1v1H24zM0 6h7v1H0zM8 6h1v1H8zM10 6h1v1H10zM12 6h1v1H12zM14 6h1v1H14zM16 6h1v1H16zM18 6h7v1H18zM9 7h1v1H9zM12 7h2v1H12zM15 7h2v1H15zM6 8h1v1H6zM10 8h2v1H10zM14 8h1v1H14zM2 9h2v1H2zM5 9h1v1H5zM9 9h1v1H9zM12 9h2v1H12zM15 9h2v1H15zM19 9h1v1H19zM22 9h2v1H22zM0 10h2v1H0zM4 10h1v1H4zM6 10h3v1H6zM10 10h2v1H10zM14 10h1v1H14zM17 10h2v1H17zM20 10h2v1H20zM24 10h1v1H24zM2 11h2v1H2zM5 11h1v1H5zM9 11h1v1H9zM12 11h2v1H12zM15 11h2v1H15zM19 11h1v1H19zM22 11h2v1H22zM0 12h2v1H0zM4 12h1v1H4zM6 12h3v1H6zM10 12h2v1H10zM14 12h1v1H14zM17 12h2v1H17zM20 12h2v1H20zM24 12h1v1H24zM2 13h2v1H2zM5 13h1v1H5zM9 13h1v1H9zM12 13h2v1H12zM15 13h2v1H15zM19 13h1v1H19zM22 13h2v1H22zM0 14h2v1H0zM4 14h1v1H4zM6 14h3v1H6zM10 14h2v1H10zM14 14h1v1H14zM17 14h2v1H17zM20 14h2v1H20zM24 14h1v1H24zM2 15h2v1H2zM5 15h1v1H5zM9 15h1v1H9zM12 15h2v1H12zM15 15h2v1H15zM19 15h1v1H19zM22 15h2v1H22zM0 16h2v1H0zM4 16h1v1H4zM6 16h3v1H6zM10 16h2v1H10zM14 16h1v1H14zM17 16h2v1H17zM20 16h2v1H20zM24 16h1v1H24zM9 17h1v1H9zM12 17h2v1H12zM15 17h2v1H15zM19 17h1v1H19zM22 17h2v1H22zM0 18h7v1H0zM10 18h2v1H10zM14 18h1v1H14zM17 18h2v1H17zM20 18h2v1H20zM24 18h1v1H24zM0 19h1v1H0zM6 19h1v1H6zM9 19h1v1H9zM12 19h2v1H12zM15 19h2v1H15zM19 19h1v1H19zM22 19h2v1H22zM0 20h1v1H0zM2 20h3v1H2zM6 20h1v1H6zM10 20h2v1H10zM14 20h1v1H14zM17 20h2v1H17zM20 20h2v1H20zM24 20h1v1H24zM0 21h1v1H0zM2 21h3v1H2zM6 21h1v1H6zM9 21h1v1H9zM12 21h2v1H12zM15 21h2v1H15zM19 21h1v1H19zM22 21h2v1H22zM0 22h1v1H0zM2 22h3v1H2zM6 22h1v1H6zM10 22h2v1H10zM14 22h1v1H14zM17 22h2v1H17zM20 22h2v1H20zM24 22h1v1H24zM0 23h1v1H0zM6 23h1v1H6zM9 23h1v1H9zM12 23h2v1H12zM15 23h2v1H15zM19 23h1v1H19zM22 23h2v1H22zM0 24h7v1H0zM10 24h2v1H10zM14 24h1v1H14zM17 24h2v1H17zM20 24h2v1H20zM24 24h1v1H24z" fill="currentColor"/></svg></span>
+                <div class="lc-share-tile__meta"><b>192.168.1.12:8080</b><span>Scan with your phone camera</span></div>
+              </div>
+              <div class="lc-share-tile__foot"><i class="lc-dot"></i>Same Wi-Fi · no app</div>
             </div>
-            <div class="lc-main">
-              <div class="lc-toolbar"><b>全部文件</b><span class="lc-count">12 项 · 3.4 GB</span><span class="lc-btn">上传</span></div>
-              <div class="lc-cols"><span></span><span>名称</span><span>修改日期</span><span style="text-align:right">大小</span></div>
-              <div class="lc-row is-sel"><span class="lc-type lc-type--zip">ZIP</span><span class="lc-name">手机照片 2026-11.zip</span><span class="lc-date">11-23 10:42</span><span class="lc-size">1.8 GB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--mp4">MP4</span><span class="lc-name">产品演示.mp4</span><span class="lc-date">11-22 21:16</span><span class="lc-size">642 MB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--pdf">PDF</span><span class="lc-name">产品说明书.pdf</span><span class="lc-date">11-22 15:08</span><span class="lc-size">8.2 MB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--xls">XLS</span><span class="lc-name">报销单 11 月.xlsx</span><span class="lc-date">11-21 18:30</span><span class="lc-size">84 KB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--doc">DOC</span><span class="lc-name">合同终稿.docx</span><span class="lc-date">11-20 09:14</span><span class="lc-size">1.1 MB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--png">PNG</span><span class="lc-name">首页截图.png</span><span class="lc-date">11-19 17:52</span><span class="lc-size">2.4 MB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--pdf">PDF</span><span class="lc-name">发票 2026-11.pdf</span><span class="lc-date">11-18 14:03</span><span class="lc-size">312 KB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--doc">DOC</span><span class="lc-name">会议记录.docx</span><span class="lc-date">11-17 11:20</span><span class="lc-size">96 KB</span></div>
-              <div class="lc-row"><span class="lc-type lc-type--xls">XLS</span><span class="lc-name">差旅明细.xlsx</span><span class="lc-date">11-16 16:45</span><span class="lc-size">120 KB</span></div>
-              <div class="lc-drop"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 2.5v7M5.2 6.7 8 9.5l2.8-2.8M2.8 12.6h10.4"/></svg>拖入文件或文件夹上传到当前文件夹</div>
+            <p class="lc-cap"><span>LOCAL FILE TRANSFER</span><span class="lc-fill"></span><span>V0.8.1</span></p>
+          </div>
+          <div class="lc-wordmark" aria-hidden="true">LAN COPY</div>
+        </div>
+        <div class="lc-mast__copy">
+          <div class="grid grid--top lc-copy">
+            <div class="span-6">
+              <p class="lc-eyebrow"><span class="lc-dot"></span>NO CLOUD. NO ACCOUNT. JUST THE LAN.</p>
+              <h1 id="hero-h">在自己的设备之间传文件</h1>
+              <p class="hero__lead">同一 Wi-Fi 下，手机、平板和另一台电脑打开浏览器，就能互传文件、文件夹和文字。约 7 MB，一个可执行文件，不用注册。文件留在本机。</p>
+              <div class="btn-row">
+                <a class="btn btn--primary" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
+                <a class="btn btn--secondary" href="#how">查看使用步骤</a>
+              </div>
+            </div>
+            <div class="span-6 start-7 lc-install" data-install>
+              <div class="lc-tabs" role="tablist" aria-label="选择平台">
+                <button class="lc-tab is-on" id="tab-win" type="button" role="tab" aria-selected="true" aria-controls="get-win" tabindex="0">Windows</button>
+                <button class="lc-tab" id="tab-mac" type="button" role="tab" aria-selected="false" aria-controls="get-mac" tabindex="-1">macOS</button>
+                <button class="lc-tab" id="tab-linux" type="button" role="tab" aria-selected="false" aria-controls="get-linux" tabindex="-1">Linux</button>
+              </div>
+              <div class="lc-tabpanel" id="get-win" role="tabpanel" aria-labelledby="tab-win" tabindex="0">
+                <a class="lc-install__row" href="https://github.com/jachy-h/lan-copy/releases/download/v0.8.1/Lan-Copy-Windows-amd64.zip"><span class="lc-install__os">WINDOWS X64</span><span class="lc-install__file">Lan-Copy-Windows-amd64.zip</span><span class="lc-install__size">7.4 MB</span><span class="lc-install__arrow">↓</span></a>
+                <ol class="lc-steps">
+                  <li><b>01</b><span class="lc-step">下载 zip</span></li>
+                  <li><b>02</b><span class="lc-step">解压 zip</span></li>
+                  <li><b>03</b><span class="lc-step">双击 <code>lan-copy.exe</code>，或运行 <code>.\lan-copy.exe</code></span></li>
+                  <li><b>04</b><span class="lc-step">打开 <code>http://localhost:8080</code></span></li>
+                </ol>
+              </div>
+              <div class="lc-tabpanel" id="get-mac" role="tabpanel" aria-labelledby="tab-mac" tabindex="0" hidden>
+                <a class="lc-install__row" href="https://github.com/jachy-h/lan-copy/releases/download/v0.8.1/Lan-Copy-macOS-Apple-Silicon.tar.gz"><span class="lc-install__os">MACOS ARM64</span><span class="lc-install__file">Lan-Copy-macOS-Apple-Silicon.tar.gz</span><span class="lc-install__size">7.0 MB</span><span class="lc-install__arrow">↓</span></a>
+                <ol class="lc-steps">
+                  <li><b>01</b><span class="lc-step">下载 tar.gz</span></li>
+                  <li><b>02</b><span class="lc-step">解压 <code>tar -xzf Lan-Copy-macOS-Apple-Silicon.tar.gz</code></span></li>
+                  <li><b>03</b><span class="lc-step">运行 <code>./lan-copy</code></span></li>
+                  <li><b>04</b><span class="lc-step">打开 <code>http://localhost:8080</code></span></li>
+                </ol>
+              </div>
+              <div class="lc-tabpanel" id="get-linux" role="tabpanel" aria-labelledby="tab-linux" tabindex="0" hidden>
+                <a class="lc-install__row lc-install__row--source" href="https://github.com/jachy-h/lan-copy"><span class="lc-install__os">SOURCE</span><span class="lc-install__file">github.com/jachy-h/lan-copy</span><span class="lc-install__size">Go 1.24+</span><span class="lc-install__arrow">↗</span></a>
+                <p class="lc-install__note">官方 Release 暂无 Linux 包，请从源码运行。</p>
+                <ol class="lc-steps">
+                  <li><b>01</b><span class="lc-step">安装 Go 1.24+</span></li>
+                  <li><b>02</b><span class="lc-step">克隆仓库 <code>git clone https://github.com/jachy-h/lan-copy.git</code></span></li>
+                  <li><b>03</b><span class="lc-step">构建 <code>cd lan-copy && go build -o lan-copy .</code></span></li>
+                  <li><b>04</b><span class="lc-step">运行 <code>./lan-copy</code>，打开 <code>http://localhost:8080</code></span></li>
+                </ol>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="ly-piece ly-piece--note lc-share lc ui" aria-hidden="true">
-          <div class="lc-share__head"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5.6"/><path d="M2.4 8h11.2M8 2.4c1.6 1.6 2.4 3.5 2.4 5.6S9.6 12 8 13.6C6.4 12 5.6 10.1 5.6 8S6.4 4 8 2.4z"/></svg>分享给同一 Wi-Fi 的设备</div>
-          <div class="lc-share__body">
-            <span class="lc-qr"><svg viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h7v1H0zM10 0h2v1H10zM14 0h1v1H14zM18 0h7v1H18zM0 1h1v1H0zM6 1h1v1H6zM9 1h1v1H9zM12 1h2v1H12zM15 1h2v1H15zM18 1h1v1H18zM24 1h1v1H24zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM10 2h2v1H10zM14 2h1v1H14zM18 2h1v1H18zM20 2h3v1H20zM24 2h1v1H24zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM9 3h1v1H9zM12 3h2v1H12zM15 3h2v1H15zM18 3h1v1H18zM20 3h3v1H20zM24 3h1v1H24zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM10 4h2v1H10zM14 4h1v1H14zM18 4h1v1H18zM20 4h3v1H20zM24 4h1v1H24zM0 5h1v1H0zM6 5h1v1H6zM9 5h1v1H9zM12 5h2v1H12zM15 5h2v1H15zM18 5h1v1H18zM24 5h1v1H24zM0 6h7v1H0zM8 6h1v1H8zM10 6h1v1H10zM12 6h1v1H12zM14 6h1v1H14zM16 6h1v1H16zM18 6h7v1H18zM9 7h1v1H9zM12 7h2v1H12zM15 7h2v1H15zM6 8h1v1H6zM10 8h2v1H10zM14 8h1v1H14zM2 9h2v1H2zM5 9h1v1H5zM9 9h1v1H9zM12 9h2v1H12zM15 9h2v1H15zM19 9h1v1H19zM22 9h2v1H22zM0 10h2v1H0zM4 10h1v1H4zM6 10h3v1H6zM10 10h2v1H10zM14 10h1v1H14zM17 10h2v1H17zM20 10h2v1H20zM24 10h1v1H24zM2 11h2v1H2zM5 11h1v1H5zM9 11h1v1H9zM12 11h2v1H12zM15 11h2v1H15zM19 11h1v1H19zM22 11h2v1H22zM0 12h2v1H0zM4 12h1v1H4zM6 12h3v1H6zM10 12h2v1H10zM14 12h1v1H14zM17 12h2v1H17zM20 12h2v1H20zM24 12h1v1H24zM2 13h2v1H2zM5 13h1v1H5zM9 13h1v1H9zM12 13h2v1H12zM15 13h2v1H15zM19 13h1v1H19zM22 13h2v1H22zM0 14h2v1H0zM4 14h1v1H4zM6 14h3v1H6zM10 14h2v1H10zM14 14h1v1H14zM17 14h2v1H17zM20 14h2v1H20zM24 14h1v1H24zM2 15h2v1H2zM5 15h1v1H5zM9 15h1v1H9zM12 15h2v1H12zM15 15h2v1H15zM19 15h1v1H19zM22 15h2v1H22zM0 16h2v1H0zM4 16h1v1H4zM6 16h3v1H6zM10 16h2v1H10zM14 16h1v1H14zM17 16h2v1H17zM20 16h2v1H20zM24 16h1v1H24zM9 17h1v1H9zM12 17h2v1H12zM15 17h2v1H15zM19 17h1v1H19zM22 17h2v1H22zM0 18h7v1H0zM10 18h2v1H10zM14 18h1v1H14zM17 18h2v1H17zM20 18h2v1H20zM24 18h1v1H24zM0 19h1v1H0zM6 19h1v1H6zM9 19h1v1H9zM12 19h2v1H12zM15 19h2v1H15zM19 19h1v1H19zM22 19h2v1H22zM0 20h1v1H0zM2 20h3v1H2zM6 20h1v1H6zM10 20h2v1H10zM14 20h1v1H14zM17 20h2v1H17zM20 20h2v1H20zM24 20h1v1H24zM0 21h1v1H0zM2 21h3v1H2zM6 21h1v1H6zM9 21h1v1H9zM12 21h2v1H12zM15 21h2v1H15zM19 21h1v1H19zM22 21h2v1H22zM0 22h1v1H0zM2 22h3v1H2zM6 22h1v1H6zM10 22h2v1H10zM14 22h1v1H14zM17 22h2v1H17zM20 22h2v1H20zM24 22h1v1H24zM0 23h1v1H0zM6 23h1v1H6zM9 23h1v1H9zM12 23h2v1H12zM15 23h2v1H15zM19 23h1v1H19zM22 23h2v1H22zM0 24h7v1H0zM10 24h2v1H10zM14 24h1v1H14zM17 24h2v1H17zM20 24h2v1H20zM24 24h1v1H24z" fill="currentColor"/></svg></span>
-            <span class="lc-share__addr"><b>192.168.1.12:8080</b><span>用手机相机扫码<br>或输入这个地址</span></span>
-          </div>
-          <div class="lc-share__bar"><i></i></div>
-          <div class="lc-share__foot"><span>手机照片 2026-11.zip</span><b>已送达</b></div>
+          <dl class="hero-facts">
+            <div><dt>PLATFORMS</dt><dd>WINDOWS / MACOS / LINUX</dd></div>
+            <div><dt>PACKAGE</dt><dd>约 7 MB</dd></div>
+            <div><dt>ACCOUNT</dt><dd>不需要</dd></div>
+          </dl>
         </div>
       </div>
-    </div></div>
+      <div class="hero-strip lc-hero__foot"><span>LAN ONLY / NO CLOUD / NO ACCOUNT</span><span class="lc-fill"></span><span>SCROLL ↓</span></div>
+    </div>
+  </section>
+
+  <section class="section lc-why" id="why" aria-labelledby="why-h">
+    <div class="wrap">
+      <p class="lc-kicker"><b>01</b> / WHY</p>
+      <div class="grid grid--top lc-why__grid">
+        <div class="span-6">
+          <h2 id="why-h">设备早就在一起了。 <span class="muted">文件还在绕远路。</span></h2>
+          <p>网盘先上传再下载，聊天软件压缩照片、链接会过期，数据线一次只能接一台设备。Lan Copy 直接用你已经有的 Wi-Fi。</p>
+        </div>
+        <div class="span-6 start-7 lc-route" role="img" aria-label="The cloud way: device to cloud to device, with an account and an upload. The Lan Copy way: device directly to device on the same Wi-Fi.">
+          <div class="lc-route__row is-long">
+            <span class="lc-route__label">CLOUD / CHAT</span>
+            <div class="lc-route__line"><i>DEVICE</i><span>→</span><b>CLOUD</b><span>→</span><i>DEVICE</i></div>
+            <span class="lc-route__note">an upload, an account, a wait</span>
+          </div>
+          <div class="lc-route__row is-short">
+            <span class="lc-route__label">LAN COPY</span>
+            <div class="lc-route__line"><i>DEVICE</i><span class="is-blue">↔</span><i>DEVICE</i></div>
+            <span class="lc-route__note">same Wi-Fi, directly</span>
+          </div>
+        </div>
+      </div>
+      <figure class="lc-shot lc-shot--why">
+        <img src="assets/img/lan-network-1800.webp" srcset="assets/img/lan-network-1000.webp 1000w, assets/img/lan-network-1800.webp 1800w" sizes="(max-width: 639px) 100vw, 1256px" width="1800" height="1016" loading="eager" decoding="async" alt="一条电光蓝的线把笔记本电脑、手机、平板和打印机直接连到一台小主机，文件在线路上移动，没有云端。">
+      </figure>
+      <div class="lc-why__alts grid">
+        <div class="lc-alt span-4"><span>01</span><h3>网盘</h3><p>账号、上传、再下载。</p></div>
+        <div class="lc-alt span-4"><span>02</span><h3>聊天软件</h3><p>照片被压缩，链接会过期，一次只能发给一个人。</p></div>
+        <div class="lc-alt span-4"><span>03</span><h3>数据线</h3><p>一台设备、一个接口、一次一个文件。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <p class="lc-kicker"><b>02</b> / HOW</p>
+      <div class="section-head">
+        <h2 id="how-h">三步，一个浏览器</h2>
+        <p>不用装客户端，不用注册账号。一台电脑运行，其他设备打开浏览器。</p>
+      </div>
+      <div class="lc-how grid">
+        <article class="lc-how__step card card--row span-4">
+          <span class="step-num">01</span>
+          <h3>运行程序</h3>
+          <p>下载约 7 MB，解压后双击，或在终端执行 <code>./lan-copy</code>。</p>
+          <div class="lc-how__visual"><div class="lc-term ui ui-mock" role="img" aria-label="终端里运行 lan-copy，显示局域网地址和共享目录">
+              <div class="lc-term__bar"><span>lan-copy — zsh</span><span>80 × 24</span></div>
+              <div class="lc-term__body" aria-hidden="true">
+                <p><span class="lc-prompt">$</span> ./lan-copy</p>
+                <p class="lc-dim">lan copy 0.8.1</p>
+                <p>serving <b>192.168.1.12</b></p>
+                <p>shared&nbsp; <b>共享文件夹-lancopy</b></p>
+                <p>ready&nbsp;&nbsp; scan to open</p>
+                <p class="lc-cursor">▍</p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="lc-how__step card card--row span-4">
+          <span class="step-num">02</span>
+          <h3>扫码打开</h3>
+          <p>同一 Wi-Fi 下，用手机相机扫码，或输入局域网地址。</p>
+          <div class="lc-how__visual lc-how__visual--qr"><span class="lc-qr"><svg viewBox="0 0 25 25" shape-rendering="crispEdges" aria-hidden="true"><path d="M0 0h7v1H0zM10 0h2v1H10zM14 0h1v1H14zM18 0h7v1H18zM0 1h1v1H0zM6 1h1v1H6zM9 1h1v1H9zM12 1h2v1H12zM15 1h2v1H15zM18 1h1v1H18zM24 1h1v1H24zM0 2h1v1H0zM2 2h3v1H2zM6 2h1v1H6zM10 2h2v1H10zM14 2h1v1H14zM18 2h1v1H18zM20 2h3v1H20zM24 2h1v1H24zM0 3h1v1H0zM2 3h3v1H2zM6 3h1v1H6zM9 3h1v1H9zM12 3h2v1H12zM15 3h2v1H15zM18 3h1v1H18zM20 3h3v1H20zM24 3h1v1H24zM0 4h1v1H0zM2 4h3v1H2zM6 4h1v1H6zM10 4h2v1H10zM14 4h1v1H14zM18 4h1v1H18zM20 4h3v1H20zM24 4h1v1H24zM0 5h1v1H0zM6 5h1v1H6zM9 5h1v1H9zM12 5h2v1H12zM15 5h2v1H15zM18 5h1v1H18zM24 5h1v1H24zM0 6h7v1H0zM8 6h1v1H8zM10 6h1v1H10zM12 6h1v1H12zM14 6h1v1H14zM16 6h1v1H16zM18 6h7v1H18zM9 7h1v1H9zM12 7h2v1H12zM15 7h2v1H15zM6 8h1v1H6zM10 8h2v1H10zM14 8h1v1H14zM2 9h2v1H2zM5 9h1v1H5zM9 9h1v1H9zM12 9h2v1H12zM15 9h2v1H15zM19 9h1v1H19zM22 9h2v1H22zM0 10h2v1H0zM4 10h1v1H4zM6 10h3v1H6zM10 10h2v1H10zM14 10h1v1H14zM17 10h2v1H17zM20 10h2v1H20zM24 10h1v1H24zM2 11h2v1H2zM5 11h1v1H5zM9 11h1v1H9zM12 11h2v1H12zM15 11h2v1H15zM19 11h1v1H19zM22 11h2v1H22zM0 12h2v1H0zM4 12h1v1H4zM6 12h3v1H6zM10 12h2v1H10zM14 12h1v1H14zM17 12h2v1H17zM20 12h2v1H20zM24 12h1v1H24zM2 13h2v1H2zM5 13h1v1H5zM9 13h1v1H9zM12 13h2v1H12zM15 13h2v1H15zM19 13h1v1H19zM22 13h2v1H22zM0 14h2v1H0zM4 14h1v1H4zM6 14h3v1H6zM10 14h2v1H10zM14 14h1v1H14zM17 14h2v1H17zM20 14h2v1H20zM24 14h1v1H24zM2 15h2v1H2zM5 15h1v1H5zM9 15h1v1H9zM12 15h2v1H12zM15 15h2v1H15zM19 15h1v1H19zM22 15h2v1H22zM0 16h2v1H0zM4 16h1v1H4zM6 16h3v1H6zM10 16h2v1H10zM14 16h1v1H14zM17 16h2v1H17zM20 16h2v1H20zM24 16h1v1H24zM9 17h1v1H9zM12 17h2v1H12zM15 17h2v1H15zM19 17h1v1H19zM22 17h2v1H22zM0 18h7v1H0zM10 18h2v1H10zM14 18h1v1H14zM17 18h2v1H17zM20 18h2v1H20zM24 18h1v1H24zM0 19h1v1H0zM6 19h1v1H6zM9 19h1v1H9zM12 19h2v1H12zM15 19h2v1H15zM19 19h1v1H19zM22 19h2v1H22zM0 20h1v1H0zM2 20h3v1H2zM6 20h1v1H6zM10 20h2v1H10zM14 20h1v1H14zM17 20h2v1H17zM20 20h2v1H20zM24 20h1v1H24zM0 21h1v1H0zM2 21h3v1H2zM6 21h1v1H6zM9 21h1v1H9zM12 21h2v1H12zM15 21h2v1H15zM19 21h1v1H19zM22 21h2v1H22zM0 22h1v1H0zM2 22h3v1H2zM6 22h1v1H6zM10 22h2v1H10zM14 22h1v1H14zM17 22h2v1H17zM20 22h2v1H20zM24 22h1v1H24zM0 23h1v1H0zM6 23h1v1H6zM9 23h1v1H9zM12 23h2v1H12zM15 23h2v1H15zM19 23h1v1H19zM22 23h2v1H22zM0 24h7v1H0zM10 24h2v1H10zM14 24h1v1H14zM17 24h2v1H17zM20 24h2v1H20zM24 24h1v1H24z" fill="currentColor"/></svg></span><span class="lc-how__addr">192.168.1.12:8080</span></div>
+        </article>
+        <article class="lc-how__step card card--row span-4">
+          <span class="step-num">03</span>
+          <h3>拖入文件</h3>
+          <p>把文件、文件夹拖进共享空间，或者粘贴一段文字。</p>
+          <div class="lc-how__visual lc-how__files">
+            <div class="lc-how__file"><span class="lc-type lc-type--zip">ZIP</span><span>手机照片 2026-11.zip</span><em>1.8 GB</em></div>
+            <div class="lc-how__file"><span class="lc-type lc-type--pdf">PDF</span><span>产品说明书.pdf</span><em>8.2 MB</em></div>
+            <div class="lc-how__file"><span class="lc-type lc-type--mp4">MP4</span><span>产品演示.mp4</span><em>642 MB</em></div>
+            <div class="lc-how__file"><span class="lc-type lc-type--doc">DOC</span><span>合同终稿.docx</span><em>1.1 MB</em></div>
+          </div>
+        </article>
+      </div>
+      <div class="lc-how__end">
+        <p><b>三步都在浏览器里完成。</b>手机、平板和另一台电脑都不用装 App。</p>
+        <a class="btn btn--primary" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
+      </div>
+    </div>
   </section>
 
   <section class="section" id="files" aria-labelledby="files-h">
     <div class="wrap">
       <div class="grid grid--top">
-        <h2 id="files-h" class="span-5">共享的文件留在本机</h2>
-        <p class="span-6 start-7" style="font-size:var(--t-lead);line-height:1.5">内网空间是一个普通的文件夹视图：拖入文件或文件夹，手机和电脑看到同一份目录。默认目录叫「共享文件夹-lancopy」，文件不经过任何上传服务。<a class="link" href="https://github.com/jachy-h/lan-copy#readme">查看使用说明</a></p>
+        <div class="span-5"><p class="lc-kicker"><b>03</b> / FILES</p><h2 id="files-h">共享的文件留在本机</h2></div>
+        <p class="span-6 start-7" style="font-size:var(--t-lead);line-height:1.5">内网空间是一个普通的文件夹视图：拖入文件或文件夹，手机和电脑看到同一份目录。默认目录叫「共享文件夹-lancopy」，文件不经过任何上传服务。 <a class="link" href="https://github.com/jachy-h/lan-copy#readme">查看使用说明</a></p>
       </div>
-      <div class="app ui fill" role="img" aria-label="Lan Copy 的内网空间：左侧是共享文件列表，右侧打开产品说明书.pdf 的预览">
+      <div class="app ui fill ui-mock" role="img" aria-label="Lan Copy 的内网空间：左侧是共享文件列表，右侧打开产品说明书.pdf 的预览">
         <div class="lc-chrome">
           <span class="lc-brand"><img src="assets/lan-copy-logo.svg" alt="" style="width:20px;height:20px;border-radius:5px">Lan Copy</span>
           <span class="lc-crumb">/ <b>内网空间</b></span>
@@ -454,7 +1016,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
               <div class="lc-paper__rule"></div>
               <p>Lan Copy 是一个在局域网内共享文件与文字的工具。启动后，同一 Wi-Fi 下的设备用浏览器打开地址即可使用。</p>
               <ol>
-                <li>双击程序，或运行 <span style="font-family:var(--font-mono);font-size:11.5px">./lan-copy</span>。</li>
+                <li>双击程序，或运行 <span style="font-family:var(--font-mono);font-size: 12.5px">./lan-copy</span>。</li>
                 <li>点击分享图标，让其他设备扫码或输入地址。</li>
                 <li>把文件拖进内网空间，或到碎片快传粘贴文字。</li>
               </ol>
@@ -471,6 +1033,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <div class="wrap">
       <div class="grid grid--top">
         <div class="span-5">
+          <p class="lc-kicker"><b>04</b> / SEND</p>
           <h2 id="fragments-h">文字和图片，也能随手贴</h2>
           <p style="margin-top:var(--s-4);font-size:var(--t-lead);line-height:1.5">碎片快传适合发链接、验证码和临时笔记，也可以拖入图片。碎片默认 7 天到期，能一键存进内网空间的文件夹。</p>
           <ul style="display:grid;gap:var(--s-2);margin-top:var(--s-6);font-size:var(--t-body);color:var(--ink)">
@@ -482,7 +1045,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
         </div>
         <div class="frame frame--split span-6 start-7" role="img" aria-label="碎片快传页面：一条链接碎片和一张截图碎片，都显示 7 天后到期">
           <div class="stage stage--fade-br">
-            <div class="at-rise fit lc-frag lc ui" style="--fit-max:520px;--ax:40px;--ay:44px" aria-hidden="true">
+            <div class="at-rise fit lc-frag lc ui ui-mock" style="--fit-max:520px;--ax:40px;--ay:44px" aria-hidden="true">
               <div class="lc-frag__bar"><b>碎片快传</b><span class="lc-count">2 条 · 7 天到期</span><span class="lc-btn">新碎片</span></div>
               <div class="lc-compose"><span>粘贴文字、链接，或拖入图片…</span><span class="lc-btn">发布</span></div>
               <div class="lc-frag__grid">
@@ -529,6 +1092,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
 
   <section class="section" id="local" data-moment="letters-assemble" data-scroll-moment aria-labelledby="local-h">
     <div class="wrap">
+      <p class="lc-kicker"><b>05</b> / LOCAL ONLY</p>
       <h2 id="local-h" class="mo-la__type">文件不离开局域网</h2>
       <p class="mo-la__sub">手机、平板和电脑直接读写运行 Lan Copy 的那台机器。没有账号，没有上传，也没有第三方服务器。</p>
       <p style="margin-top:var(--s-5);font-size:var(--t-small);color:var(--muted)">默认没有密码，只在可信的局域网使用。</p>
@@ -539,6 +1103,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <div class="wrap">
       <div class="section-head section-head--row">
         <div>
+          <p class="lc-kicker"><b>06</b> / PRINT</p>
           <h2 id="print-h">手机上也能用电脑的打印机</h2>
           <p>Windows 主机把已安装的打印机共享出来。选一份 PDF、JPG 或 PNG，翻页预览，确认后发送到那台电脑的打印队列。</p>
         </div>
@@ -550,7 +1115,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
           <h3>选择文件</h3>
           <p>支持 PDF、JPG 和 PNG，单个文件最大 50 MiB。</p>
           <div class="panel panel--inset" role="img" aria-label="选择要打印的文件：发票 PDF、合同 JPG、截图 PNG">
-            <div class="stage"><div class="at-rise fit" style="--fit-max:292px" aria-hidden="true"><div class="lc-mini lc ui">
+            <div class="stage"><div class="at-rise fit" style="--fit-max:292px" aria-hidden="true"><div class="lc-mini lc ui ui-mock">
               <div class="lc-mini__bar"><b>选择文件</b><span>本机</span></div>
               <div class="lc-mini__body">
                 <div class="lc-filepick"><span class="lc-type lc-type--pdf">PDF</span><span>发票 2026-11.pdf</span><em>312 KB</em></div>
@@ -596,6 +1161,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <div class="wrap">
       <div class="grid grid--top">
         <div class="span-5">
+          <p class="lc-kicker"><b>07</b> / DEVICES</p>
           <h2 id="devices-h">每台设备都只用浏览器</h2>
           <p style="margin-top:var(--s-4);font-size:var(--t-lead);line-height:1.5">手机、平板和另一台电脑不需要安装客户端。连上同一个 Wi-Fi，扫码或打开局域网地址，就能读写同一个目录。</p>
           <p style="margin-top:var(--s-3);font-size:var(--t-body);line-height:1.6">共享目录里看到的是同一份文件，改动会立即出现在其他设备上。</p>
@@ -608,10 +1174,11 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
           </ul>
           <p style="margin-top:var(--s-5)"><a class="link" href="#faq">其他设备打不开？</a></p>
         </div>
-        <div class="frame frame--split span-6 start-7" role="img" aria-label="一台运行 Lan Copy 的电脑，连接着手机、平板和另一台电脑，它们都通过浏览器访问">
-          <div class="dg" data-dg-still data-diagram='{"layout":"hub","center":{"label":"Lan Copy","icon":"assets/lan-copy-logo.svg"},"spokes":[{"label":"这台电脑","icon":"ui:monitor","sub":"运行 Lan Copy"},{"label":"手机","icon":"ui:smartphone","sub":"浏览器"},{"label":"平板","icon":"ui:tablet","sub":"浏览器"},{"label":"另一台电脑","icon":"ui:laptop","sub":"浏览器"}]}'></div>
-        </div>
+        <figure class="frame frame--split span-6 start-7 lc-devices__shot">
+          <img src="assets/img/lan-devices-1400.webp" srcset="assets/img/lan-devices-800.webp 800w, assets/img/lan-devices-1400.webp 1400w" sizes="(max-width: 639px) 100vw, 620px" width="1400" height="1041" loading="eager" decoding="async" alt="一台运行 Lan Copy 的主机旁边，笔记本电脑和手机通过浏览器直接交换照片与文档。">
+        </figure>
       </div>
+      <p class="lc-devices__foot"><span>4 DEVICES</span><span>ONE BROWSER TAB EACH</span><span>NO CLIENT</span></p>
     </div>
   </section>
 
@@ -619,15 +1186,16 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <div class="wrap">
       <div class="group">
         <div class="section-head">
+          <p class="lc-kicker"><b>08</b> / PLUGINS</p>
           <h2 id="plugins-h">插件服务，跟着文件一起跑</h2>
           <p>Lan Copy 可以导入 Docker 镜像，把插件装在这台电脑上。插件能订阅上传、删除、移动和文本变化，在操作成功后收到签名事件。</p>
         </div>
         <div class="grid grid--top">
-          <article class="card card--row span-6">
+          <article class="card lc-pcard span-6">
             <h3>导入并启动镜像</h3>
             <p>上传 docker save 生成的包，安装、启动、停止都在页面上完成。</p>
             <div class="panel panel--inset" role="img" aria-label="插件服务列表：Image OCR 正在运行，Auto tag 已停止">
-              <div class="stage stage--fade-b lc-panel-fade"><div class="at-rise fit" style="--fit-max:300px" aria-hidden="true"><div class="lc-plugin lc ui">
+              <div class="stage stage--fade-b lc-panel-fade"><div class="at-rise fit" style="--fit-max:300px" aria-hidden="true"><div class="lc-plugin lc ui ui-mock">
                 <div class="lc-plugin__row"><span class="lc-ico"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M8 5v6"/></svg></span><b>Image OCR</b><span class="lc-pill"><i class="lc-dot" style="width:5px;height:5px;box-shadow:none"></i>运行中</span></div>
                 <div class="lc-plugin__row"><span class="lc-ico"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M3 4.5h10M3 8h10M3 11.5h6"/></svg></span><b>Auto tag</b><span class="lc-pill lc-pill--off">已停止</span></div>
                 <div class="lc-plugin__row"><span class="lc-ico"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 2.5h6l2 2v9H4z"/><path d="M10 2.5v2h2"/></svg></span><b>PDF 合并</b><span class="lc-pill lc-pill--off">已停止</span></div>
@@ -637,11 +1205,11 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
               </div></div></div>
             </div>
           </article>
-          <article class="card card--row span-6">
+          <article class="card lc-pcard span-6">
             <h3>订阅文件事件</h3>
             <p>插件在 Manifest 里声明订阅，操作成功后收到带 HMAC 签名的事件。</p>
             <div class="panel panel--inset" role="img" aria-label="事件日志：文件上传、文本保存和文件夹创建都已投递">
-              <div class="stage stage--fade-b lc-panel-fade"><div class="at-rise fit" style="--fit-max:300px" aria-hidden="true"><div class="lc-events lc ui">
+              <div class="stage stage--fade-b lc-panel-fade"><div class="at-rise fit" style="--fit-max:300px" aria-hidden="true"><div class="lc-events lc ui ui-mock">
                 <div class="lc-event"><i class="lc-dot"></i><code>file.uploaded</code><time>10:42:03</time></div>
                 <div class="lc-event is-new"><i class="lc-dot"></i><code>text.saved</code><time>10:41:18</time></div>
                 <div class="lc-event"><i class="lc-dot"></i><code>folder.created</code><time>10:38:51</time></div>
@@ -656,7 +1224,7 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
       </div>
       <div class="group">
         <div class="grid grid--top">
-          <article class="card card--row span-6">
+          <article class="card lc-pcard span-6">
             <h3>按容器隔离</h3>
             <p>插件以受限容器运行。任何能打开 Lan Copy 的设备都能管理插件，只安装可信镜像。</p>
             <div class="panel panel--inset" role="img" aria-label="容器状态：lan-copy-plugin-ocr 运行中，端口 127.0.0.1:9100">
@@ -672,8 +1240,8 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
               </div></div></div>
             </div>
           </article>
-          <article class="card card--row span-6">
-            <h3>没有 Docker 也能用</h3>
+          <article class="card lc-pcard span-6">
+            <h3>Docker 不可用时仍可传文件</h3>
             <p>Docker 不可用时，文件、碎片、打印和更新照常工作；插件入口会说明缺少运行时。</p>
             <div class="panel panel--inset" role="img" aria-label="Docker 未运行，文件传输不受影响">
               <div class="stage"><div class="at-rise fit" style="--fit-max:300px" aria-hidden="true"><div class="lc-plugin lc ui" style="padding:14px">
@@ -686,16 +1254,46 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
             </div>
           </article>
         </div>
-        <div class="lc-manifest lc ui" role="img" aria-label="插件 Manifest：声明健康检查 /health、事件接口 /events 和三个订阅事件">
-          <div class="lc-manifest__bar"><b>manifest.json</b><span>image-ocr 0.4.2</span></div>
-          <pre>{
+        <div class="grid grid--top lc-plugin-foot">
+          <div class="lc-manifest lc ui span-6" role="img" aria-label="插件 Manifest：声明健康检查 /health、事件接口 /events 和三个订阅事件">
+            <div class="lc-manifest__bar"><b>manifest.json</b><span>image-ocr 0.4.2</span></div>
+            <pre>{
   "endpoints": { <span class="k">"health"</span>: <span class="s">"/health"</span>, <span class="k">"events"</span>: <span class="s">"/events"</span> },
   "events": [<span class="s">"file.uploaded"</span>, <span class="s">"text.created"</span>, <span class="s">"text.saved"</span>],
   "mounts": [<span class="s">"shared"</span>]
 }</pre>
+          </div>
+          <div class="span-6 lc-protocol">
+            <p class="lc-kicker"><b>PLUGIN</b> / MANIFEST</p>
+            <h3>订阅和签名都写在 Manifest 里</h3>
+            <p>插件声明健康检查、事件接口和要订阅的事件；Lan Copy 用 HMAC 签名每次投递。</p>
+            <p style="margin-top:var(--s-4)"><a class="link" href="https://github.com/jachy-h/lan-copy/blob/main/docs/PLUGIN-PROTOCOL.md">读插件服务协议</a></p>
+          </div>
         </div>
-        <p style="margin-top:var(--s-4)"><a class="link" href="https://github.com/jachy-h/lan-copy/blob/main/docs/PLUGIN-PROTOCOL.md">读插件服务协议</a></p>
       </div>
+    </div>
+  </section>
+
+  <section class="section lc-compare-sec" id="compare" aria-labelledby="compare-h">
+    <div class="wrap">
+      <p class="lc-kicker"><b>09</b> / COMPARE</p>
+      <div class="section-head">
+        <h2 id="compare-h">少走的那几步</h2>
+        <p>和网盘、聊天软件、数据线相比，Lan Copy 只做一件事：让同一网络里的设备直接传。</p>
+      </div>
+      <div class="lc-compare" role="table" aria-label="Comparison of Lan Copy, cloud drives and chat apps">
+        <div class="lc-compare__row lc-compare__head" role="row">
+          <span role="columnheader"></span><span role="columnheader" class="is-us">Lan Copy</span><span role="columnheader">网盘</span><span role="columnheader">聊天软件</span>
+        </div>
+        <div class="lc-compare__row" role="row"><span role="rowheader">账号</span><span class="is-us">不需要</span><span>需要</span><span>需要</span></div>
+        <div class="lc-compare__row" role="row"><span role="rowheader">跨设备</span><span class="is-us">任意浏览器</span><span>App / 网页</span><span>App</span></div>
+        <div class="lc-compare__row" role="row"><span role="rowheader">大文件</span><span class="is-us">硬盘和 Wi-Fi 决定</span><span>套餐限制</span><span>压缩</span></div>
+        <div class="lc-compare__row" role="row"><span role="rowheader">同一局域网</span><span class="is-us">直接传</span><span>仍走公网</span><span>仍走公网</span></div>
+        <div class="lc-compare__row" role="row"><span role="rowheader">费用</span><span class="is-us">免费 / 开源</span><span>订阅</span><span>免费</span></div>
+      </div>
+      <figure class="lc-shot lc-shot--route">
+        <img src="assets/img/lan-route-2000.webp" srcset="assets/img/lan-route-1100.webp 1100w, assets/img/lan-route-2000.webp 2000w" sizes="(max-width: 639px) 100vw, 1256px" width="2000" height="667" loading="eager" decoding="async" alt="左侧文件先上传到云端再下载，绕了远路；右侧两台设备在同一 Wi-Fi 下直接相连。">
+      </figure>
     </div>
   </section>
 
@@ -703,21 +1301,25 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
     <div class="wrap">
       <div class="grid grid--top">
         <div class="span-5">
+          <p class="lc-kicker"><b>10</b> / FAQ</p>
           <h2 id="faq-h">常见问题<svg class="faq-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 1 1 4.2 2.3c-.9.6-1.6 1.1-1.6 2.3"/><path d="M12 17.2h.01"/></svg></h2>
           <p style="margin-top:var(--s-4);color:var(--muted);font-size:var(--t-lead);line-height:1.5">使用前需要知道的事，以及它不做什么。</p>
           <p style="margin-top:var(--s-5)"><a class="link" href="https://github.com/jachy-h/lan-copy/issues">在 GitHub 提问题</a></p>
-          <div class="lc-help lc ui" role="img" aria-label="Lan Copy 帮助卡片：在 GitHub 提交问题或查看发布记录">
+          <div class="lc-help lc ui ui-mock" role="img" aria-label="Lan Copy 帮助卡片：在 GitHub 提交问题或查看发布记录">
             <div class="lc-help__head"><img src="assets/lan-copy-logo.svg" alt=""><b>还没找到答案？</b></div>
             <p>在 GitHub 提交问题，或查看最近的修复与发布。</p>
             <span class="lc-btn">打开 Issues</span>
           </div>
         </div>
         <div class="faq span-6 start-7">
-          <div class="faq__item"><h3>哪些系统可以用？</h3><p>Windows x64 和 macOS Apple Silicon，两个发布包。</p></div>
+          <div class="faq__item"><h3>哪些系统可以用？</h3><p>Windows x64 和 macOS Apple Silicon 有发布包；Linux 用 Go 1.24+ 从源码运行。</p></div>
           <div class="faq__item"><h3>文件和文字存在哪里？</h3><p>运行 Lan Copy 的电脑上，默认目录是「共享文件夹-lancopy」。</p></div>
           <div class="faq__item"><h3>为什么其他设备打不开？</h3><p>确认同一局域网，并允许通过系统防火墙；访客 Wi-Fi 可能隔离设备。</p></div>
           <div class="faq__item"><h3>有账号和密码吗？</h3><p>没有。局域网内谁都能读写和更新，只在可信网络使用。</p></div>
           <div class="faq__item"><h3>怎么更新？</h3><p>设置 → 更新会检查 GitHub 正式版，验证签名后安装并重启。</p></div>
+          <div class="faq__item faq-extra"><h3>能预览哪些文件？</h3><p>图片、PDF、Word 和 Excel 可以直接打开；其他文件先下载。</p></div>
+          <div class="faq__item faq-extra"><h3>能在 Docker 里运行吗？</h3><p>Lan Copy 本身跑在 Windows 或 macOS 主机上；只有插件服务需要 Docker。</p></div>
+          <div class="faq__item faq-extra"><h3>更新会丢失共享内容吗？</h3><p>不会。更新会保留共享目录和碎片，安装后自动重启并刷新页面。</p></div>
         </div>
       </div>
     </div>
@@ -728,10 +1330,14 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
   <div class="wrap">
     <div class="closing__cta close--type">
       <div class="section-head">
+        <p class="lc-kicker"><b>11</b> / DOWNLOAD</p>
         <h2 id="close-h">把文件留在自己的网络里</h2>
-        <p><img class="close-logo" src="assets/lan-copy-logo.svg" width="22" height="22" alt="">Windows x64 与 macOS Apple Silicon，发布包约 7 MB。</p>
+        <p><img class="close-logo" src="assets/lan-copy-logo.svg" width="22" height="22" alt="">Windows x64 与 macOS 包约 7 MB；Linux 从源码运行。</p>
       </div>
-      <a class="btn btn--primary btn--xl" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
+      <figure class="close__media lc-close__media">
+        <img src="assets/img/lan-package-1200.webp" srcset="assets/img/lan-package-700.webp 700w, assets/img/lan-package-1200.webp 1200w" sizes="(max-width: 639px) 100vw, 900px" width="1200" height="800" loading="eager" decoding="async" alt="一个极小的黑色立方体，一条电光蓝的线把它和下载连接起来。">
+      </figure>
+      <a class="btn btn--primary lc-download" href="https://github.com/jachy-h/lan-copy/releases/latest">下载 Lan Copy</a>
     </div>
     <div class="closing__links">
       <div class="grid">
@@ -751,6 +1357,9 @@ html[data-buttons="tonal"] .btn--secondary { background: color-mix(in oklab, var
   </div>
 </footer>
 
+<script src="assets/install-tabs.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/nav-active.js"></script>
 <script type="module" src="assets/system.js"></script>
 <script type="module" src="assets/motion/motion.js"></script>
 <script type="module" src="assets/layout/layout.js"></script>
