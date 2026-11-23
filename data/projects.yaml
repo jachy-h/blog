@@ -4,6 +4,8 @@
 #   name        项目名（必填）
 #   description 一句话说明，纯文本
 #   url         链接，可填站内路径（如 /posts/xxx/）或外部地址（自动新窗口打开）
+#   newTab      站内链接也强制在新标签页打开
+#   caseStudy   指向站内介绍；填写后项目行优先打开它
 #   tags        标签数组，可省略
 #
 # 标题可在 config.toml 的 [params] 中通过 projectsTitle 修改；
@@ -29,6 +31,6 @@
 
 - name: "lan-copy"
   description: "极小、零依赖的局域网文件与文本快传工具。"
-  url: "https://github.com/jachy-h/lan-copy"
-  caseStudy: "/projects/lan-copy/"
+  url: "/lan-copy/"
+  newTab: true
   tags: ["Go", "LAN", "CLI"]

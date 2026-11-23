@@ -13,7 +13,7 @@ showtoc: false
 
 ## 使用入口
 
-[前往 GitHub 查看源码与使用说明](https://github.com/jachy-h/lan-copy)
+[产品首页](/lan-copy/) · [GitHub 源码与使用说明](https://github.com/jachy-h/lan-copy)
 
 安装方式、命令参数和支持平台，请以仓库 README 为准。
 
